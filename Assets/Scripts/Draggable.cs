@@ -6,6 +6,7 @@ namespace Assets.Scripts
 {
     public class Draggable : MonoBehaviour
     {
+        [HideInInspector]
         public bool drag;
         public Vector2 lastPosition;
 
