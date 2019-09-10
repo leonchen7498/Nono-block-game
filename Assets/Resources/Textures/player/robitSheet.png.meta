@@ -1,0 +1,1822 @@
+fileFormatVersion: 2
+guid: 8eeac6a6fc8e1a548a0672fb99879d66
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1497459071398779108
+    second: robitSheet_0
+  - first:
+      213: 6728733927895482199
+    second: robitSheet_1
+  - first:
+      213: -928374562767769803
+    second: robitSheet_2
+  - first:
+      213: 5203415998069302145
+    second: robitSheet_3
+  - first:
+      213: 6247933301993237535
+    second: robitSheet_4
+  - first:
+      213: -1600693001689355526
+    second: robitSheet_5
+  - first:
+      213: -6016280372335605702
+    second: robitSheet_6
+  - first:
+      213: 3232684525457993597
+    second: robitSheet_7
+  - first:
+      213: 7141683396631695168
+    second: robitSheet_8
+  - first:
+      213: 2505235173079056907
+    second: robitSheet_9
+  - first:
+      213: -3654225032454194493
+    second: robitSheet_10
+  - first:
+      213: -1049420729387956536
+    second: robitSheet_11
+  - first:
+      213: 826889194626550946
+    second: robitSheet_12
+  - first:
+      213: -5288240266266197546
+    second: robitSheet_13
+  - first:
+      213: -514391256402422289
+    second: robitSheet_14
+  - first:
+      213: 2409725363904474925
+    second: robitSheet_15
+  - first:
+      213: 283471437666773057
+    second: robitSheet_16
+  - first:
+      213: -3414885683560514903
+    second: robitSheet_17
+  - first:
+      213: 4157688588613719752
+    second: robitSheet_18
+  - first:
+      213: 6941792364354287279
+    second: robitSheet_19
+  - first:
+      213: 646754663874864306
+    second: robitSheet_20
+  - first:
+      213: 3532096756237135393
+    second: robitSheet_21
+  - first:
+      213: -757593383689942034
+    second: robitSheet_22
+  - first:
+      213: 4430287993440805733
+    second: robitSheet_23
+  - first:
+      213: -1614606627960958718
+    second: robitSheet_24
+  - first:
+      213: -6828552121678091459
+    second: robitSheet_25
+  - first:
+      213: -4212886462923964967
+    second: robitSheet_26
+  - first:
+      213: -338852306279615981
+    second: robitSheet_27
+  - first:
+      213: -7223455889216401736
+    second: robitSheet_28
+  - first:
+      213: 2878789046789817835
+    second: robitSheet_29
+  - first:
+      213: 8030103407610234433
+    second: robitSheet_30
+  - first:
+      213: 2542319309599046796
+    second: robitSheet_31
+  - first:
+      213: 1649906013559660899
+    second: robitSheet_32
+  - first:
+      213: 2080843173067516490
+    second: robitSheet_33
+  - first:
+      213: -3939653974687925495
+    second: robitSheet_34
+  - first:
+      213: -4695322253388244702
+    second: robitSheet_35
+  - first:
+      213: -4751766303724053892
+    second: robitSheet_36
+  - first:
+      213: -24363489189981256
+    second: robitSheet_37
+  - first:
+      213: 5799830412446098170
+    second: robitSheet_38
+  - first:
+      213: 7193228161739831688
+    second: robitSheet_39
+  - first:
+      213: -6030492374338479882
+    second: robitSheet_40
+  - first:
+      213: 8042262981206433566
+    second: robitSheet_41
+  - first:
+      213: 3145742765342395614
+    second: robitSheet_42
+  - first:
+      213: -4977649824870293799
+    second: robitSheet_43
+  - first:
+      213: -5918965553115405659
+    second: robitSheet_44
+  - first:
+      213: 2365219244738937696
+    second: robitSheet_45
+  - first:
+      213: 8789277423184344247
+    second: robitSheet_46
+  - first:
+      213: 5551380299302932511
+    second: robitSheet_47
+  - first:
+      213: -5002113403180376520
+    second: robitSheet_48
+  - first:
+      213: -6402363223923487027
+    second: robitSheet_49
+  - first:
+      213: 2583184641317364737
+    second: robitSheet_50
+  - first:
+      213: -6853867374138898642
+    second: robitSheet_51
+  - first:
+      213: -1956768085112205633
+    second: robitSheet_52
+  - first:
+      213: -1910803420023073264
+    second: robitSheet_53
+  - first:
+      213: -5384972601438104551
+    second: robitSheet_54
+  - first:
+      213: 5182189769838968514
+    second: robitSheet_55
+  - first:
+      213: 1006256093651249337
+    second: robitSheet_56
+  - first:
+      213: 6902090412274961949
+    second: robitSheet_57
+  - first:
+      213: -813120880332497483
+    second: robitSheet_58
+  - first:
+      213: -476148892105417872
+    second: robitSheet_59
+  - first:
+      213: -5590835480241240692
+    second: robitSheet_75
+  - first:
+      213: -4015664625594061828
+    second: robitSheet_76
+  - first:
+      213: 86514517249576033
+    second: robitSheet_77
+  - first:
+      213: -1200749121496199745
+    second: robitSheet_79
+  - first:
+      213: -931009780835434364
+    second: robitSheet_80
+  - first:
+      213: -1519044064825644900
+    second: robitSheet_81
+  - first:
+      213: -9137187592167357328
+    second: robitSheet_82
+  - first:
+      213: 5351984094972512949
+    second: robitSheet_83
+  - first:
+      213: -4901118374248599260
+    second: robitSheet_84
+  - first:
+      213: -8999490127076591133
+    second: robitSheet_85
+  - first:
+      213: 2737371479460691826
+    second: robitSheet_86
+  - first:
+      213: -5130030530858739512
+    second: robitSheet_87
+  - first:
+      213: -6066585263386050056
+    second: robitSheet_89
+  - first:
+      213: 4477916573694666412
+    second: robitSheet_90
+  - first:
+      213: -2964713269461006189
+    second: robitSheet_91
+  - first:
+      213: -4286359927213680599
+    second: robitSheet_92
+  - first:
+      213: -7483095864713400358
+    second: robitSheet_93
+  - first:
+      213: -2754005890145674024
+    second: robitSheet_94
+  - first:
+      213: 2660444001011334565
+    second: robitSheet_96
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: robitSheet_0
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cf64624eaf97bdf4d91cf32c8eaed914
+      internalID: -1497459071398779108
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_1
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9f339e140bae77545bb3cb70131da3d1
+      internalID: 6728733927895482199
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_2
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d559bd919af53e44387300f6176543e4
+      internalID: -928374562767769803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_3
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8f104409bae300c40bb2b815ee310d3b
+      internalID: 5203415998069302145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_4
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ff31364945aeb944b9995723d2d256e
+      internalID: 6247933301993237535
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_5
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3398ebc3040120344b8867e318238c3f
+      internalID: -1600693001689355526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_7
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c9545ebce2abeb47b72a019a85b7ccd
+      internalID: 3232684525457993597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_8
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2e0325ef75ffe244b8ddeacd64dfcfc
+      internalID: 7141683396631695168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_9
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62308672962893645b361b491d7f593a
+      internalID: 2505235173079056907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_10
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 93bd00249157f9348a936567aa65ca09
+      internalID: -3654225032454194493
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_11
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3c6570e479ac5084580a144baf5740fc
+      internalID: -1049420729387956536
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_12
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e07d175c38650cc4dba8eedbc8a77f71
+      internalID: 826889194626550946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_14
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 384
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0520e93366e4e9244a3dd18db90705df
+      internalID: -514391256402422289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_15
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37d09ce1363a20b489bd7ef3e489be28
+      internalID: 2409725363904474925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_16
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a54b9ef51ef1404a9b02789cbb2b0c6
+      internalID: 283471437666773057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_17
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b034ab97a07782146836036b42e017df
+      internalID: -3414885683560514903
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_18
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18316471e918d3a46bdc2b075d489b1c
+      internalID: 4157688588613719752
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_19
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36331f8a942f1f34ea3e9d034ef30c43
+      internalID: 6941792364354287279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_20
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5cdce36592e8ad54f85d93304b8d011d
+      internalID: 646754663874864306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_22
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e44710bc6d64fe40a21c59b4b321542
+      internalID: -757593383689942034
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_23
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0844c88d23c81ec4fa5147cd678550c1
+      internalID: 4430287993440805733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_24
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d37ccd42e4faec74b9fcaeeb37f79e62
+      internalID: -1614606627960958718
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_25
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62cb3fee6a4e4bb43bd3a6d8075c0a99
+      internalID: -6828552121678091459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_26
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23e2feef3d04cc549a9cd45d49a8fe46
+      internalID: -4212886462923964967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_27
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 529eceb4c31626c4db69fb11514e3107
+      internalID: -338852306279615981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_29
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 310
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f7516dd08bd35a4f907ce8fe8d360de
+      internalID: 2878789046789817835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_30
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c809b70873c7c44b9dd60bcab319e98
+      internalID: 8030103407610234433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_31
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: db16c9132a5128f41bcb1719c0eed904
+      internalID: 2542319309599046796
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_32
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1234901ea09ae7c478acbb16ff00aa8b
+      internalID: 1649906013559660899
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_33
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72dd0e999c7813242b7dc8994431e1b5
+      internalID: 2080843173067516490
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_34
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8b6b016525bec4fa545a593f735422
+      internalID: -3939653974687925495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_35
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddff39a93e38ffe45941ce658c3913ff
+      internalID: -4695322253388244702
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_37
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdb074e95df8c34419e2e44affb94955
+      internalID: -24363489189981256
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_38
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b7d2ce9b8c55e194bbe41f73388e856f
+      internalID: 5799830412446098170
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_39
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e5895cbefe219641ae1ba41d6898053
+      internalID: 7193228161739831688
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_40
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 469b11b5f5b9762449fffb4eef4e074c
+      internalID: -6030492374338479882
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_41
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f08a6deba64d60e4a8f63e9a7e1c15a6
+      internalID: 8042262981206433566
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_42
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 639bf7b6d434cb4498d33a13399ee997
+      internalID: 3145742765342395614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_44
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 236
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f8cdef17c3cb8284fa19c9a879a3c1ae
+      internalID: -5918965553115405659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_45
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9b5a230b6c1b3243a3ed8cd32d7ff28
+      internalID: 2365219244738937696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_46
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b090f92e839f1b43a05ab6a2e90e044
+      internalID: 8789277423184344247
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_47
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 70b8971bda4e5bf4cb6cb0844d2679e4
+      internalID: 5551380299302932511
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_48
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64e1baee174f9d34f861f75992a78a39
+      internalID: -5002113403180376520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_49
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 706fd212f6fdcc345a6c31beb5464e4e
+      internalID: -6402363223923487027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_50
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bd9119be1a3ea14985105ec512e350f
+      internalID: 2583184641317364737
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_51
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: afa355e610a761942bcbd7aeb43e3ad5
+      internalID: -6853867374138898642
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_52
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f232230ce68963c43a87a0e0f178074c
+      internalID: -1956768085112205633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_53
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1781852d20adff64fba6d69804080b50
+      internalID: -1910803420023073264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_54
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 265d60a40d9683641a78cb4eed541cf1
+      internalID: -5384972601438104551
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_55
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30d515796f436b246a07f2333e62803d
+      internalID: 5182189769838968514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_56
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb59ade1611cbf54ebdf7852564e6f83
+      internalID: 1006256093651249337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_59
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 162
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30bbf3f05ff60ea42bb0471dcb05e5f1
+      internalID: -476148892105417872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_75
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1d23a6934ed636e4ca6c8a03cf2ebfba
+      internalID: -5590835480241240692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_76
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65283015e50989b4b8a6440336af73b2
+      internalID: -4015664625594061828
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_77
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c0148ea71f37544289878d29dd3c8d0
+      internalID: 86514517249576033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_79
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 955a5886d41b704498df79ec6fbc31f2
+      internalID: -1200749121496199745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_80
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6c2bbe1ab9849dc4bab707e01b20663a
+      internalID: -931009780835434364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_81
+      rect:
+        serializedVersion: 2
+        x: 375
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ed8f445ad31beb40a6ac8d268a002b2
+      internalID: -1519044064825644900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_82
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: be605fab6d2a5b649985719f32ed7165
+      internalID: -9137187592167357328
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_83
+      rect:
+        serializedVersion: 2
+        x: 523
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6f563181e9edda4a92d212de21c16fc
+      internalID: 5351984094972512949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_84
+      rect:
+        serializedVersion: 2
+        x: 597
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fc24cb91f5acff142a7b070ff7fcb498
+      internalID: -4901118374248599260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_85
+      rect:
+        serializedVersion: 2
+        x: 671
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5a18a3bc02b952419bbbae07098531f
+      internalID: -8999490127076591133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_86
+      rect:
+        serializedVersion: 2
+        x: 745
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f5605e17b508b6489b359b59acf38cb
+      internalID: 2737371479460691826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_87
+      rect:
+        serializedVersion: 2
+        x: 819
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 01869ababda47cc4f993cbdffeb816f5
+      internalID: -5130030530858739512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_89
+      rect:
+        serializedVersion: 2
+        x: 893
+        y: 88
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ecd7c696ab5757e49bb0950244c40df5
+      internalID: -6066585263386050056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_90
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 14
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4512e8439c5afcc4c93d3b693aaa3f63
+      internalID: 4477916573694666412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_91
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 14
+        width: 64
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe556f3b82046e942b85cf9abb1fa6a6
+      internalID: -2964713269461006189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_92
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 14
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ea06b27c511b3f4e9b6db827752f3b6
+      internalID: -4286359927213680599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_93
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 14
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3de5309ed19f25a478722c6e57edde4d
+      internalID: -7483095864713400358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: robitSheet_94
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 14
+        width: 64
+        height: 64
+      alignment: 1
+      pivot: {x: 0, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff40e19a4d3040a4a8884c08e9863e9d
+      internalID: -2754005890145674024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
