@@ -48,6 +48,8 @@ namespace Assets.Scripts {
                             break;
                     }
 
+                    DragController.carryingBlock = null;
+
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     visible = false;
                 } else
