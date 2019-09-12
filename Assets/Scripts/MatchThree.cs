@@ -36,7 +36,6 @@ namespace Assets.Scripts
                 {
                     if (block.transform.position.x == gameObject.transform.position.x)
                     {
-                        Debug.Log("lmao");
                         block.transform.position = new Vector3(block.transform.position.x, gameObject.transform.position.y + 120, 10);
                     } else {
                         block.transform.position = new Vector3(block.transform.position.x, gameObject.transform.position.y, 10);

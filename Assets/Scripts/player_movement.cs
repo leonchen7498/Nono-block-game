@@ -6,35 +6,48 @@ public class player_movement : MonoBehaviour
 {
     [Range(100, 1000)]
     public float movementSpeed;
+    public LayerMask layer;
 
     Rigidbody2D body;
     Animator animator;
     // have to add "new" otherwise it'll confuse this renderer with the deprecated Component.renderer
     new SpriteRenderer renderer;
-    private Vector3 touchPosition;
+    new BoxCollider2D collider;
 
-    private bool isFlying;
-    private bool isMoving;
+    private Vector3 touchPosition;
+    private Vector3 flyingGoal;
     private float distanceToGoal;
     private float previousDistanceToGoal;
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        isFlying = true;
+    private bool isStandingOnBlock;
+    private bool isFlying;
+    private bool isMoving;
 
-        if(collision.collider.name != "foreground_game")
+    // the amount of time the robot will show it's flying animation before going back to normal
+    public float timeToFloat = 3f;
+    private float timeLeftFloating;
+    private float defaultGravity;
+
+    void OnCollisionEnter2D(Collision2D collision)
+    { 
+        // Check if collision isnt because the player is on top of the block
+        if (collision.collider.name != "foreground_game" &&
+            collision.contacts[0].point.y < collision.collider.bounds.center.y)
         {
-            // Check if collision isnt because the player is on top of the block
-            if (collision.contacts[0].point.y < collision.collider.bounds.center.y)
+            if (collision.contacts[0].point.x < collision.collider.bounds.center.x ||
+                collision.contacts[0].point.x > collision.collider.bounds.center.x)
             {
-                if (collision.contacts[0].point.x < collision.collider.bounds.center.x)
-                {
-                    Debug.Log("left");
-                }
-                else if (collision.contacts[0].point.x > collision.collider.bounds.center.x)
-                {
-                    Debug.Log("right");
-                }
+                timeLeftFloating = 0;
+                animator.SetTrigger("transform_flying");
+                body.velocity = new Vector2(0f, 80f);
+                flyingGoal = transform.position;
+                flyingGoal.y = flyingGoal.y + 120f;
+
+                distanceToGoal = 0;
+                previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
+
+                isFlying = true;
+                isMoving = false;
             }
         }
     }
@@ -45,36 +58,85 @@ public class player_movement : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<BoxCollider2D>();
+
+        defaultGravity = body.gravityScale;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isMoving)
+        distanceToGoal = getDistance();
+
+        /*if (!Physics2D.Raycast(transform.position, Vector2.down, 1f) &&
+            !isFlying)
         {
-            //Checks the distance between the touch position and player, always a positive number
-            distanceToGoal = (touchPosition - transform.position).magnitude;
-        }
+            Debug.Log("niks");
+        }*/
 
         if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
         {
             onTouch();
         }
 
-        // If the player managed to reach the touch position and starts moving past the touch position
-        // it will check if the player didnt move too far. If he did move too far then stop moving
-        if (distanceToGoal > previousDistanceToGoal && isMoving)
+        if (timeLeftFloating > 0)
         {
-            animator.SetTrigger("transform_move");
-            isMoving = false;
-            body.velocity = new Vector2(0f, 0f);
+            timeLeftFloating -= Time.deltaTime;
+
+            if (timeLeftFloating < 0)
+            {
+                animator.SetTrigger("transform_move");
+                timeLeftFloating = 0;
+            }
         }
 
+        // If the player managed to reach the touch position and starts moving past the touch position
+        // it will check if the player didnt move too far. If he did move too far then stop moving
+        if (distanceToGoal > previousDistanceToGoal)
+        {
+            if (isMoving)
+            {
+                if (timeLeftFloating > 0)
+                {
+                    animator.SetTrigger("transform_flying");
+                    timeLeftFloating = 0;
+                }
+                else
+                {
+                    animator.SetTrigger("transform_move");
+                }
+                isMoving = false;
+                body.velocity = new Vector2(0f, 0f);
+            }
+            if (isFlying)
+            {
+                isFlying = false;
+                isMoving = true;
+                Vector3 moveDirection = (touchPosition - transform.position).normalized;
+                body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+                timeLeftFloating = Time.deltaTime;
+            }
+        }
+
+        //Checks the distance again between the player and touch position
+        previousDistanceToGoal = getDistance();
+    }
+
+    /*
+     * Checks the distance between the touch position and player, always a positive number
+     */
+    float getDistance()
+    {
         if (isMoving)
         {
-            //Checks the distance again between the player and touch position
-            previousDistanceToGoal = (touchPosition - transform.position).magnitude;
+            return Mathf.Abs(touchPosition.x - transform.position.x);
         }
+        else if (isFlying)
+        {
+            return Mathf.Abs(flyingGoal.y - transform.position.y);
+        }
+
+        return 0;
     }
 
     /*
@@ -82,20 +144,23 @@ public class player_movement : MonoBehaviour
      */
     void onTouch()
     {
-        if (!isMoving)
+        getTouchPosition();
+
+        if (!isMoving && !isFlying)
         {
             // so the player's move animation doesn't disappear when the robot is already moving
             animator.SetTrigger("transform_move");
         }
 
-        distanceToGoal = 0;
-        previousDistanceToGoal = 0;
-        getTouchPosition();
-
         // Have to determine if the touch position is left or right from the sprite position
-        Vector3 movePosition = (touchPosition - transform.position).normalized;
-        body.velocity = new Vector2(movePosition.x * movementSpeed, 0f);
-        isMoving = true;
+        if (!isFlying)
+        {
+            distanceToGoal = 0;
+            previousDistanceToGoal = 0;
+            Vector3 moveDirection = (touchPosition - transform.position).normalized;
+            body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+            isMoving = true;
+        }
     }
 
     /**
