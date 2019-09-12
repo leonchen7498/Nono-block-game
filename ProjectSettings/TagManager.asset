@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - yellow_tag
+  - floor
+  - blue_tag
+  - red_tag
+  - player
+  - yellowMatch
+  - redMatch
+  - blueMatch
   layers:
   - Default
   - TransparentFX
@@ -13,7 +21,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - falling blocks
   - 
   - 
   - 
