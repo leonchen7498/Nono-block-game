@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2527823774281158429}
   m_Layer: 0
   m_Name: Yellow_Block
-  m_TagString: yellow_tag
+  m_TagString: yellowMatch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

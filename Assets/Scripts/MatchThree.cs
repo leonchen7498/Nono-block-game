@@ -32,16 +32,9 @@ namespace Assets.Scripts
 
             if (tempBlocks[0].transform.position.y > gameObject.transform.position.y)
             {
-                foreach (GameObject block in tempBlocks)
-                {
-                    if (block.transform.position.x == gameObject.transform.position.x)
-                    {
-                        Debug.Log("lmao");
-                        block.transform.position = new Vector3(block.transform.position.x, gameObject.transform.position.y + 120, 10);
-                    } else {
-                        block.transform.position = new Vector3(block.transform.position.x, gameObject.transform.position.y, 10);
-                    }
-                }
+                tempBlocks[1].transform.position = new Vector3(tempBlocks[1].transform.position.x, gameObject.transform.position.y + 120, 10);
+                tempBlocks[0].transform.position = new Vector3(tempBlocks[0].transform.position.x, gameObject.transform.position.y, 10);
+                tempBlocks[2].transform.position = new Vector3(tempBlocks[2].transform.position.x, gameObject.transform.position.y, 10);
             }
 
         }
