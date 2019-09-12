@@ -30,6 +30,7 @@ namespace Assets.Scripts
                 {
                     if (DragController.isDragging == false)
                     {
+                        DragController.draggingBlock = gameObject;
                         lastPosition = transform.position;
                         drag = true;
                         DragController.isDragging = true;

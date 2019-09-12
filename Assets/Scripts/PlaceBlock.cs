@@ -37,19 +37,18 @@ namespace Assets.Scripts {
                 {
                     switch (DragController.carryingBlock)
                     {
-                        case "yellow":
+                        case "yellow_tag":
                             Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            DragController.carryingBlock = "blue";
                             break;
-                        case "blue":
+                        case "blue_tag":
                             Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            DragController.carryingBlock = "red";
                             break;
-                        case "red":
+                        case "red_tag":
                             Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            DragController.carryingBlock = "yellow";
                             break;
                     }
+
+                    DragController.carryingBlock = null;
 
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
                     visible = false;

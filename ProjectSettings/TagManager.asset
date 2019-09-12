@@ -8,6 +8,10 @@ TagManager:
   - floor
   - blue_tag
   - red_tag
+  - player
+  - yellowMatch
+  - redMatch
+  - blueMatch
   layers:
   - Default
   - TransparentFX

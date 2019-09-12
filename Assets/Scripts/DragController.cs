@@ -6,9 +6,10 @@ namespace Assets.Scripts
 {
     public class DragController : MonoBehaviour
     {
-        [HideInInspector]
+
         public static bool isDragging;
         public static string carryingBlock;
+        public static GameObject draggingBlock;
         // Start is called before the first frame update
         void Start()
         {
