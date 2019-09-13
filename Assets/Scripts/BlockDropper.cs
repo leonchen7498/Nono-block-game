@@ -11,7 +11,7 @@ public class BlockDropper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("DropBlock", 5f, 10f);
+        InvokeRepeating("DropBlock", 1f, 1f);
     }
 
     // Update is called once per frame

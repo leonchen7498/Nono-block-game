@@ -37,29 +37,24 @@ namespace Assets.Scripts
         {
             // Check if collision isnt because the player is on top of the block
             if (collision.collider.name != "foreground_game" &&
-                collision.contacts[0].point.y < collision.collider.bounds.center.y &&
+                (collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
                 !isFlying)
             {
-                if (collision.contacts[0].point.x < collision.collider.bounds.center.x ||
-                    collision.contacts[0].point.x >= collision.collider.bounds.center.x)
+                if (timeLeftFloating <= 0)
                 {
-                    //currentPhysicsScene = collision.collider.gameObject.scene.GetPhysicsScene2D();
-                    if (timeLeftFloating <= 0)
-                    {
-                        animator.SetTrigger("transform_flying");
-                    }
-
-                    timeLeftFloating = 0;
-                    body.velocity = new Vector2(0f, 140f);
-                    flyingGoal = transform.position;
-                    flyingGoal.y = flyingGoal.y + 120f;
-
-                    distanceToGoal = 0;
-                    previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
-
-                    isFlying = true;
-                    isMoving = false;
+                    animator.SetTrigger("transform_flying");
                 }
+
+                timeLeftFloating = 0;
+                body.velocity = new Vector2(0f, 140f);
+                flyingGoal = transform.position;
+                flyingGoal.y = flyingGoal.y + 120f;
+
+                distanceToGoal = 0;
+                previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
+
+                isFlying = true;
+                isMoving = false;
             }
         }
 
