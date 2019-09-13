@@ -103,6 +103,11 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2381387303760338442, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 6729591401629836659, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
         type: 3}
       propertyPath: m_Offset.y

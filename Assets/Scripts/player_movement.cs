@@ -19,15 +19,17 @@ namespace Assets.Scripts
 
         private Vector3 touchPosition;
         private Vector3 flyingGoal;
+        private Vector3 moveDirection;
         private float distanceToGoal;
         private float previousDistanceToGoal;
 
         private bool isStandingOnBlock;
         private bool isFlying;
         private bool isMoving;
+        private bool isFalling;
 
         // the amount of time the robot will show it's flying animation before going back to normal
-        public float timeToFloat = 3f;
+        public float timeToFloat;
         private float timeLeftFloating;
         private float defaultGravity;
 
@@ -35,13 +37,19 @@ namespace Assets.Scripts
         {
             // Check if collision isnt because the player is on top of the block
             if (collision.collider.name != "foreground_game" &&
-                collision.contacts[0].point.y < collision.collider.bounds.center.y)
+                collision.contacts[0].point.y < collision.collider.bounds.center.y &&
+                !isFlying)
             {
                 if (collision.contacts[0].point.x < collision.collider.bounds.center.x ||
-                    collision.contacts[0].point.x > collision.collider.bounds.center.x)
+                    collision.contacts[0].point.x >= collision.collider.bounds.center.x)
                 {
+                    //currentPhysicsScene = collision.collider.gameObject.scene.GetPhysicsScene2D();
+                    if (timeLeftFloating <= 0)
+                    {
+                        animator.SetTrigger("transform_flying");
+                    }
+
                     timeLeftFloating = 0;
-                    animator.SetTrigger("transform_flying");
                     body.velocity = new Vector2(0f, 140f);
                     flyingGoal = transform.position;
                     flyingGoal.y = flyingGoal.y + 120f;
@@ -64,6 +72,23 @@ namespace Assets.Scripts
             collider = GetComponent<BoxCollider2D>();
 
             defaultGravity = body.gravityScale;
+            //currentPhysicsScene = gameObject.scene.GetPhysicsScene2D();
+        }
+
+        bool checkIfOnGround(float extraPositionX)
+        {
+            RaycastHit2D[] groundHits = Physics2D.RaycastAll(new Vector2(collider.bounds.center.x + extraPositionX,
+                    collider.bounds.center.y - collider.bounds.size.y + 40f), Vector2.zero);
+
+            foreach (RaycastHit2D groundHit in groundHits)
+            {
+                if (groundHit.collider.name.Contains("Block") || groundHit.collider.name.Contains("foreground"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         // Update is called once per frame
@@ -71,20 +96,53 @@ namespace Assets.Scripts
         {
             distanceToGoal = getDistance();
 
-            /*if (!Physics2D.Raycast(transform.position, Vector2.down, 1f) &&
-                !isFlying)
+            if (!isFalling)
             {
-                Debug.Log("niks");
-            }*/
+                bool onGroundLeft;
+                bool onGroundRight;
+
+                if (!isFlying && timeLeftFloating <= 0)
+                {
+                    onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 2f);
+                    onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 2f);
+                }
+                else
+                {
+                    onGroundLeft = true;
+                    onGroundRight = true;
+                }
+
+                if (!onGroundLeft && !onGroundRight)
+                {
+                    isFalling = true;
+                    body.velocity = Vector2.zero;
+                    body.gravityScale = 50f;
+                }
+            }
+
+            if (isFalling)
+            {
+                bool onGround;
+                onGround = checkIfOnGround(0);
+
+                if (onGround)
+                {
+                    body.gravityScale = defaultGravity;
+                    isFalling = false;
+                    isMoving = true;
+                    moveDirection = (touchPosition - transform.position).normalized;
+                    body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+                }
+            }
 
             if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
             {
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
                 if (hit.collider != null)
-                {
-                    Debug.Log(hit.collider.gameObject.name);
-                    if (!hit.collider.gameObject.name.Contains("Falling"))
+                {   
+                    if (!(hit.collider.gameObject.name.Contains("Falling") || 
+                        hit.collider.gameObject.name.Contains("Placeholder")))
                     {
                         onTouch();
                     }
@@ -128,9 +186,9 @@ namespace Assets.Scripts
                 {
                     isFlying = false;
                     isMoving = true;
-                    Vector3 moveDirection = (touchPosition - transform.position).normalized;
+                    moveDirection = (touchPosition - transform.position).normalized;
                     body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
-                    timeLeftFloating = Time.deltaTime;
+                    timeLeftFloating = timeToFloat;
                 }
             }
 
@@ -169,11 +227,11 @@ namespace Assets.Scripts
             }
 
             // Have to determine if the touch position is left or right from the sprite position
-            if (!isFlying)
+            if (!isFlying && !isFalling)
             {
                 distanceToGoal = 0;
                 previousDistanceToGoal = 0;
-                Vector3 moveDirection = (touchPosition - transform.position).normalized;
+                moveDirection = (touchPosition - transform.position).normalized;
                 body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
                 isMoving = true;
             }
