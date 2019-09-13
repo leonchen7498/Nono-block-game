@@ -17,7 +17,7 @@ public class ToScene : MonoBehaviour
         
     }
 
-    private void OnMouseDown()
+    private void OnMouseUp()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }

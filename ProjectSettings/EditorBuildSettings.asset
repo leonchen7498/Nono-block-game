@@ -9,13 +9,13 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Logo.unity
+    path: Assets/Scenes/MainMenu.unity
     guid: 7c6f7674645c05f4caf2d4fcd1ad9467
   - enabled: 1
     path: Assets/Scenes/Tutorial.unity
     guid: 9acfe332b2c0e004ea37783612e32521
   - enabled: 1
-    path: Assets/Scenes/Gameplay.unity
+    path: Assets/Scenes/FirstLevel.unity
     guid: d61ef6269ad78d94ba21720171b9dbb1
   - enabled: 1
     path: Assets/Scenes/SecondLevel.unity
