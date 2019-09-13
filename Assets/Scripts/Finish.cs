@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Finish : MonoBehaviour
 {
+    public int scene;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,7 +22,7 @@ public class Finish : MonoBehaviour
     {
         if (collision.gameObject.tag == "player")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
         }
     }
 }

@@ -9,7 +9,6 @@ namespace Assets.Scripts
     {
         [Range(100, 1000)]
         public float movementSpeed;
-        public LayerMask layer;
 
         Rigidbody2D body;
         Animator animator;
@@ -65,9 +64,11 @@ namespace Assets.Scripts
             animator = GetComponent<Animator>();
             renderer = GetComponent<SpriteRenderer>();
             collider = GetComponent<BoxCollider2D>();
+            isFlying = false;
+            isMoving = false;
+            isFalling = false;
 
             defaultGravity = body.gravityScale;
-            //currentPhysicsScene = gameObject.scene.GetPhysicsScene2D();
         }
 
         bool checkIfOnGround(float extraPositionX)
