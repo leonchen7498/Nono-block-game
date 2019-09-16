@@ -26,13 +26,16 @@ namespace Assets.Scripts {
             {
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D[] hit = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
 
-                if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+                foreach (RaycastHit2D ray in hit)
                 {
-                    DragController.carryingBlock = DragController.draggingBlock.tag;
-                    Destroy(DragController.draggingBlock);
-                    DragController.isDragging = false;
+                    if (ray.collider != null && ray.collider.gameObject == this.gameObject)
+                    {
+                        DragController.carryingBlock = DragController.draggingBlock.tag;
+                        Destroy(DragController.draggingBlock);
+                        DragController.isDragging = false;
+                    }
                 }
             }
             if (currentBlock == null && DragController.carryingBlock != null)
