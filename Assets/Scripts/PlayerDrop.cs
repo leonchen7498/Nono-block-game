@@ -22,7 +22,7 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (DragController.isDragging == true)
+            if (DragController.isDragging == true && DragController.carryingBlock == null)
             {
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);

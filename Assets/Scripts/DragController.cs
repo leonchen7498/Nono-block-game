@@ -13,7 +13,7 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            carryingBlock = "red";
+            carryingBlock = null;
         }
 
         // Update is called once per frame
