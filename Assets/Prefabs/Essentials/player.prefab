@@ -121,9 +121,9 @@ MonoBehaviour:
   currentBlock: {fileID: 0}
   yellowCarry: {fileID: 2916310627267268837, guid: ab52c68314119cc478e61d39e9804162,
     type: 3}
-  BlueCarry: {fileID: 6822755874945810105, guid: 1611ed8dbcf5d35489dbeaed7e70391e,
+  blueCarry: {fileID: 6822755874945810105, guid: 1611ed8dbcf5d35489dbeaed7e70391e,
     type: 3}
-  RedCarry: {fileID: 5482153609524508594, guid: 5d478b6fb20dba645abf12cb3ac1abf0,
+  redCarry: {fileID: 5482153609524508594, guid: 5d478b6fb20dba645abf12cb3ac1abf0,
     type: 3}
 --- !u!50 &3090121711320583744
 Rigidbody2D:
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 400
-  timeToFloat: 3
+  timeToFloat: 0.6
 --- !u!61 &3090121711372140175
 BoxCollider2D:
   m_ObjectHideFlags: 0

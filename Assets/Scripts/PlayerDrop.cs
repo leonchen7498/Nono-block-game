@@ -5,14 +5,18 @@ using UnityEngine;
 namespace Assets.Scripts {
     public class PlayerDrop : MonoBehaviour
     {
+        Animator animator;
+        new SpriteRenderer renderer;
+
         public GameObject currentBlock;
         public GameObject yellowCarry;
-        public GameObject BlueCarry;
-        public GameObject RedCarry;
+        public GameObject blueCarry;
+        public GameObject redCarry;
         // Start is called before the first frame update
         void Start()
         {
-
+            animator = GetComponent<Animator>();
+            renderer = GetComponent<SpriteRenderer>();
         }
 
         // Update is called once per frame
@@ -36,13 +40,13 @@ namespace Assets.Scripts {
                 switch (DragController.carryingBlock)
                 {
                     case "yellow_tag":
-                        currentBlock = Instantiate(yellowCarry, new Vector3(transform.position.x + 55, transform.position.y + 60, 0), Quaternion.identity);
+                        carryBlock(yellowCarry);
                         break;
                     case "blue_tag":
-                        currentBlock = Instantiate(BlueCarry, new Vector3(transform.position.x + 55, transform.position.y + 60, 0), Quaternion.identity);
+                        carryBlock(blueCarry);
                         break;
                     case "red_tag":
-                        currentBlock = Instantiate(RedCarry, new Vector3(transform.position.x + 55, transform.position.y + 60, 0), Quaternion.identity);
+                        carryBlock(redCarry);
                         break;
                 }
             } else if (DragController.carryingBlock == null)
@@ -51,10 +55,18 @@ namespace Assets.Scripts {
                 currentBlock = null;
             } else
             {
-                currentBlock.transform.position = new Vector3(transform.position.x + 55, transform.position.y + 60, 0);
+                currentBlock.transform.position = new Vector2(
+                    transform.position.x + renderer.bounds.size.x / 2,
+                    transform.position.y + renderer.bounds.size.y / 2 - 10f);
             }
+        }
 
-            
+        void carryBlock(GameObject block)
+        {
+            currentBlock = Instantiate(block, new Vector2(
+                            transform.position.x + renderer.bounds.size.x / 2,
+                            transform.position.y + renderer.bounds.size.y / 2), Quaternion.identity);
+            animator.SetTrigger("transform_hold");
         }
     }
 }

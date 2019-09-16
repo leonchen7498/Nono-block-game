@@ -125,13 +125,14 @@ namespace Assets.Scripts
                 {
                     body.gravityScale = defaultGravity;
                     isFalling = false;
-                    isMoving = true;
-                    moveDirection = (touchPosition - transform.position).normalized;
-                    body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+                    if (isMoving)
+                    {
+                        startMoving();
+                    }
                 }
             }
 
-            if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
+            if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && !DragController.isDragging)
             {
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
@@ -181,9 +182,7 @@ namespace Assets.Scripts
                 if (isFlying)
                 {
                     isFlying = false;
-                    isMoving = true;
-                    moveDirection = (touchPosition - transform.position).normalized;
-                    body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+                    startMoving();
                     timeLeftFloating = timeToFloat;
                 }
             }
@@ -227,10 +226,15 @@ namespace Assets.Scripts
             {
                 distanceToGoal = 0;
                 previousDistanceToGoal = 0;
-                moveDirection = (touchPosition - transform.position).normalized;
-                body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
-                isMoving = true;
+                startMoving();
             }
+        }
+
+        void startMoving()
+        {
+            moveDirection = (touchPosition - transform.position).normalized;
+            body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+            isMoving = true;
         }
 
         /**

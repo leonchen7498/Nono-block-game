@@ -8,6 +8,8 @@ namespace Assets.Scripts {
         public GameObject BlueObject;
         public GameObject RedObject;
         public GameObject YellowObject;
+        public GameObject player;
+        Animator animator;
         public bool visible;
 
 
@@ -15,6 +17,7 @@ namespace Assets.Scripts {
         void Start()
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            animator = player.GetComponent<Animator>();
             visible = false;
         }
 
@@ -32,8 +35,9 @@ namespace Assets.Scripts {
                 {
                     gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     visible = true;
-                    
-                } else if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == true)
+
+                }
+                else if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == true)
                 {
                     switch (DragController.carryingBlock)
                     {
@@ -47,7 +51,9 @@ namespace Assets.Scripts {
                             Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                             break;
                     }
-
+                    if (animator != null && animator.isActiveAndEnabled) { 
+                        animator.SetTrigger("transform_hold");
+                    } // KIJK ER FF NAAR
                     DragController.carryingBlock = null;
 
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;

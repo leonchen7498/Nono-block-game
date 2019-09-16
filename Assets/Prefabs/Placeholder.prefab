@@ -126,4 +126,5 @@ MonoBehaviour:
     type: 3}
   YellowObject: {fileID: 4061648876097152047, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
     type: 3}
+  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   visible: 0
