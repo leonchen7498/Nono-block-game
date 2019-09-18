@@ -7,6 +7,9 @@ public class BlockDropper : MonoBehaviour
     public GameObject yellowBlock;
     public GameObject redBlock;
     public GameObject blueBlock;
+    public GameObject slimeBlock;
+    public GameObject ironBlock;
+    public GameObject glassBlock;
 
     // Start is called before the first frame update
     void Start()
@@ -23,16 +26,35 @@ public class BlockDropper : MonoBehaviour
     void DropBlock()
     {
         System.Random rnd = new System.Random();
-        switch(rnd.Next(1, 4))
+        switch(rnd.Next(1, 17))
         {
             case 1:
+            case 2:
+            case 3:
+            case 4:
                 Instantiate(yellowBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
                 break;
-            case 2:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
                 Instantiate(redBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
                 break;
-            case 3:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
                 Instantiate(blueBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                break;
+            case 13:
+                Instantiate(slimeBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                break;
+            case 14:
+                Instantiate(ironBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                break;
+            case 15:
+            case 16:
+                Instantiate(glassBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
                 break;
         }
     }

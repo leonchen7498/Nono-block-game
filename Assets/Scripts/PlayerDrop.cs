@@ -12,6 +12,9 @@ namespace Assets.Scripts {
         public GameObject yellowCarry;
         public GameObject blueCarry;
         public GameObject redCarry;
+        public GameObject slimeCarry;
+        public GameObject ironCarry;
+        public GameObject glassCarry;
         // Start is called before the first frame update
         void Start()
         {
@@ -50,6 +53,15 @@ namespace Assets.Scripts {
                         break;
                     case "red_tag":
                         carryBlock(redCarry);
+                        break;
+                    case "slime_tag":
+                        carryBlock(slimeCarry);
+                        break;
+                    case "iron_tag":
+                        carryBlock(ironCarry);
+                        break;
+                    case "glass_tag":
+                        carryBlock(glassCarry);
                         break;
                 }
             } else if (DragController.carryingBlock == null)

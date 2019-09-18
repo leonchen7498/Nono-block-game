@@ -9,6 +9,9 @@ namespace Assets.Scripts {
         public GameObject RedObject;
         public GameObject YellowObject;
         public GameObject player;
+        public GameObject SlimeObject;
+        public GameObject IronObject;
+        public GameObject glassObject;
         Animator animator;
         public bool visible;
 
@@ -49,6 +52,15 @@ namespace Assets.Scripts {
                             break;
                         case "red_tag":
                             Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "slime_tag":
+                            Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "iron_tag":
+                            Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "glass_tag":
+                            Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                             break;
                     }
                     if (animator != null && animator.isActiveAndEnabled) { 

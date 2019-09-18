@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Finish : MonoBehaviour
+    public class Retry : MonoBehaviour
     {
-        public int scene;
-
         // Start is called before the first frame update
         void Start()
         {
@@ -20,12 +18,9 @@ namespace Assets.Scripts
 
         }
 
-        void OnTriggerEnter2D(Collider2D collision)
+        private void OnMouseUp()
         {
-            if (collision.gameObject.tag == "player")
-            {
-                UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
-            }
+            UnityEngine.SceneManagement.SceneManager.LoadScene(DragController.currentLevel);
         }
     }
 }
