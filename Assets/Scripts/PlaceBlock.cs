@@ -9,60 +9,75 @@ namespace Assets.Scripts {
         public GameObject RedObject;
         public GameObject YellowObject;
         public GameObject player;
-        Animator animator;
-        public bool visible;
+        private bool ableToPlace;
+
+        new private BoxCollider2D collider;
 
 
         // Start is called before the first frame update
         void Start()
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            animator = player.GetComponent<Animator>();
-            visible = false;
+            collider = GetComponent<BoxCollider2D>();
+            ableToPlace = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && ableToPlace)
             {
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D hit = new RaycastHit2D();
+
+                foreach(RaycastHit2D raycastHit in hits)
+                {
+                    if (raycastHit.collider.gameObject == gameObject)
+                    {
+                        hit = raycastHit;
+                    }
+                }
 
                 //if circle is hit and it is the correct circle
-                if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == false)
+                if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
+                    !gameObject.GetComponent<SpriteRenderer>().enabled)
                 {
                     gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    visible = true;
-
                 }
-                else if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == true)
+                if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
+                    gameObject.GetComponent<SpriteRenderer>().enabled)
                 {
-                    switch (DragController.carryingBlock)
-                    {
-                        case "yellow_tag":
-                            Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
-                        case "blue_tag":
-                            Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
-                        case "red_tag":
-                            Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
-                    }
-                    if (animator != null && animator.isActiveAndEnabled) { 
-                        animator.SetTrigger("transform_hold");
-                    } // KIJK ER FF NAAR
-                    DragController.carryingBlock = null;
-
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    visible = false;
-                } else
+                    DragController.blockToPlacePosition = hit.collider.bounds.center;
+                    
+                }
+                else
                 {
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    visible = false;
                 }
+            }
+            else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
+            {
+                Debug.Log("y");
+                switch (DragController.carryingBlock)
+                {
+                    case "yellow_tag":
+                        Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "blue_tag":
+                        Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "red_tag":
+                        Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                }
+                DragController.carryingBlock = null;
+
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                ableToPlace = false;
+                DragController.readyToPlace = false;
+                DragController.blockToPlacePosition = Vector3.zero;
             }
         }
     }

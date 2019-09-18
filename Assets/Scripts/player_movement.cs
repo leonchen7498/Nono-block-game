@@ -10,11 +10,12 @@ namespace Assets.Scripts
         [Range(100, 1000)]
         public float movementSpeed;
 
-        Rigidbody2D body;
         Animator animator;
+        Rigidbody2D body;
         // have to add "new" otherwise it'll confuse this renderer with the deprecated Component.renderer
         new SpriteRenderer renderer;
         new BoxCollider2D collider;
+        CircleCollider2D blockRangeCollider;
 
         private Vector3 touchPosition;
         private Vector3 flyingGoal;
@@ -30,13 +31,38 @@ namespace Assets.Scripts
         // the amount of time the robot will show it's flying animation before going back to normal
         public float timeToFloat;
         private float timeLeftFloating;
+
+        // the amount of time the robot will keep the hold animation before going back to normal
+        public float timeToHold;
+        // public static because PlayerDrop needs to know if the player is still in the hold animation
+        public static float timeLeftHolding;
+
+        // the amount of time the robot will keep the move animation before going back to normal
+        public float timeToMove;
+        private float timeLeftMoving;
+
         private float defaultGravity;
+        private bool blockPlaceConfirmed;
+
+        // Start is called before the first frame update
+        public void Start()
+        {
+            body = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
+            renderer = GetComponent<SpriteRenderer>();
+            collider = GetComponent<BoxCollider2D>();
+            blockRangeCollider = GetComponent<CircleCollider2D>();
+            isFlying = false;
+            isMoving = false;
+            isFalling = false;
+
+            defaultGravity = body.gravityScale;
+        }
 
         public void OnCollisionEnter2D(Collision2D collision)
         {
             // Check if collision isnt because the player is on top of the block
-            if (collision.collider.name != "foreground_game" &&
-                (collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
+            if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
                 !isFlying)
             {
                 if (timeLeftFloating <= 0)
@@ -57,18 +83,150 @@ namespace Assets.Scripts
             }
         }
 
-        // Start is called before the first frame update
-        public void Start()
+        // Update is called once per frame
+        public void Update()
         {
-            body = GetComponent<Rigidbody2D>();
-            animator = GetComponent<Animator>();
-            renderer = GetComponent<SpriteRenderer>();
-            collider = GetComponent<BoxCollider2D>();
-            isFlying = false;
-            isMoving = false;
-            isFalling = false;
+            distanceToGoal = getDistance();
 
-            defaultGravity = body.gravityScale;
+            checkIfFalling();
+
+            if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && !DragController.isDragging)
+            {
+                Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
+
+                foreach(RaycastHit2D hit in hits)
+                {
+                    if (hit.collider != blockRangeCollider && !hit.collider.gameObject.name.Contains("Falling") && hit.collider.gameObject != this)
+                    {
+                        if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider.gameObject.name.Contains("Placeholder"))
+                        {
+                            if (hit.collider.gameObject.GetComponent<SpriteRenderer>().isVisible)
+                            {
+                                checkIfPlayerIsCloseToPlaceHolderBlock();
+                                if (!DragController.readyToPlace)
+                                {
+                                    onTouch();
+                                    blockPlaceConfirmed = true;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            onTouch();
+                        } 
+                    }
+                }
+
+                if (hits.Length == 0)
+                {
+                    onTouch();
+                }
+            }
+
+            checkTimers();
+
+            // If the player managed to reach the touch position and starts moving past the touch position
+            // it will check if the player didnt move too far. If he did move too far then stop moving
+            if (distanceToGoal > previousDistanceToGoal)
+            {
+                if (isMoving)
+                {
+                    if (timeLeftFloating > 0)
+                    {
+                        animator.SetTrigger("transform_flying");
+                        timeLeftFloating = 0;
+                    }
+                    else
+                    {
+                        timeLeftMoving = timeToMove;
+                    }
+                    isMoving = false;
+                    body.velocity = new Vector2(0f, 0f);
+                }
+                if (isFlying)
+                {
+                    isFlying = false;
+                    startMoving();
+                    timeLeftFloating = timeToFloat;
+                }
+            }
+
+            // If the player clicked on a placeholder then move towards that location, if the player is close enough it'll start placing that block
+            if (blockPlaceConfirmed)
+            {
+                checkIfPlayerIsCloseToPlaceHolderBlock();
+            }
+
+            //Checks the distance again between the player and touch position
+            previousDistanceToGoal = getDistance();
+        }
+
+        void checkTimers()
+        {
+            if (timeLeftMoving > 0)
+            {
+                timeLeftMoving -= Time.deltaTime;
+
+                if (timeLeftMoving < 0)
+                {
+                    animator.SetTrigger("transform_move");
+                    timeLeftMoving = 0;
+                }
+            }
+
+            if (timeLeftFloating > 0)
+            {
+                timeLeftFloating -= Time.deltaTime;
+
+                if (timeLeftFloating < 0)
+                {
+                    animator.SetTrigger("transform_move");
+                    timeLeftFloating = 0;
+                }
+            }
+
+            if (timeLeftHolding > 0)
+            {
+                timeLeftHolding -= Time.deltaTime;
+
+                if (timeLeftHolding < 0)
+                {
+                    animator.SetTrigger("transform_hold");
+                    timeLeftHolding = 0;
+                }
+            }
+        }
+        
+        void checkIfFalling()
+        {
+            if (!isFalling && !isFlying && timeLeftFloating <= 0)
+            {
+                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 10f);
+                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 10f);
+
+                if (!onGroundLeft && !onGroundRight)
+                {
+                    isFalling = true;
+                    body.velocity = Vector2.zero;
+                    body.gravityScale = 50f;
+                }
+            }
+
+            if (isFalling)
+            {
+                bool onGround = checkIfOnGround(0);
+
+                if (onGround)
+                {
+                    body.gravityScale = defaultGravity;
+                    isFalling = false;
+                    if (isMoving)
+                    {
+                        startMoving();
+                    }
+                }
+            }
         }
 
         bool checkIfOnGround(float extraPositionX)
@@ -87,108 +245,38 @@ namespace Assets.Scripts
             return false;
         }
 
-        // Update is called once per frame
-        public void Update()
+
+        void checkIfPlayerIsCloseToPlaceHolderBlock()
         {
-            distanceToGoal = getDistance();
+            RaycastHit2D[] hits = Physics2D.RaycastAll(DragController.blockToPlacePosition, Vector2.zero);
+            Debug.Log(DragController.blockToPlacePosition.x + " - " + DragController.blockToPlacePosition.y);
 
-            if (!isFalling)
+            foreach (RaycastHit2D hit in hits)
             {
-                bool onGroundLeft;
-                bool onGroundRight;
+                if (hit.collider == blockRangeCollider)
+                {
+                    Debug.Log("z");
+                    blockPlaceConfirmed = false;
+                    DragController.readyToPlace = true;
+                    timeLeftHolding = timeToHold;
 
-                if (!isFlying && timeLeftFloating <= 0)
-                {
-                    onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 2f);
-                    onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 2f);
-                }
-                else
-                {
-                    onGroundLeft = true;
-                    onGroundRight = true;
-                }
-
-                if (!onGroundLeft && !onGroundRight)
-                {
-                    isFalling = true;
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = 0;
                     body.velocity = Vector2.zero;
-                    body.gravityScale = 50f;
-                }
-            }
 
-            if (isFalling)
-            {
-                bool onGround;
-                onGround = checkIfOnGround(0);
-
-                if (onGround)
-                {
-                    body.gravityScale = defaultGravity;
-                    isFalling = false;
-                    if (isMoving)
-                    {
-                        startMoving();
-                    }
-                }
-            }
-
-            if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && !DragController.isDragging)
-            {
-                Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
-                if (hit.collider != null)
-                {   
-                    if (!(hit.collider.gameObject.name.Contains("Falling") || 
-                        hit.collider.gameObject.name.Contains("Placeholder")))
-                    {
-                        onTouch();
-                    }
-                }
-                else
-                {
-                    onTouch();
-                }
-            }
-        
-            if (timeLeftFloating > 0)
-            {
-                timeLeftFloating -= Time.deltaTime;
-
-                if (timeLeftFloating < 0)
-                {
-                    animator.SetTrigger("transform_move");
-                    timeLeftFloating = 0;
-                }
-            }
-
-            // If the player managed to reach the touch position and starts moving past the touch position
-            // it will check if the player didnt move too far. If he did move too far then stop moving
-            if (distanceToGoal > previousDistanceToGoal)
-            {
-                if (isMoving)
-                {
-                    if (timeLeftFloating > 0)
-                    {
-                        animator.SetTrigger("transform_flying");
-                        timeLeftFloating = 0;
-                    }
-                    else
+                    if (isMoving && timeLeftFloating <= 0)
                     {
                         animator.SetTrigger("transform_move");
+                        isMoving = false;
                     }
-                    isMoving = false;
-                    body.velocity = new Vector2(0f, 0f);
-                }
-                if (isFlying)
-                {
-                    isFlying = false;
-                    startMoving();
-                    timeLeftFloating = timeToFloat;
+                    else if (isFlying || timeLeftFloating > 0)
+                    {
+                        animator.SetTrigger("transform_flying");
+                        isFlying = false;
+                        timeLeftFloating = 0;
+                    }
                 }
             }
-
-            //Checks the distance again between the player and touch position
-            previousDistanceToGoal = getDistance();
         }
 
         /*
@@ -215,7 +303,7 @@ namespace Assets.Scripts
         {
             getTouchPosition();
 
-            if (!isMoving && !isFlying)
+            if (!isMoving && !isFlying && timeLeftMoving <= 0)
             {
                 // so the player's move animation doesn't disappear when the robot is already moving
                 animator.SetTrigger("transform_move");
@@ -227,13 +315,27 @@ namespace Assets.Scripts
                 distanceToGoal = 0;
                 previousDistanceToGoal = 0;
                 startMoving();
+
+                if (blockPlaceConfirmed)
+                {
+                    blockPlaceConfirmed = false;
+                }
             }
         }
 
         void startMoving()
         {
             moveDirection = (touchPosition - transform.position).normalized;
-            body.velocity = new Vector2(moveDirection.x * movementSpeed, 0f);
+            if (moveDirection.x >= 0)
+            {
+                body.velocity = new Vector2(movementSpeed, 0f);
+            }
+            else
+            {
+                body.velocity = new Vector2(-movementSpeed, 0f);
+            }
+
+            timeLeftMoving = 0;
             isMoving = true;
         }
 

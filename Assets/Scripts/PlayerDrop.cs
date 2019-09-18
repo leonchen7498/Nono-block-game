@@ -66,7 +66,15 @@ namespace Assets.Scripts {
             currentBlock = Instantiate(block, new Vector2(
                             transform.position.x + renderer.bounds.size.x / 2,
                             transform.position.y + renderer.bounds.size.y / 2), Quaternion.identity);
-            animator.SetTrigger("transform_hold");
+
+            if (player_movement.timeLeftHolding <= 0)
+            {
+                animator.SetTrigger("transform_hold");
+            }
+            else
+            {
+                player_movement.timeLeftHolding = 0;
+            }
         }
     }
 }

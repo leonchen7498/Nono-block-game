@@ -10,10 +10,14 @@ namespace Assets.Scripts
         public static bool isDragging;
         public static string carryingBlock;
         public static GameObject draggingBlock;
+        public static Vector3 blockToPlacePosition;
+        public static bool readyToPlace;
+
         // Start is called before the first frame update
         void Start()
         {
-            carryingBlock = "red";
+            carryingBlock = string.Empty;
+            blockToPlacePosition = Vector3.zero;
         }
 
         // Update is called once per frame

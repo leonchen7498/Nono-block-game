@@ -22,7 +22,12 @@ public class Finish : MonoBehaviour
     {
         if (collision.gameObject.tag == "player")
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+            if (collision.GetType() != typeof(CircleCollider2D))
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
+
+            }
+            
         }
     }
 }
