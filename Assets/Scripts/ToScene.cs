@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ToScene : MonoBehaviour
 {
-    public int scene;
+    public string scene;
     // Start is called before the first frame update
     void Start()
     {

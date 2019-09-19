@@ -134,3 +134,9 @@ MonoBehaviour:
   glassObject: {fileID: 7889100752248694362, guid: 1e66679cf258331469f971c08a7362b1,
     type: 3}
   visible: 0
+  BlueTimerObject: {fileID: 7028281758405168582, guid: 6d6e0c37edee3e84bb66c181c02c464b,
+    type: 3}
+  RedTimerObject: {fileID: 1863565550326372236, guid: 5f1557ca1bcb48845ad9d74db42302dc,
+    type: 3}
+  YellowTimerObject: {fileID: 4439071968459892359, guid: f4555b6ffa42914488d544a7a0cece6f,
+    type: 3}

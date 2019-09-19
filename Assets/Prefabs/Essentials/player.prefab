@@ -125,6 +125,18 @@ MonoBehaviour:
     type: 3}
   redCarry: {fileID: 5482153609524508594, guid: 5d478b6fb20dba645abf12cb3ac1abf0,
     type: 3}
+  slimeCarry: {fileID: 3672490436646895073, guid: 078779d007171c04c8fb1db434f372bf,
+    type: 3}
+  ironCarry: {fileID: 4935467823408527068, guid: 2e3c0f6ec61e4da4d977bf804c391cbb,
+    type: 3}
+  glassCarry: {fileID: 7080461302955186075, guid: 7fd6f37fa9877b040b326617a9c7122c,
+    type: 3}
+  yellowTimerCarry: {fileID: 4964608620761546008, guid: b834c898da7930c43bbd4586ebe1ec9c,
+    type: 3}
+  blueTimerCarry: {fileID: 6035093348536347951, guid: 3ca8cbd6a3444fc459c20d45523ea43b,
+    type: 3}
+  redTimerCarry: {fileID: 1917276845085770996, guid: a8c3cc80a3476a14fa538380f3e2f249,
+    type: 3}
 --- !u!50 &3090121711320583744
 Rigidbody2D:
   serializedVersion: 4

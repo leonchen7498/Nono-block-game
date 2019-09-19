@@ -16,11 +16,11 @@ public class BreakGlass : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "glass_tag")
+        if (collision.gameObject.tag == "actual_glass")
         {
-            Destroy(collision.gameObject);
+            Destroy(collision.gameObject.transform.parent.gameObject);
         }
     }
 }

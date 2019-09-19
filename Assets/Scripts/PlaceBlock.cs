@@ -14,6 +14,9 @@ namespace Assets.Scripts {
         public GameObject glassObject;
         Animator animator;
         public bool visible;
+        public GameObject BlueTimerObject;
+        public GameObject RedTimerObject;
+        public GameObject YellowTimerObject;
 
 
         // Start is called before the first frame update
@@ -42,6 +45,8 @@ namespace Assets.Scripts {
                 }
                 else if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == true)
                 {
+                    TimerManager.CountDown();
+                    
                     switch (DragController.carryingBlock)
                     {
                         case "yellow_tag":
@@ -61,6 +66,15 @@ namespace Assets.Scripts {
                             break;
                         case "glass_tag":
                             Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "yellow_tag_timer":
+                            Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "blue_tag_timer":
+                            Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                            break;
+                        case "red_tag_timer":
+                            Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                             break;
                     }
                     if (animator != null && animator.isActiveAndEnabled) { 
