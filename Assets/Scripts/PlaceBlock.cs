@@ -27,10 +27,13 @@ namespace Assets.Scripts {
         {
             if (Input.GetMouseButtonDown(0) && ableToPlace)
             {
+                DragController.justPlaced = false;
+
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
                 RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
                 RaycastHit2D hit = new RaycastHit2D();
+                RaycastHit2D blockHit = new RaycastHit2D();
 
                 foreach(RaycastHit2D raycastHit in hits)
                 {
@@ -38,24 +41,31 @@ namespace Assets.Scripts {
                     {
                         hit = raycastHit;
                     }
+
+                    if (raycastHit.collider.name.Contains("Block"))
+                    {
+                        blockHit = raycastHit;
+                    }
                 }
 
-                //if circle is hit and it is the correct circle
-                if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
-                    !gameObject.GetComponent<SpriteRenderer>().enabled)
+                if (!blockHit)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                }
-                if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
-                    gameObject.GetComponent<SpriteRenderer>().enabled)
-                {
-                    DragController.blockToPlacePosition = hit.collider.bounds.center;
-                    
-                }
-                else
-                {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                }
+                    //if circle is hit and it is the correct circle
+                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
+                        !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
+                        gameObject.GetComponent<SpriteRenderer>().enabled)
+                    {
+                        DragController.blockToPlacePosition = hit.collider.bounds.center;
+                    }
+                    else
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    }
+                }   
             }
             else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
             {
@@ -78,6 +88,12 @@ namespace Assets.Scripts {
                 ableToPlace = false;
                 DragController.readyToPlace = false;
                 DragController.blockToPlacePosition = Vector3.zero;
+                DragController.justPlaced = true;
+            }
+
+            if (DragController.justPlaced && gameObject.GetComponent<SpriteRenderer>().enabled)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
     }

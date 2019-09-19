@@ -12,6 +12,7 @@ namespace Assets.Scripts
         public static GameObject draggingBlock;
         public static Vector3 blockToPlacePosition;
         public static bool readyToPlace;
+        public static bool justPlaced;
 
         // Start is called before the first frame update
         void Start()
