@@ -249,13 +249,11 @@ namespace Assets.Scripts
         void checkIfPlayerIsCloseToPlaceHolderBlock()
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(DragController.blockToPlacePosition, Vector2.zero);
-            Debug.Log(DragController.blockToPlacePosition.x + " - " + DragController.blockToPlacePosition.y);
 
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider == blockRangeCollider)
                 {
-                    Debug.Log("z");
                     blockPlaceConfirmed = false;
                     DragController.readyToPlace = true;
                     timeLeftHolding = timeToHold;
@@ -267,7 +265,6 @@ namespace Assets.Scripts
                     if (isMoving && timeLeftFloating <= 0)
                     {
                         animator.SetTrigger("transform_move");
-                        isMoving = false;
                     }
                     else if (isFlying || timeLeftFloating > 0)
                     {
@@ -275,6 +272,7 @@ namespace Assets.Scripts
                         isFlying = false;
                         timeLeftFloating = 0;
                     }
+                    isMoving = false;
                 }
             }
         }

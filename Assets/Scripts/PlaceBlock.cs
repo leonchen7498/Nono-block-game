@@ -10,9 +10,25 @@ namespace Assets.Scripts {
         public GameObject YellowObject;
         public GameObject player;
         private bool ableToPlace;
+        private bool collidesWithPlayer;
 
         new private BoxCollider2D collider;
 
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("player") && collision.GetType() != typeof(CircleCollider2D))
+            {
+                collidesWithPlayer = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("player") && collision.GetType() != typeof(CircleCollider2D))
+            {
+                collidesWithPlayer = false;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -25,21 +41,21 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0) && ableToPlace)
+            if (Input.GetMouseButtonDown(0) && ableToPlace && !collidesWithPlayer)
             {
                 DragController.justPlaced = false;
 
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
                 RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
-                RaycastHit2D hit = new RaycastHit2D();
+                RaycastHit2D placeholderHit = new RaycastHit2D();
                 RaycastHit2D blockHit = new RaycastHit2D();
 
                 foreach(RaycastHit2D raycastHit in hits)
                 {
                     if (raycastHit.collider.gameObject == gameObject)
                     {
-                        hit = raycastHit;
+                        placeholderHit = raycastHit;
                     }
 
                     if (raycastHit.collider.name.Contains("Block"))
@@ -48,28 +64,25 @@ namespace Assets.Scripts {
                     }
                 }
 
-                if (!blockHit)
+                if (!blockHit && placeholderHit.collider != null)
                 {
                     //if circle is hit and it is the correct circle
-                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
-                        !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider != null &&
-                        gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (!string.IsNullOrEmpty(DragController.carryingBlock) && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
-                        DragController.blockToPlacePosition = hit.collider.bounds.center;
+                        DragController.blockToPlacePosition = placeholderHit.collider.bounds.center;
                     }
-                    else
-                    {
-                        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    }
-                }   
+                }
+                else
+                {
+                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                } 
             }
             else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
             {
-                Debug.Log("y");
                 switch (DragController.carryingBlock)
                 {
                     case "yellow_tag":
