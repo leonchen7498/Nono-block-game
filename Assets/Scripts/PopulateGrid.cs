@@ -9,6 +9,7 @@ namespace Assets.Scripts {
     public class PopulateGrid : MonoBehaviour
     {
         public GameObject prefab; // This is our prefab object that will be exposed in the inspector
+        public GameObject prefabLocked;
 
         public int levels; // number of objects to create. Exposed in inspector
 
@@ -35,8 +36,10 @@ namespace Assets.Scripts {
                     newButton.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
                 } else
                 {
-                    newButton = Instantiate(prefab, transform);
-                    newButton.GetComponentInChildren<TextMeshProUGUI>().text = "locked";
+                    newButton = Instantiate(prefabLocked, transform);
+                    newButton.GetComponent<selectLevel>().scene = i.ToString();
+                    newButton.GetComponentInChildren<TextMeshProUGUI>().text = i.ToString();
+                    newButton.GetComponent<Button>().enabled = false;
                 }
 
             }
