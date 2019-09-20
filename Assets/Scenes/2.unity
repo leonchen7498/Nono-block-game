@@ -539,6 +539,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8175800535376499041, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
+        type: 3}
+      propertyPath: scene
+      value: NextLevel
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3c1c2a61e623b85428de0c49c05f1ed9, type: 3}
 --- !u!1 &1201375970
@@ -552,6 +557,7 @@ GameObject:
   - component: {fileID: 1201375973}
   - component: {fileID: 1201375972}
   - component: {fileID: 1201375971}
+  - component: {fileID: 1201375974}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -624,6 +630,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201375974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201375970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd7a2ce0ed3e6e4449b2cd3b5e8261c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1308799015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6012380113927488033, guid: a0d1fb43686534745a294d19b8bb1523,
@@ -884,6 +902,36 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: glassBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: ironBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: slimeBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: blueTimerBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: redTimerBlock
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: yellowTimerBlock
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be1dfde8345632499601be418326e90, type: 3}

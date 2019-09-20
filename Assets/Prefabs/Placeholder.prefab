@@ -127,5 +127,17 @@ MonoBehaviour:
   YellowObject: {fileID: 4061648876097152047, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
     type: 3}
   player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
-  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
+  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef, type: 3}
+  SlimeObject: {fileID: 6878221409368765490, guid: 235f31c9cd207e9479bc4108eb0cd031,
+    type: 3}
+  IronObject: {fileID: 2111639572026618018, guid: f10a74f0ea3a5b448852ac7c80f64d28,
+    type: 3}
+  glassObject: {fileID: 7889100752248694362, guid: 1e66679cf258331469f971c08a7362b1,
+    type: 3}
+  visible: 0
+  BlueTimerObject: {fileID: 7028281758405168582, guid: 6d6e0c37edee3e84bb66c181c02c464b,
+    type: 3}
+  RedTimerObject: {fileID: 1863565550326372236, guid: 5f1557ca1bcb48845ad9d74db42302dc,
+    type: 3}
+  YellowTimerObject: {fileID: 4439071968459892359, guid: f4555b6ffa42914488d544a7a0cece6f,
     type: 3}

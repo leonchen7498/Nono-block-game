@@ -12,6 +12,14 @@ namespace Assets.Scripts {
         public ParticleSystem particleSystem;
         private bool ableToPlace;
         private bool collidesWithPlayer;
+        public GameObject SlimeObject;
+        public GameObject IronObject;
+        public GameObject glassObject;
+        Animator animator;
+        public bool visible;
+        public GameObject BlueTimerObject;
+        public GameObject RedTimerObject;
+        public GameObject YellowTimerObject;
 
         new private BoxCollider2D collider;
 
@@ -84,6 +92,8 @@ namespace Assets.Scripts {
             }
             else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
             {
+                 TimerManager.CountDown();
+                    
                 switch (DragController.carryingBlock)
                 {
                     case "yellow_tag":
@@ -94,6 +104,24 @@ namespace Assets.Scripts {
                         break;
                     case "red_tag":
                         Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "slime_tag":
+                        Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "iron_tag":
+                        Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "glass_tag":
+                        Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "yellow_tag_timer":
+                        Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "blue_tag_timer":
+                        Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "red_tag_timer":
+                        Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                         break;
                 }
                 DragController.carryingBlock = null;

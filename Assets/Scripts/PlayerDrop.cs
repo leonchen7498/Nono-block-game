@@ -12,6 +12,12 @@ namespace Assets.Scripts {
         public GameObject yellowCarry;
         public GameObject blueCarry;
         public GameObject redCarry;
+        public GameObject slimeCarry;
+        public GameObject ironCarry;
+        public GameObject glassCarry;
+        public GameObject yellowTimerCarry;
+        public GameObject blueTimerCarry;
+        public GameObject redTimerCarry;
         // Start is called before the first frame update
         void Start()
         {
@@ -22,17 +28,20 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (DragController.isDragging == true)
+            if (DragController.isDragging == true && DragController.carryingBlock == null)
             {
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D[] hit = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
 
-                if (hit.collider != null && hit.collider.gameObject == this.gameObject)
+                foreach (RaycastHit2D ray in hit)
                 {
-                    DragController.carryingBlock = DragController.draggingBlock.tag;
-                    Destroy(DragController.draggingBlock);
-                    DragController.isDragging = false;
+                    if (ray.collider != null && ray.collider.gameObject == this.gameObject)
+                    {
+                        DragController.carryingBlock = DragController.draggingBlock.tag;
+                        Destroy(DragController.draggingBlock);
+                        DragController.isDragging = false;
+                    }
                 }
             }
             if (currentBlock == null && DragController.carryingBlock != null)
@@ -47,6 +56,24 @@ namespace Assets.Scripts {
                         break;
                     case "red_tag":
                         carryBlock(redCarry);
+                        break;
+                    case "slime_tag":
+                        carryBlock(slimeCarry);
+                        break;
+                    case "iron_tag":
+                        carryBlock(ironCarry);
+                        break;
+                    case "glass_tag":
+                        carryBlock(glassCarry);
+                        break;
+                    case "yellow_tag_timer":
+                        carryBlock(yellowTimerCarry);
+                        break;
+                    case "blue_tag_timer":
+                        carryBlock(blueTimerCarry);
+                        break;
+                    case "red_tag_timer":
+                        carryBlock(redTimerCarry);
                         break;
                 }
             } else if (DragController.carryingBlock == null)

@@ -13,12 +13,16 @@ namespace Assets.Scripts
         public static Vector3 blockToPlacePosition;
         public static bool readyToPlace;
         public static bool justPlaced;
+        public static string currentLevel;
+        public static string highestLevel;
 
         // Start is called before the first frame update
         void Start()
         {
             carryingBlock = string.Empty;
             blockToPlacePosition = Vector3.zero;
+            carryingBlock = null;
+            currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         }
 
         // Update is called once per frame

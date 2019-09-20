@@ -2,32 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Finish : MonoBehaviour
+namespace Assets.Scripts
 {
-    public int scene;
-
-    // Start is called before the first frame update
-    void Start()
+    public class Finish : MonoBehaviour
     {
-        
-    }
+        public string scene;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "player")
+        // Start is called before the first frame update
+        void Start()
         {
-            if (collision.GetType() != typeof(CircleCollider2D))
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "player" && collision.GetType() != typeof(CircleCollider2D))
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
-
             }
-            
         }
     }
 }
