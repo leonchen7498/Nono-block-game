@@ -9,6 +9,7 @@ namespace Assets.Scripts {
         public GameObject RedObject;
         public GameObject YellowObject;
         public GameObject player;
+        public ParticleSystem particleSystem;
         private bool ableToPlace;
         private bool collidesWithPlayer;
 
@@ -102,6 +103,10 @@ namespace Assets.Scripts {
                 DragController.readyToPlace = false;
                 DragController.blockToPlacePosition = Vector3.zero;
                 DragController.justPlaced = true;
+
+                Vector3 particlePosition = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z   );
+                ParticleSystem placeParticle = Instantiate(particleSystem, particlePosition, Quaternion.identity);
+                placeParticle.Play();
             }
 
             if (DragController.justPlaced && gameObject.GetComponent<SpriteRenderer>().enabled)
