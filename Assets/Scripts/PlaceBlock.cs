@@ -8,55 +8,138 @@ namespace Assets.Scripts {
         public GameObject BlueObject;
         public GameObject RedObject;
         public GameObject YellowObject;
+        public GameObject player;
+        public ParticleSystem particleSystem;
+        private bool ableToPlace;
+        private bool collidesWithPlayer;
+        public GameObject SlimeObject;
+        public GameObject IronObject;
+        public GameObject glassObject;
+        Animator animator;
         public bool visible;
+        public GameObject BlueTimerObject;
+        public GameObject RedTimerObject;
+        public GameObject YellowTimerObject;
 
+        new private BoxCollider2D collider;
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("player") && collision.GetType() != typeof(CircleCollider2D))
+            {
+                collidesWithPlayer = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            if (collision.gameObject.name.Contains("player") && collision.GetType() != typeof(CircleCollider2D))
+            {
+                collidesWithPlayer = false;
+            }
+        }
 
         // Start is called before the first frame update
         void Start()
         {
             gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            visible = false;
+            collider = GetComponent<BoxCollider2D>();
+            ableToPlace = true;
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && ableToPlace && !collidesWithPlayer)
             {
+                DragController.justPlaced = false;
+
                 var position = Input.mousePosition;
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D hit = Physics2D.Raycast(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D placeholderHit = new RaycastHit2D();
+                RaycastHit2D blockHit = new RaycastHit2D();
 
-                //if circle is hit and it is the correct circle
-                if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == false)
+                foreach(RaycastHit2D raycastHit in hits)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    visible = true;
-                    
-                } else if (hit.collider != null && hit.collider.gameObject == this.gameObject && visible == true)
-                {
-                    switch (DragController.carryingBlock)
+                    if (raycastHit.collider.gameObject == gameObject)
                     {
-                        case "yellow_tag":
-                            Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
-                        case "blue_tag":
-                            Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
-                        case "red_tag":
-                            Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
-                            break;
+                        placeholderHit = raycastHit;
                     }
 
-                    DragController.carryingBlock = null;
+                    if (raycastHit.collider.name.Contains("Block"))
+                    {
+                        blockHit = raycastHit;
+                    }
+                }
 
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    visible = false;
-                } else
+                if (!blockHit && placeholderHit.collider != null)
+                {
+                    //if circle is hit and it is the correct circle
+                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    {
+                        gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                    }
+                    else if (!string.IsNullOrEmpty(DragController.carryingBlock) && gameObject.GetComponent<SpriteRenderer>().enabled)
+                    {
+                        DragController.blockToPlacePosition = placeholderHit.collider.bounds.center;
+                    }
+                }
+                else
                 {
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    visible = false;
+                } 
+            }
+            else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
+            {
+                 TimerManager.CountDown();
+                    
+                switch (DragController.carryingBlock)
+                {
+                    case "yellow_tag":
+                        Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "blue_tag":
+                        Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "red_tag":
+                        Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "slime_tag":
+                        Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "iron_tag":
+                        Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "glass_tag":
+                        Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "yellow_tag_timer":
+                        Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "blue_tag_timer":
+                        Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
+                    case "red_tag_timer":
+                        Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        break;
                 }
+                DragController.carryingBlock = null;
+
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                ableToPlace = false;
+                DragController.readyToPlace = false;
+                DragController.blockToPlacePosition = Vector3.zero;
+                DragController.justPlaced = true;
+
+                Vector3 particlePosition = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z   );
+                ParticleSystem placeParticle = Instantiate(particleSystem, particlePosition, Quaternion.identity);
+                placeParticle.Play();
+            }
+
+            if (DragController.justPlaced && gameObject.GetComponent<SpriteRenderer>().enabled)
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
         }
     }

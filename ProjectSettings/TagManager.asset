@@ -12,6 +12,15 @@ TagManager:
   - yellowMatch
   - redMatch
   - blueMatch
+  - slime_tag
+  - iron_tag
+  - glass_tag
+  - glassMatch
+  - yellow_tag_timer
+  - red_tag_timer
+  - blue_tag_timer
+  - door
+  - actual_glass
   layers:
   - Default
   - TransparentFX
