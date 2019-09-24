@@ -15,10 +15,14 @@ namespace Assets.Scripts
         public static string highestLevel;
         public static bool moveToPosition;
         public static bool touchedScreen;
+        public GameObject menuButton;
 
         // Start is called before the first frame update
         void Start()
         {
+            if (menuButton != null) {
+                Instantiate(menuButton, new Vector3(482, 1247, 0), Quaternion.identity);
+            }
             blockToPlacePosition = Vector3.zero;
             carryingBlock = null;
             draggingBlock = null;
