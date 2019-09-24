@@ -35,38 +35,38 @@ public class BlockDropper : MonoBehaviour
             case 2:
             case 3:
             case 4:
-                Instantiate(yellowBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(yellowBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 5:
             case 6:
             case 7:
             case 8:
-                Instantiate(redBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(redBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 9:
             case 10:
             case 11:
             case 12:
-                Instantiate(blueBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(blueBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 13:
-                Instantiate(slimeBlock == null ? blueBlock : slimeBlock , new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(slimeBlock == null ? blueBlock : slimeBlock , new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 14:
-                Instantiate(ironBlock == null ? redBlock : ironBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(ironBlock == null ? redBlock : ironBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 15:
             case 16:
-                Instantiate(glassBlock == null ? yellowBlock : glassBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(glassBlock == null ? yellowBlock : glassBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 17:
-                Instantiate(blueTimerBlock == null ? blueBlock : blueTimerBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(blueTimerBlock == null ? blueBlock : blueTimerBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 18:
-                Instantiate(yellowTimerBlock == null ? redBlock : redTimerBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(yellowTimerBlock == null ? redBlock : redTimerBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
             case 19:
-                Instantiate(redTimerBlock == null ? yellowBlock : yellowTimerBlock, new Vector3(rnd.Next(-400, 400), 921, 0), Quaternion.identity);
+                Instantiate(redTimerBlock == null ? yellowBlock : yellowTimerBlock, new Vector3(rnd.Next(-400, 400), 900, 0), Quaternion.identity);
                 break;
         }
     }

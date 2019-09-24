@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 7427167667086965307}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 417.4, y: -772.8, z: 10}
-  m_LocalScale: {x: 187.6, y: 187.6, z: 0}
+  m_LocalScale: {x: 188, y: 188, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -127,7 +127,8 @@ MonoBehaviour:
   YellowObject: {fileID: 4061648876097152047, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
     type: 3}
   player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
-  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef, type: 3}
+  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
+    type: 3}
   SlimeObject: {fileID: 6878221409368765490, guid: 235f31c9cd207e9479bc4108eb0cd031,
     type: 3}
   IronObject: {fileID: 2111639572026618018, guid: f10a74f0ea3a5b448852ac7c80f64d28,

@@ -10,7 +10,7 @@ public class makePlaceholders : MonoBehaviour
     {
         for (float x = 0; x < 9; x++)
         {
-            Instantiate(placholder, new Vector3(-478f + 122f * x, -776.1018f, 0), Quaternion.identity);
+            Instantiate(placholder, new Vector3(-480f + 120f * x, -840, 0), Quaternion.identity);
         }
     }
 
