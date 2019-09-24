@@ -50,13 +50,22 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetMouseButtonDown(0) && ableToPlace && !collidesWithPlayer)
+            if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
+                && ableToPlace && !collidesWithPlayer)
             {
                 DragController.justPlaced = false;
+                Vector3 position;
 
-                var position = Input.mousePosition;
-                Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
+                if (Application.isEditor)
+                {
+                    position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+                else
+                {
+                    position = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                }
+                
+                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
                 RaycastHit2D placeholderHit = new RaycastHit2D();
                 RaycastHit2D blockHit = new RaycastHit2D();
 
@@ -75,8 +84,11 @@ namespace Assets.Scripts {
 
                 if (!blockHit && placeholderHit.collider != null)
                 {
-                    //if circle is hit and it is the correct circle
-                    if (!string.IsNullOrEmpty(DragController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    if (string.IsNullOrEmpty(DragController.carryingBlock))
+                    {
+                        DragController.moveToPosition = true;
+                    }
+                    else if (!string.IsNullOrEmpty(DragController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     }

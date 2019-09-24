@@ -44,6 +44,8 @@ namespace Assets.Scripts
         private float defaultGravity;
         private bool blockPlaceConfirmed;
 
+        private bool touchedTheGround;
+
         // Start is called before the first frame update
         public void Start()
         {
@@ -55,6 +57,7 @@ namespace Assets.Scripts
             isFlying = false;
             isMoving = false;
             isFalling = false;
+            touchedTheGround = true;
 
             defaultGravity = body.gravityScale;
         }
@@ -63,13 +66,14 @@ namespace Assets.Scripts
         {
             // Check if collision isnt because the player is on top of the block
             if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
-                !isFlying)
+                !isFlying && touchedTheGround)
             {
                 if (timeLeftFloating <= 0)
                 {
                     animator.SetTrigger("transform_flying");
                 }
 
+                touchedTheGround = false;
                 timeLeftFloating = 0;
                 body.velocity = new Vector2(0f, 140f);
                 flyingGoal = transform.position;
@@ -90,37 +94,58 @@ namespace Assets.Scripts
 
             checkIfFalling();
 
-            if ((Input.touchCount > 0 || Input.GetMouseButtonDown(0)) && !DragController.isDragging)
+            if (DragController.moveToPosition)
             {
-                Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                DragController.moveToPosition = false;
+                onTouch();
+            }
+
+            if (DragController.blockToPlacePosition != Vector3.zero && !blockPlaceConfirmed)
+            {
+                checkIfPlayerIsCloseToPlaceHolderBlock();
+                if (!DragController.readyToPlace)
+                {
+                    onTouch();
+                    blockPlaceConfirmed = true;
+                }
+            }
+
+            if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
+                && !DragController.isDragging)
+            {
+                Vector2 touchPositionToWorld;
+
+                if (Application.isEditor)
+                {
+                    touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+                else
+                {
+                    touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                }
+
                 RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
 
-                foreach(RaycastHit2D hit in hits)
+                foreach (RaycastHit2D hit in hits)
                 {
-                    if (hit.collider != blockRangeCollider && !hit.collider.gameObject.name.Contains("Falling") && hit.collider.gameObject != this)
+                    if (hit.collider != blockRangeCollider && !hit.collider.gameObject.name.Contains("Falling") && hit.collider.gameObject != this &&
+                        !hit.collider.gameObject.name.Contains("Placeholder"))
                     {
-                        if (!string.IsNullOrEmpty(DragController.carryingBlock) && hit.collider.gameObject.name.Contains("Placeholder"))
-                        {
-                            if (hit.collider.gameObject.GetComponent<SpriteRenderer>().isVisible)
-                            {
-                                checkIfPlayerIsCloseToPlaceHolderBlock();
-                                if (!DragController.readyToPlace)
-                                {
-                                    onTouch();
-                                    blockPlaceConfirmed = true;
-                                }
-                            }
-                        }
-                        else
-                        {
-                            onTouch();
-                        } 
+                        onTouch();
                     }
                 }
 
                 if (hits.Length == 0)
                 {
                     onTouch();
+                }
+            }
+
+            if (!touchedTheGround && !isFlying)
+            {
+                if (checkIfOnGround(0))
+                {
+                    touchedTheGround = true;
                 }
             }
 
@@ -202,8 +227,8 @@ namespace Assets.Scripts
         {
             if (!isFalling && !isFlying && timeLeftFloating <= 0)
             {
-                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 10f);
-                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 10f);
+                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 20f);
+                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 20f);
 
                 if (!onGroundLeft && !onGroundRight)
                 {
@@ -215,9 +240,10 @@ namespace Assets.Scripts
 
             if (isFalling)
             {
-                bool onGround = checkIfOnGround(0);
+                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 + 20f);
+                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 - 20f);
 
-                if (onGround)
+                if (onGroundLeft || onGroundRight)
                 {
                     body.gravityScale = defaultGravity;
                     isFalling = false;
@@ -342,8 +368,14 @@ namespace Assets.Scripts
          */
         private void getTouchPosition()
         {
-            //Vector3 touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-            touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (Application.isEditor)
+            {
+                touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            else
+            {
+                touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+            }
             touchPosition.z = 0f;
 
             //Check if x is out of bounds

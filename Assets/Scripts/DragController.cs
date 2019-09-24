@@ -15,6 +15,7 @@ namespace Assets.Scripts
         public static bool justPlaced;
         public static string currentLevel;
         public static string highestLevel;
+        public static bool moveToPosition;
 
         // Start is called before the first frame update
         void Start()

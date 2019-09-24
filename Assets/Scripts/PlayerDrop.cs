@@ -30,7 +30,17 @@ namespace Assets.Scripts {
         {
             if (DragController.isDragging == true && DragController.carryingBlock == null)
             {
-                var position = Input.mousePosition;
+                Vector3 position;
+
+                if (Application.isEditor)
+                {
+                    position = Input.mousePosition;
+                }
+                else
+                {
+                    position = Input.GetTouch(0).position;
+                }
+
                 Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
                 RaycastHit2D[] hit = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
 
