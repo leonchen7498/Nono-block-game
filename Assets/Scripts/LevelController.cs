@@ -4,9 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class DragController : MonoBehaviour
+    public class LevelController : MonoBehaviour
     {
-
         public static bool isDragging;
         public static string carryingBlock;
         public static GameObject draggingBlock;

@@ -29,7 +29,7 @@ namespace Assets.Scripts {
 
             for (int i = 1; i <= levels; i++)
             {
-                if (i <= Convert.ToInt32(DragController.highestLevel)) {
+                if (i <= Convert.ToInt32(LevelController.highestLevel)) {
                     // Create new instances of our prefab until we've created as many as we specified
                     newButton = Instantiate(prefab, transform);
                     newButton.GetComponent<selectLevel>().scene = i.ToString();

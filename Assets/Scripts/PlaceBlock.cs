@@ -53,7 +53,7 @@ namespace Assets.Scripts {
             if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
                 && ableToPlace && !collidesWithPlayer)
             {
-                DragController.justPlaced = false;
+                LevelController.justPlaced = false;
                 Vector3 position;
 
                 if (Application.isEditor)
@@ -84,17 +84,17 @@ namespace Assets.Scripts {
 
                 if (!blockHit && placeholderHit.collider != null)
                 {
-                    if (string.IsNullOrEmpty(DragController.carryingBlock))
+                    if (string.IsNullOrEmpty(LevelController.carryingBlock))
                     {
-                        DragController.moveToPosition = true;
+                        LevelController.moveToPosition = true;
                     }
-                    else if (!string.IsNullOrEmpty(DragController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (!string.IsNullOrEmpty(LevelController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    else if (!string.IsNullOrEmpty(DragController.carryingBlock) && gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (!string.IsNullOrEmpty(LevelController.carryingBlock) && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
-                        DragController.blockToPlacePosition = placeholderHit.collider.bounds.center;
+                        LevelController.blockToPlacePosition = placeholderHit.collider.bounds.center;
                     }
                 }
                 else
@@ -102,11 +102,11 @@ namespace Assets.Scripts {
                     gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 } 
             }
-            else if (DragController.readyToPlace && collider.bounds.center == DragController.blockToPlacePosition)
+            else if (LevelController.readyToPlace && collider.bounds.center == LevelController.blockToPlacePosition)
             {
                  TimerManager.CountDown();
                     
-                switch (DragController.carryingBlock)
+                switch (LevelController.carryingBlock)
                 {
                     case "yellow_tag":
                         Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -136,20 +136,20 @@ namespace Assets.Scripts {
                         Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                         break;
                 }
-                DragController.carryingBlock = null;
+                LevelController.carryingBlock = null;
 
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 ableToPlace = false;
-                DragController.readyToPlace = false;
-                DragController.blockToPlacePosition = Vector3.zero;
-                DragController.justPlaced = true;
+                LevelController.readyToPlace = false;
+                LevelController.blockToPlacePosition = Vector3.zero;
+                LevelController.justPlaced = true;
 
                 Vector3 particlePosition = new Vector3(transform.position.x, transform.position.y + 10f, transform.position.z   );
                 ParticleSystem placeParticle = Instantiate(particleSystem, particlePosition, Quaternion.identity);
                 placeParticle.Play();
             }
 
-            if (DragController.justPlaced && gameObject.GetComponent<SpriteRenderer>().enabled)
+            if (LevelController.justPlaced && gameObject.GetComponent<SpriteRenderer>().enabled)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }

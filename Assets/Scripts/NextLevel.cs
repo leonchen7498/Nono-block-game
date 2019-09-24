@@ -23,9 +23,9 @@ namespace Assets.Scripts
 
         void OnMouseUp()
         {
-            var scene = Convert.ToInt32(DragController.currentLevel) + 1;
-            DragController.highestLevel = scene.ToString();
-            var data = DragController.highestLevel;
+            var scene = Convert.ToInt32(LevelController.currentLevel) + 1;
+            LevelController.highestLevel = scene.ToString();
+            var data = LevelController.highestLevel;
             string fileName = Application.persistentDataPath + "/playerInfo.dat";
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(fileName);

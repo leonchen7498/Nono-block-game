@@ -8,9 +8,9 @@ namespace Assets.Scripts {
         // Start is called before the first frame update
         void Start()
         {
-            if (DragController.highestLevel == null)
+            if (LevelController.highestLevel == null)
             {
-                DragController.highestLevel = "1";
+                LevelController.highestLevel = "1";
             }
         }
 

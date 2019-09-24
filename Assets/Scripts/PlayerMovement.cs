@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class player_movement : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         [Range(100, 1000)]
         public float movementSpeed;
@@ -94,16 +94,16 @@ namespace Assets.Scripts
 
             checkIfFalling();
 
-            if (DragController.moveToPosition)
+            if (LevelController.moveToPosition)
             {
-                DragController.moveToPosition = false;
+                LevelController.moveToPosition = false;
                 onTouch();
             }
 
-            if (DragController.blockToPlacePosition != Vector3.zero && !blockPlaceConfirmed)
+            if (LevelController.blockToPlacePosition != Vector3.zero && !blockPlaceConfirmed)
             {
                 checkIfPlayerIsCloseToPlaceHolderBlock();
-                if (!DragController.readyToPlace)
+                if (!LevelController.readyToPlace)
                 {
                     onTouch();
                     blockPlaceConfirmed = true;
@@ -111,7 +111,7 @@ namespace Assets.Scripts
             }
 
             if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
-                && !DragController.isDragging)
+                && !LevelController.isDragging)
             {
                 Vector2 touchPositionToWorld;
 
@@ -274,14 +274,14 @@ namespace Assets.Scripts
 
         void checkIfPlayerIsCloseToPlaceHolderBlock()
         {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(DragController.blockToPlacePosition, Vector2.zero);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(LevelController.blockToPlacePosition, Vector2.zero);
 
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider == blockRangeCollider)
                 {
                     blockPlaceConfirmed = false;
-                    DragController.readyToPlace = true;
+                    LevelController.readyToPlace = true;
                     timeLeftHolding = timeToHold;
 
                     distanceToGoal = 0;

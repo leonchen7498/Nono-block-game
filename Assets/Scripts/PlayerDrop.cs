@@ -28,7 +28,7 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (DragController.isDragging == true && DragController.carryingBlock == null)
+            if (LevelController.isDragging == true && LevelController.carryingBlock == null)
             {
                 Vector3 position;
 
@@ -48,15 +48,15 @@ namespace Assets.Scripts {
                 {
                     if (ray.collider != null && ray.collider.gameObject == this.gameObject)
                     {
-                        DragController.carryingBlock = DragController.draggingBlock.tag;
-                        Destroy(DragController.draggingBlock);
-                        DragController.isDragging = false;
+                        LevelController.carryingBlock = LevelController.draggingBlock.tag;
+                        Destroy(LevelController.draggingBlock);
+                        LevelController.isDragging = false;
                     }
                 }
             }
-            if (currentBlock == null && DragController.carryingBlock != null)
+            if (currentBlock == null && LevelController.carryingBlock != null)
             {
-                switch (DragController.carryingBlock)
+                switch (LevelController.carryingBlock)
                 {
                     case "yellow_tag":
                         carryBlock(yellowCarry);
@@ -86,7 +86,7 @@ namespace Assets.Scripts {
                         carryBlock(redTimerCarry);
                         break;
                 }
-            } else if (DragController.carryingBlock == null)
+            } else if (LevelController.carryingBlock == null)
             {
                 Destroy(currentBlock);
                 currentBlock = null;
@@ -104,13 +104,13 @@ namespace Assets.Scripts {
                             transform.position.x + renderer.bounds.size.x / 2,
                             transform.position.y + renderer.bounds.size.y / 2), Quaternion.identity);
 
-            if (player_movement.timeLeftHolding <= 0)
+            if (PlayerMovement.timeLeftHolding <= 0)
             {
                 animator.SetTrigger("transform_hold");
             }
             else
             {
-                player_movement.timeLeftHolding = 0;
+                PlayerMovement.timeLeftHolding = 0;
             }
         }
     }

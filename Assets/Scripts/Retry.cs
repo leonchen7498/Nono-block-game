@@ -20,7 +20,7 @@ namespace Assets.Scripts
 
         private void OnMouseUp()
         {
-            UnityEngine.SceneManagement.SceneManager.LoadScene(DragController.currentLevel);
+            UnityEngine.SceneManagement.SceneManager.LoadScene(LevelController.currentLevel);
         }
     }
 }

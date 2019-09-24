@@ -28,12 +28,12 @@ namespace Assets.Scripts
                 //if circle is hit and it is the correct circle
                 if (hit.collider != null && hit.collider.gameObject == this.gameObject)
                 {
-                    if (DragController.isDragging == false)
+                    if (LevelController.isDragging == false)
                     {
-                        DragController.draggingBlock = gameObject;
+                        LevelController.draggingBlock = gameObject;
                         lastPosition = transform.position;
                         drag = true;
-                        DragController.isDragging = true;
+                        LevelController.isDragging = true;
                     }
                 }
 
@@ -47,7 +47,7 @@ namespace Assets.Scripts
                 if (drag == true)
                 {
                     transform.position = lastPosition;
-                    DragController.isDragging = false;
+                    LevelController.isDragging = false;
                 }
                 drag = false;
             }

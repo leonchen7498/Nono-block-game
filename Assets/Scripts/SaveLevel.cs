@@ -10,7 +10,7 @@ namespace Assets.Scripts {
         // Start is called before the first frame update
         void Start()
         {
-            var data = DragController.highestLevel;
+            var data = LevelController.highestLevel;
             string fileName = Application.persistentDataPath + "/playerInfo.dat";
             BinaryFormatter bf = new BinaryFormatter();
             FileStream file = File.Create(fileName);

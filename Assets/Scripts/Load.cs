@@ -15,7 +15,7 @@ namespace Assets.Scripts
             {
                 BinaryFormatter bf = new BinaryFormatter();
                 FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
-                DragController.highestLevel = (string)bf.Deserialize(file);
+                LevelController.highestLevel = (string)bf.Deserialize(file);
                 file.Close();
             }
         }
