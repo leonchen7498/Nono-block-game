@@ -15,10 +15,14 @@ namespace Assets.Scripts
         public static bool justPlaced;
         public static string currentLevel;
         public static string highestLevel;
+        public GameObject menuButton;
 
         // Start is called before the first frame update
         void Start()
         {
+            if (menuButton != null) {
+                Instantiate(menuButton, new Vector3(482, 1247, 0), Quaternion.identity);
+            }
             carryingBlock = string.Empty;
             blockToPlacePosition = Vector3.zero;
             carryingBlock = null;

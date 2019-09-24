@@ -21,6 +21,7 @@ TagManager:
   - blue_tag_timer
   - door
   - actual_glass
+  - menu
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - 
   - 
   - falling blocks
-  - 
+  - Menu
   - 
   - 
   - 
