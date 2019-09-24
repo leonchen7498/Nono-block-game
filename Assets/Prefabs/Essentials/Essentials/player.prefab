@@ -119,7 +119,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2cd02ff7103db2a4fa097886907b108e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBlock: {fileID: 0}
   yellowCarry: {fileID: 2916310627267268837, guid: ab52c68314119cc478e61d39e9804162,
     type: 3}
   blueCarry: {fileID: 6822755874945810105, guid: 1611ed8dbcf5d35489dbeaed7e70391e,
@@ -197,8 +196,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeca3725782daa441bf8ea61ffe0adeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 400
-  timeToFloat: 0.6
+  movementSpeed: 350
+  timeToFloat: 0.5
   timeToHold: 2
   timeToMove: 1
 --- !u!61 &3090121711372140175

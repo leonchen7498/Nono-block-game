@@ -228,8 +228,8 @@ namespace Assets.Scripts
         {
             if (!isFalling && !isFlying && timeLeftFloating <= 0)
             {
-                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 20f);
-                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 20f);
+                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 - 5f);
+                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 + 5f);
 
                 if (!onGroundLeft && !onGroundRight)
                 {
@@ -241,8 +241,8 @@ namespace Assets.Scripts
 
             if (isFalling)
             {
-                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2 + 20f);
-                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2 - 20f);
+                bool onGroundLeft = checkIfOnGround(-collider.bounds.size.x / 2);
+                bool onGroundRight = checkIfOnGround(collider.bounds.size.x / 2);
 
                 if (onGroundLeft || onGroundRight)
                 {
@@ -259,11 +259,12 @@ namespace Assets.Scripts
         bool checkIfOnGround(float extraPositionX)
         {
             RaycastHit2D[] groundHits = Physics2D.RaycastAll(new Vector2(collider.bounds.center.x + extraPositionX,
-                    collider.bounds.center.y - collider.bounds.size.y + 40f), Vector2.zero);
+                    collider.bounds.center.y - collider.bounds.size.y / 2 - 10f), Vector2.zero);
 
             foreach (RaycastHit2D groundHit in groundHits)
             {
-                if (groundHit.collider.name.Contains("Block") || groundHit.collider.name.Contains("foreground"))
+                if ((groundHit.collider.name.Contains("Block") && groundHit.collider.GetType() == typeof(BoxCollider2D)) 
+                    || groundHit.collider.name.Contains("foreground"))
                 {
                     return true;
                 }
