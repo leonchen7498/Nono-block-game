@@ -100,8 +100,9 @@ namespace Assets.Scripts
                 onTouch();
             }
 
-            if (LevelController.blockToPlacePosition != Vector3.zero && !blockPlaceConfirmed)
+            if (LevelController.touchedScreen)
             {
+                LevelController.touchedScreen = false;
                 checkIfPlayerIsCloseToPlaceHolderBlock();
                 if (!LevelController.readyToPlace)
                 {

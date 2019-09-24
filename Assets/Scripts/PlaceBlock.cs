@@ -95,6 +95,7 @@ namespace Assets.Scripts {
                     else if (LevelController.carryingBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         LevelController.blockToPlacePosition = placeholderHit.collider.bounds.center;
+                        LevelController.touchedScreen = true;
                     }
                 }
                 else

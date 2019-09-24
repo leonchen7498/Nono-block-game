@@ -14,6 +14,7 @@ namespace Assets.Scripts
         public static string currentLevel;
         public static string highestLevel;
         public static bool moveToPosition;
+        public static bool touchedScreen;
 
         // Start is called before the first frame update
         void Start()
