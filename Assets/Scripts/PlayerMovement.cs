@@ -111,7 +111,7 @@ namespace Assets.Scripts
             }
 
             if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
-                && !LevelController.isDragging)
+                && LevelController.draggingBlock == null)
             {
                 Vector2 touchPositionToWorld;
 

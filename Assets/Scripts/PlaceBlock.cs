@@ -9,7 +9,7 @@ namespace Assets.Scripts {
         public GameObject RedObject;
         public GameObject YellowObject;
         public GameObject player;
-        public ParticleSystem particleSystem;
+        new public ParticleSystem particleSystem;
         private bool ableToPlace;
         private bool collidesWithPlayer;
         public GameObject SlimeObject;
@@ -84,15 +84,15 @@ namespace Assets.Scripts {
 
                 if (!blockHit && placeholderHit.collider != null)
                 {
-                    if (string.IsNullOrEmpty(LevelController.carryingBlock))
+                    if (LevelController.carryingBlock == null)
                     {
                         LevelController.moveToPosition = true;
                     }
-                    else if (!string.IsNullOrEmpty(LevelController.carryingBlock) && !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (LevelController.carryingBlock != null && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    else if (!string.IsNullOrEmpty(LevelController.carryingBlock) && gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (LevelController.carryingBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         LevelController.blockToPlacePosition = placeholderHit.collider.bounds.center;
                     }
@@ -104,9 +104,9 @@ namespace Assets.Scripts {
             }
             else if (LevelController.readyToPlace && collider.bounds.center == LevelController.blockToPlacePosition)
             {
-                 TimerManager.CountDown();
-                    
-                switch (LevelController.carryingBlock)
+                TimerManager.CountDown();
+
+                switch (LevelController.carryingBlock.tag)
                 {
                     case "yellow_tag":
                         Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -136,6 +136,7 @@ namespace Assets.Scripts {
                         Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                         break;
                 }
+                Destroy(LevelController.carryingBlock);
                 LevelController.carryingBlock = null;
 
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;

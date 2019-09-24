@@ -6,8 +6,7 @@ namespace Assets.Scripts
 {
     public class LevelController : MonoBehaviour
     {
-        public static bool isDragging;
-        public static string carryingBlock;
+        public static GameObject carryingBlock;
         public static GameObject draggingBlock;
         public static Vector3 blockToPlacePosition;
         public static bool readyToPlace;
@@ -19,9 +18,9 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
-            carryingBlock = string.Empty;
             blockToPlacePosition = Vector3.zero;
             carryingBlock = null;
+            draggingBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         }
 

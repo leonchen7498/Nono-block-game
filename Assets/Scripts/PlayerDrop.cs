@@ -8,7 +8,6 @@ namespace Assets.Scripts {
         Animator animator;
         new SpriteRenderer renderer;
 
-        public GameObject currentBlock;
         public GameObject yellowCarry;
         public GameObject blueCarry;
         public GameObject redCarry;
@@ -28,35 +27,9 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (LevelController.isDragging == true && LevelController.carryingBlock == null)
+            if (LevelController.draggingBlock != null)
             {
-                Vector3 position;
-
-                if (Application.isEditor)
-                {
-                    position = Input.mousePosition;
-                }
-                else
-                {
-                    position = Input.GetTouch(0).position;
-                }
-
-                Vector2 touchPositionToWorld = Camera.main.ScreenToWorldPoint(position);
-                RaycastHit2D[] hit = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
-
-                foreach (RaycastHit2D ray in hit)
-                {
-                    if (ray.collider != null && ray.collider.gameObject == this.gameObject)
-                    {
-                        LevelController.carryingBlock = LevelController.draggingBlock.tag;
-                        Destroy(LevelController.draggingBlock);
-                        LevelController.isDragging = false;
-                    }
-                }
-            }
-            if (currentBlock == null && LevelController.carryingBlock != null)
-            {
-                switch (LevelController.carryingBlock)
+                switch (LevelController.draggingBlock.tag)
                 {
                     case "yellow_tag":
                         carryBlock(yellowCarry);
@@ -86,13 +59,10 @@ namespace Assets.Scripts {
                         carryBlock(redTimerCarry);
                         break;
                 }
-            } else if (LevelController.carryingBlock == null)
+            }
+            else if (LevelController.carryingBlock != null)
             {
-                Destroy(currentBlock);
-                currentBlock = null;
-            } else
-            {
-                currentBlock.transform.position = new Vector2(
+                LevelController.carryingBlock.transform.position = new Vector2(
                     transform.position.x + renderer.bounds.size.x / 2,
                     transform.position.y + renderer.bounds.size.y / 2 - 10f);
             }
@@ -100,9 +70,10 @@ namespace Assets.Scripts {
 
         void carryBlock(GameObject block)
         {
-            currentBlock = Instantiate(block, new Vector2(
+            LevelController.carryingBlock = Instantiate(block, new Vector2(
                             transform.position.x + renderer.bounds.size.x / 2,
                             transform.position.y + renderer.bounds.size.y / 2), Quaternion.identity);
+            LevelController.carryingBlock.tag = LevelController.draggingBlock.tag;
 
             if (PlayerMovement.timeLeftHolding <= 0)
             {
@@ -112,6 +83,9 @@ namespace Assets.Scripts {
             {
                 PlayerMovement.timeLeftHolding = 0;
             }
+
+            Destroy(LevelController.draggingBlock);
+            LevelController.draggingBlock = null;
         }
     }
 }
