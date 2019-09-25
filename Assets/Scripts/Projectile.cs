@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerKill : MonoBehaviour
+public class Projectile : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -13,14 +13,11 @@ public class PlayerKill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        transform.Translate(transform.up *3, Space.World);
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    private void OnBecameInvisible()
     {
-        if (other.gameObject.tag == "player" && other is BoxCollider2D)
-        {
-            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
-        }
+        Destroy(gameObject);
     }
 }

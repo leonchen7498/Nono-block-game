@@ -22,6 +22,8 @@ TagManager:
   - door
   - actual_glass
   - menu
+  - electricity
+  - projectile
   layers:
   - Default
   - TransparentFX

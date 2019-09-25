@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 1517635473968718461, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1517635473968718461, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
@@ -389,7 +389,7 @@ PrefabInstance:
     - target: {fileID: 4827894422736521527, guid: 96374005eed681f458c7d8f1510438c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4827894422736521527, guid: 96374005eed681f458c7d8f1510438c9,
         type: 3}
@@ -458,7 +458,7 @@ PrefabInstance:
     - target: {fileID: 4827894422736521527, guid: 96374005eed681f458c7d8f1510438c9,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4827894422736521527, guid: 96374005eed681f458c7d8f1510438c9,
         type: 3}
@@ -604,7 +604,7 @@ Transform:
   - {fileID: 706856238}
   - {fileID: 380018048}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &729220872
 PrefabInstance:
@@ -960,7 +960,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3090121711372140175, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
 --- !u!4 &1588408395 stripped
 Transform:
@@ -1073,7 +1074,7 @@ Transform:
   m_LocalScale: {x: 215, y: 215, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1823683329
 GameObject:
@@ -1187,7 +1188,7 @@ Transform:
   m_Children:
   - {fileID: 989291678}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2062835936
 PrefabInstance:

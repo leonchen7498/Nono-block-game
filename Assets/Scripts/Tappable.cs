@@ -49,5 +49,9 @@ namespace Assets.Scripts
                 transform.position = newPosition;
             }
         }
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
     }
 }
