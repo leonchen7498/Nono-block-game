@@ -47,5 +47,9 @@ namespace Assets.Scripts
                 transform.position = initialPosition + Random.insideUnitSphere * 10;
             }
         }
+        private void OnBecameInvisible()
+        {
+            Destroy(gameObject);
+        }
     }
 }
