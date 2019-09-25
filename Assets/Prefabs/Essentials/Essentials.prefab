@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 8175059122646923515}
   - component: {fileID: 6496091486658280726}
   m_Layer: 0
-  m_Name: DragController
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -240,11 +240,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1517635473968718461}
     m_Modifications:
-    - target: {fileID: 3932110394574896619, guid: a77c3cf28022cab42a45994ec53ae166,
-        type: 3}
-      propertyPath: m_Name
-      value: DragController
-      objectReference: {fileID: 0}
     - target: {fileID: 3932110394574896613, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -299,6 +294,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896619, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelController
       objectReference: {fileID: 0}
     - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}
