@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 7889100752248694365}
   - component: {fileID: 7889100752248694364}
   m_Layer: 0
-  m_Name: Glass
+  m_Name: Glass_Block
   m_TagString: glassMatch
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ Transform:
   m_GameObject: {fileID: 7889100752248694362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -232, y: -298, z: 0}
-  m_LocalScale: {x: 187, y: 187, z: 1}
+  m_LocalScale: {x: 188, y: 188, z: 1}
   m_Children:
   - {fileID: 7948071368186290875}
   m_Father: {fileID: 0}

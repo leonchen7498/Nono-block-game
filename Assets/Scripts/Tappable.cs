@@ -44,7 +44,9 @@ namespace Assets.Scripts
             if (currentShakeDuration > 0)
             {
                 currentShakeDuration -= Time.deltaTime;
-                transform.position = initialPosition + Random.insideUnitSphere * 10;
+                Vector3 newPosition = initialPosition + Random.insideUnitSphere * 10;
+                newPosition.z = initialPosition.z;
+                transform.position = newPosition;
             }
         }
     }
