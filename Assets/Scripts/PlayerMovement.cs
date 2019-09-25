@@ -45,6 +45,7 @@ namespace Assets.Scripts
         private bool blockPlaceConfirmed;
 
         private bool touchedTheGround;
+        private bool hasToMoveToPlaceBlock;
 
         // Start is called before the first frame update
         public void Start()
@@ -94,51 +95,43 @@ namespace Assets.Scripts
 
             checkIfFalling();
 
-            if (LevelController.moveToPosition)
+            if (LevelController.touchedPlaceholder)
             {
-                LevelController.moveToPosition = false;
-                onTouch();
-            }
-
-            if (LevelController.touchedScreen)
-            {
-                LevelController.touchedScreen = false;
+                hasToMoveToPlaceBlock = true;
+                LevelController.touchedPlaceholder = false;
                 checkIfPlayerIsCloseToPlaceHolderBlock();
-                if (!LevelController.readyToPlace)
+                if (hasToMoveToPlaceBlock)
                 {
-                    onTouch();
+                    onTouch(LevelController.moveToPosition);
                     blockPlaceConfirmed = true;
                 }
+
+                LevelController.moveToPosition = Vector2.zero;
+            }
+            else if (LevelController.moveToPosition != Vector2.zero)
+            {
+                onTouch(LevelController.moveToPosition);
+                LevelController.moveToPosition = Vector2.zero;
             }
 
-            if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
-                && LevelController.draggingBlock == null)
+            Vector2 position = LevelController.getTouch();
+
+            if (LevelController.draggingBlock == null && position != Vector2.zero)
             {
-                Vector2 touchPositionToWorld;
-
-                if (Application.isEditor)
-                {
-                    touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                }
-                else
-                {
-                    touchPositionToWorld = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                }
-
-                RaycastHit2D[] hits = Physics2D.RaycastAll(touchPositionToWorld, Vector2.zero);
+                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
 
                 foreach (RaycastHit2D hit in hits)
                 {
                     if (hit.collider != blockRangeCollider && !hit.collider.gameObject.name.Contains("Falling") && hit.collider.gameObject != this &&
                         !hit.collider.gameObject.name.Contains("Placeholder"))
                     {
-                        onTouch();
+                        onTouch(Vector2.zero);
                     }
                 }
 
                 if (hits.Length == 0)
                 {
-                    onTouch();
+                    onTouch(Vector2.zero);
                 }
             }
 
@@ -282,6 +275,7 @@ namespace Assets.Scripts
             {
                 if (hit.collider == blockRangeCollider)
                 {
+                    hasToMoveToPlaceBlock = false;
                     blockPlaceConfirmed = false;
                     LevelController.readyToPlace = true;
                     timeLeftHolding = timeToHold;
@@ -325,9 +319,9 @@ namespace Assets.Scripts
         /*
          * Starts moving the player around when the user touches the screen
          */
-        private void onTouch()
+        private void onTouch(Vector2 position)
         {
-            getTouchPosition();
+            getTouchPosition(position);
 
             if (!isMoving && !isFlying && timeLeftMoving <= 0)
             {
@@ -368,30 +362,36 @@ namespace Assets.Scripts
         /**
          * Gets the position of the touch and corrects the position in case its out of bounds
          */
-        private void getTouchPosition()
+        private void getTouchPosition(Vector2 position)
         {
-            if (Application.isEditor)
+            if (position == Vector2.zero)
             {
-                touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (Application.isEditor)
+                {
+                    touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                }
+                else
+                {
+                    touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                }
+                touchPosition.z = 0f;
+
+                //Check if x is out of bounds
+                if (touchPosition.x > (Screen.width - renderer.bounds.size.x) / 2)
+                {
+                    touchPosition.x = (Screen.width - renderer.bounds.size.x) / 2;
+                }
+                else if (touchPosition.x < (Screen.width - renderer.bounds.size.x) / -2)
+                {
+                    touchPosition.x = (Screen.width - renderer.bounds.size.x) / -2;
+                }
+                //corrects the position, otherwise the player will move to the right of the touch position
+                touchPosition.x -= renderer.bounds.size.x / 2;
             }
             else
             {
-                touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                touchPosition = position;
             }
-            touchPosition.z = 0f;
-
-            //Check if x is out of bounds
-            if (touchPosition.x > (Screen.width - renderer.bounds.size.x) / 2)
-            {
-                touchPosition.x = (Screen.width - renderer.bounds.size.x) / 2;
-            }
-            else if (touchPosition.x < (Screen.width - renderer.bounds.size.x) / -2)
-            {
-                touchPosition.x = (Screen.width - renderer.bounds.size.x) / -2;
-            }
-
-            //corrects the position, otherwise the player will move to the right of the touch position
-            touchPosition.x -= renderer.bounds.size.x / 2;
         }
     }
 }
