@@ -391,6 +391,7 @@ namespace Assets.Scripts
             else
             {
                 touchPosition = position;
+                touchPosition.x -= renderer.bounds.size.x / 2;
             }
         }
     }

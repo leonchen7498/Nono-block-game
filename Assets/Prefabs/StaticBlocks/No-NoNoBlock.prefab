@@ -54,7 +54,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 2508516986942200567}
   - component: {fileID: 2508516986942200566}
   - component: {fileID: 2508516986942200521}
-  - component: {fileID: 7909904334822621744}
+  - component: {fileID: 5998357476461502957}
   m_Layer: 0
   m_Name: No-NoNoBlock
   m_TagString: Untagged
@@ -190,7 +190,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &7909904334822621744
+--- !u!114 &5998357476461502957
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -199,8 +199,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 2508516986942200520}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c9c5cdbbaf56b46bfd27fed5a7b56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7769fbc038325944f8dd06e00edf4cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempBlock: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
+  placeholder: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
     type: 3}
