@@ -18,19 +18,10 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if ((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended))
+            Vector2 position = LevelController.getTouch();
+
+            if (position != Vector2.zero)
             {
-                Vector2 position;
-
-                if (Application.isEditor)
-                {
-                    position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                }
-                else
-                {
-                    position = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                }
-
                 RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
 
                 foreach(RaycastHit2D hit in hits)

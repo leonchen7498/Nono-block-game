@@ -13,11 +13,16 @@ namespace Assets.Scripts
         public static bool justPlaced;
         public static string currentLevel;
         public static string highestLevel;
-        public static bool moveToPosition;
+        public static Vector2 moveToPosition;
+        public static bool touchedPlaceholder;
+        public GameObject menuButton;
 
         // Start is called before the first frame update
         void Start()
         {
+            if (menuButton != null) {
+                Instantiate(menuButton, new Vector3(482, 1247, 0), Quaternion.identity);
+            }
             blockToPlacePosition = Vector3.zero;
             carryingBlock = null;
             draggingBlock = null;
@@ -28,6 +33,22 @@ namespace Assets.Scripts
         void Update()
         {
 
+        }
+
+        public static Vector2 getTouch()
+        {
+            if (Input.touchCount > 0)
+            {
+                if (Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    return Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
+                }
+            }
+            else if (Input.GetMouseButtonDown(0))
+            {
+                return Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            }
+            return Vector2.zero;
         }
     }
 }

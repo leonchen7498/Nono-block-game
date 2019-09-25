@@ -50,21 +50,11 @@ namespace Assets.Scripts {
         // Update is called once per frame
         void Update()
         {
-            if (((Input.GetMouseButtonDown(0) && Application.isEditor) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)) 
-                && ableToPlace && !collidesWithPlayer)
+            Vector2 position = LevelController.getTouch();
+
+            if (position != Vector2.zero && ableToPlace && !collidesWithPlayer)
             {
                 LevelController.justPlaced = false;
-                Vector3 position;
-
-                if (Application.isEditor)
-                {
-                    position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                }
-                else
-                {
-                    position = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                }
-                
                 RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
                 RaycastHit2D placeholderHit = new RaycastHit2D();
                 RaycastHit2D blockHit = new RaycastHit2D();
@@ -86,7 +76,7 @@ namespace Assets.Scripts {
                 {
                     if (LevelController.carryingBlock == null)
                     {
-                        LevelController.moveToPosition = true;
+                        LevelController.moveToPosition = position;
                     }
                     else if (LevelController.carryingBlock != null && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
@@ -95,6 +85,8 @@ namespace Assets.Scripts {
                     else if (LevelController.carryingBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         LevelController.blockToPlacePosition = placeholderHit.collider.bounds.center;
+                        LevelController.touchedPlaceholder = true;
+                        LevelController.moveToPosition = position;
                     }
                 }
                 else
