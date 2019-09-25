@@ -16,17 +16,21 @@ namespace Assets.Scripts
         public static Vector2 moveToPosition;
         public static bool touchedPlaceholder;
         public GameObject menuButton;
+        public GameObject Timer;
+        public int seconds;
 
         // Start is called before the first frame update
         void Start()
         {
             if (menuButton != null) {
-                Instantiate(menuButton, new Vector3(482, 1247, 0), Quaternion.identity);
+                Instantiate(menuButton, new Vector3(482, 1147, 0), Quaternion.identity);
             }
             blockToPlacePosition = Vector3.zero;
             carryingBlock = null;
             draggingBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+            GameObject newTimer = Instantiate(Timer, new Vector3(0, 0, 0), Quaternion.identity);
+            newTimer.GetComponentInChildren<LevelTimer>().seconds = seconds; 
         }
 
         // Update is called once per frame

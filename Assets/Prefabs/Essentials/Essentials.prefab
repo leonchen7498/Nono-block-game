@@ -125,7 +125,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876b1f9527cae0c4981fb80b311f2d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  menuButton: {fileID: 0}
+  menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
+    type: 3}
+  Timer: {fileID: 6816641173913817218, guid: be8618635f8b4eb4ba879f14c2bba505, type: 3}
+  seconds: 300
 --- !u!1 &5098482080364496676
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,6 +299,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: seconds
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a77c3cf28022cab42a45994ec53ae166, type: 3}
