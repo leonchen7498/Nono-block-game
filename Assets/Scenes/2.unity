@@ -484,12 +484,12 @@ PrefabInstance:
     - target: {fileID: 8175800535376499040, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8175800535376499040, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -215
+      value: -240
       objectReference: {fileID: 0}
     - target: {fileID: 8175800535376499040, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
         type: 3}
@@ -989,6 +989,12 @@ PrefabInstance:
       propertyPath: menuButton
       value: 
       objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
+        type: 3}
+    - target: {fileID: 2498869618314841339, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: placeholder
+      value: 
+      objectReference: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be1dfde8345632499601be418326e90, type: 3}

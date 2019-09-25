@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class makePlaceholders : MonoBehaviour
 {
-    public GameObject placholder;
+    public GameObject placeholder;
     // Start is called before the first frame update
     void Start()
     {
         for (float x = 0; x < 9; x++)
         {
-            Instantiate(placholder, new Vector3(-480f + 120f * x, -840, 0), Quaternion.identity);
+            Instantiate(placeholder, new Vector3(-480f + 120f * x, -840, 0), Quaternion.identity);
         }
     }
 

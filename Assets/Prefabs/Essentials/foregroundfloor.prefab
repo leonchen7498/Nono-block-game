@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6012380113927488033}
   - component: {fileID: 6012380113927488032}
   - component: {fileID: 6012380113927488035}
+  - component: {fileID: 3384613430903276798}
   m_Layer: 0
   m_Name: foregroundfloor
   m_TagString: Untagged
@@ -108,3 +109,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &3384613430903276798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6012380113927488034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7769fbc038325944f8dd06e00edf4cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeholder: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
+    type: 3}
