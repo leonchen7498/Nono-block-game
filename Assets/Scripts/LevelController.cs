@@ -6,8 +6,7 @@ namespace Assets.Scripts
 {
     public class LevelController : MonoBehaviour
     {
-        public static GameObject carryingBlock;
-        public static GameObject draggingBlock;
+        public static GameObject currentBlock;
         public static Vector3 blockToPlacePosition;
         public static bool readyToPlace;
         public static bool justPlaced;
@@ -18,8 +17,18 @@ namespace Assets.Scripts
         public bool inBuildPhase;
 
         public GameObject menuButton;
-        public GameObject Timer;
-        public int seconds;
+        public int yellowBlockCount;
+        public static int yellowBlockAmount;
+        public int redBlockCount;
+        public static int redBlockAmount;
+        public int blueBlockCount;
+        public static int blueBlockAmount;
+        public int slimeBlockCount;
+        public static int slimeBlockAmount;
+        public int ironBlockCount;
+        public static int ironBlockAmount;
+        public int glassBlockCount;
+        public static int glassBlockAmount;
 
         // Start is called before the first frame update
         void Start()
@@ -28,11 +37,14 @@ namespace Assets.Scripts
                 Instantiate(menuButton, new Vector3(482, 1147, 0), Quaternion.identity);
             }
             blockToPlacePosition = Vector3.zero;
-            carryingBlock = null;
-            draggingBlock = null;
+            currentBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-            GameObject newTimer = Instantiate(Timer, new Vector3(0, 0, 0), Quaternion.identity);
-            newTimer.GetComponentInChildren<LevelTimer>().seconds = seconds; 
+            yellowBlockAmount = yellowBlockCount;
+            redBlockAmount = redBlockCount;
+            blueBlockAmount = blueBlockCount;
+            ironBlockAmount = ironBlockCount;
+            slimeBlockAmount = slimeBlockCount;
+            glassBlockAmount = glassBlockCount;
         }
 
         // Update is called once per frame
@@ -55,6 +67,32 @@ namespace Assets.Scripts
                 return Camera.main.ScreenToWorldPoint(Input.mousePosition);
             }
             return Vector2.zero;
+        }
+
+        public static string getBlockAmount(string countTag)
+        {
+            switch(countTag)
+            {
+                case "yellow_tag":
+                    return yellowBlockAmount.ToString();
+                case "blue_tag":
+                    return blueBlockAmount.ToString();
+                case "red_tag":
+                    return redBlockAmount.ToString();
+                case "slime_tag":
+                    return slimeBlockAmount.ToString();
+                case "iron_tag":
+                    return ironBlockAmount.ToString();
+                case "glass_tag":
+                    return glassBlockAmount.ToString();
+                case "yellow_tag_timer":
+                    return yellowBlockAmount.ToString();
+                case "blue_tag_timer":
+                    return yellowBlockAmount.ToString();
+                case "red_tag_timer":
+                    return yellowBlockAmount.ToString();
+            }
+            return yellowBlockAmount.ToString();
         }
     }
 }

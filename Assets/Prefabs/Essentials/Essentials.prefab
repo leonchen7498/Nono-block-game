@@ -28,7 +28,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8175059122646923515}
-  - {fileID: 1836751144962331822}
   - {fileID: 2498869618314841220}
   - {fileID: 6915573516918964609}
   m_Father: {fileID: 0}
@@ -63,7 +62,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1517635473968718461}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2498869618314841339
 MonoBehaviour:
@@ -129,67 +128,6 @@ MonoBehaviour:
     type: 3}
   Timer: {fileID: 6816641173913817218, guid: be8618635f8b4eb4ba879f14c2bba505, type: 3}
   seconds: 300
---- !u!1 &5098482080364496676
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1836751144962331822}
-  - component: {fileID: 8342188974223869105}
-  m_Layer: 0
-  m_Name: BlockDropper
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1836751144962331822
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098482080364496676}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 142.92584, y: 8.526461, z: -1786.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1517635473968718461}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8342188974223869105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5098482080364496676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a31c2f66f8a83844925094c149b0761, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  yellowBlock: {fileID: 6487261363310486621, guid: bb0636632e70c7e4585ffc24d1b9256b,
-    type: 3}
-  redBlock: {fileID: 4996606288463229246, guid: b213a57d1c7f94940bcf6a71930cded8,
-    type: 3}
-  blueBlock: {fileID: 5165581349010637090, guid: e25ec7e446f445947b95a74d2220d4cd,
-    type: 3}
-  yellowTimerBlock: {fileID: 2233801446095308464, guid: 066610f8226c2ac4791d9c9859c6b9e7,
-    type: 3}
-  redTimerBlock: {fileID: 1784350588742628183, guid: 24aa070433264d9469dd800afa8e2a90,
-    type: 3}
-  blueTimerBlock: {fileID: 441324423988965677, guid: bc3f633b6157e4d43abde8604571fa98,
-    type: 3}
-  slimeBlock: {fileID: 4873666308764543156, guid: 5fd67cca0ee6ca74c8c400daaf368eec,
-    type: 3}
-  ironBlock: {fileID: 951001992909779191, guid: 31ffd1e6c5830024d9833539e10ee09a,
-    type: 3}
-  glassBlock: {fileID: 6343260643121180404, guid: bf52db9f47a65fd42a83dfb023c23e8f,
-    type: 3}
 --- !u!1 &6915573516918964671
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +157,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1517635473968718461}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6915573516918964670
 MonoBehaviour:
