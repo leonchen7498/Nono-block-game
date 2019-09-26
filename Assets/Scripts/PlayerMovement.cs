@@ -12,7 +12,6 @@ namespace Assets.Scripts
 
         Animator animator;
         Rigidbody2D body;
-        new SpriteRenderer renderer;
         new BoxCollider2D collider;
 
         private Vector3 touchPosition;
@@ -41,7 +40,6 @@ namespace Assets.Scripts
         {
             body = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            renderer = GetComponent<SpriteRenderer>();
             collider = GetComponent<BoxCollider2D>();
             isFlying = false;
             isMoving = false;
@@ -284,16 +282,16 @@ namespace Assets.Scripts
             }
 
             //Check if x is out of bounds
-            if (touchPosition.x > (Screen.width - renderer.bounds.size.x) / 2)
+            if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
             {
-                touchPosition.x = (Screen.width - renderer.bounds.size.x) / 2;
+                touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
             }
-            else if (touchPosition.x < (Screen.width - renderer.bounds.size.x) / -2)
+            else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
             {
-                touchPosition.x = (Screen.width - renderer.bounds.size.x) / -2;
+                touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
             }
             //corrects the position, otherwise the player will move to the right of the touch position
-            touchPosition.x -= renderer.bounds.size.x / 2;
+            touchPosition.x -= collider.bounds.size.x / 2;
         }
     }
 }
