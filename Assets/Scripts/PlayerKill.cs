@@ -18,7 +18,7 @@ public class PlayerKill : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "player" && other.GetType() == typeof(BoxCollider2D))
+        if (other.gameObject.tag == "player")
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }

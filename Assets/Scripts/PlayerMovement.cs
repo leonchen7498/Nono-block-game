@@ -35,6 +35,8 @@ namespace Assets.Scripts
         private float defaultGravity;
         private bool touchedTheGround;
 
+        private bool buildPhase;
+
         // Start is called before the first frame update
         public void Start()
         {
@@ -60,6 +62,7 @@ namespace Assets.Scripts
                     animator.SetTrigger("transform_flying");
                 }
 
+                buildPhase = true;
                 touchedTheGround = false;
                 timeLeftFloating = 0;
                 body.velocity = new Vector2(0f, 140f);
@@ -77,6 +80,40 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update()
         {
+            if (LevelController.inBuildPhase)
+            {
+                if (!buildPhase)
+                {
+                    if (isFlying || timeLeftFloating > 0)
+                    {
+                        animator.SetTrigger("transform_flying");
+                    }
+                    else if (isMoving || timeLeftMoving > 0)
+                    {
+                        animator.SetTrigger("transform_move");
+                    }
+
+                    isMoving = false;
+                    isFlying = false;
+                    isFalling = false;
+                    timeLeftFloating = 0;
+                    timeLeftMoving = 0;
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = 0;
+                    touchPosition = Vector2.zero;
+                    body.velocity = new Vector2(0f, 0f);
+                    body.gravityScale = 0;
+                    buildPhase = true;
+                }
+                return;
+            } else
+            {
+                if (buildPhase)
+                {
+                    buildPhase = false;
+                }
+            }
+
             distanceToGoal = getDistance();
             checkIfFalling();
             onTouch();
@@ -220,26 +257,30 @@ namespace Assets.Scripts
 
             if (position != Vector2.zero)
             {
-                getTouchPosition();
+                getTouchPosition(position);
 
-                if (!isMoving && !isFlying && timeLeftMoving <= 0)
+                if (touchPosition != Vector3.zero)
                 {
-                    // so the player's move animation doesn't disappear when the robot is already moving
-                    animator.SetTrigger("transform_move");
-                }
+                    if (!isMoving && !isFlying && timeLeftMoving <= 0)
+                    {
+                        // so the player's move animation doesn't disappear when the robot is already moving
+                        animator.SetTrigger("transform_move");
+                    }
 
-                // Have to determine if the touch position is left or right from the sprite position
-                if (!isFlying && !isFalling)
-                {
-                    distanceToGoal = 0;
-                    previousDistanceToGoal = 0;
-                    startMoving();
+                    // Have to determine if the touch position is left or right from the sprite position
+                    if (!isFlying && !isFalling)
+                    {
+                        distanceToGoal = 0;
+                        previousDistanceToGoal = 0;
+                        startMoving();
+                    }
                 }
             }
         }
 
         void startMoving()
         {
+            Debug.Log("startmoving");
             moveDirection = (touchPosition - transform.position).normalized;
             if (moveDirection.x >= 0)
             {
@@ -257,41 +298,40 @@ namespace Assets.Scripts
         /**
          * Gets the position of the touch and corrects the position in case its out of bounds
          */
-        private void getTouchPosition()
+        private void getTouchPosition(Vector2 position)
         {
-            Vector2 position = LevelController.getTouch();
-            if (LevelController.draggingBlock == null && position != Vector2.zero)
+            RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+            bool hitUI = false;
+
+            foreach (RaycastHit2D hit in hits)
             {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
-
-                foreach (RaycastHit2D hit in hits)
+                if (hit.collider.gameObject.layer == 5 || hit.collider.gameObject == this)
                 {
-                    // or osmething like that
-                    if (!hit.collider.gameObject.name.Contains("Menu") && hit.collider.gameObject != this)
-                    {
-                        touchPosition = position;
-                        touchPosition.z = 0;
-                    }
-                }
-
-                if (hits.Length == 0)
-                {
-                    touchPosition = position;
-                    touchPosition.z = 0;
+                    hitUI = true;
                 }
             }
 
-            //Check if x is out of bounds
-            if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+            if (!hitUI)
             {
-                touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
+                touchPosition = position;
+                touchPosition.z = 0;
+
+                //Check if x is out of bounds
+                if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+                {
+                    touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
+                }
+                else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
+                {
+                    touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+                }
+                //corrects the position, otherwise the player will move to the right of the touch position
+                touchPosition.x -= collider.bounds.size.x / 2;
             }
-            else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
+            else
             {
-                touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+                touchPosition = Vector3.zero;
             }
-            //corrects the position, otherwise the player will move to the right of the touch position
-            touchPosition.x -= collider.bounds.size.x / 2;
         }
     }
 }

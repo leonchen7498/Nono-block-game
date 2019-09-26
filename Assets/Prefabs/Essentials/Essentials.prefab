@@ -124,10 +124,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876b1f9527cae0c4981fb80b311f2d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inBuildPhase: 0
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
     type: 3}
-  Timer: {fileID: 6816641173913817218, guid: be8618635f8b4eb4ba879f14c2bba505, type: 3}
-  seconds: 300
+  buildButton: {fileID: 2902107051743658447, guid: a1e5ceb971308344da08482479cddae5,
+    type: 3}
+  yellowBlockCount: 0
+  redBlockCount: 0
+  blueBlockCount: 0
+  slimeBlockCount: 0
+  ironBlockCount: 0
+  glassBlockCount: 0
 --- !u!1 &6915573516918964671
 GameObject:
   m_ObjectHideFlags: 0
