@@ -15,6 +15,8 @@ namespace Assets.Scripts
         public static string highestLevel;
         public static Vector2 moveToPosition;
         public static bool touchedPlaceholder;
+        public bool inBuildPhase;
+
         public GameObject menuButton;
         public GameObject Timer;
         public int seconds;

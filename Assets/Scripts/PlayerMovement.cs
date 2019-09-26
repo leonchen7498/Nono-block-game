@@ -12,10 +12,8 @@ namespace Assets.Scripts
 
         Animator animator;
         Rigidbody2D body;
-        // have to add "new" otherwise it'll confuse this renderer with the deprecated Component.renderer
         new SpriteRenderer renderer;
         new BoxCollider2D collider;
-        CircleCollider2D blockRangeCollider;
 
         private Vector3 touchPosition;
         private Vector3 flyingGoal;
@@ -23,7 +21,6 @@ namespace Assets.Scripts
         private float distanceToGoal;
         private float previousDistanceToGoal;
 
-        private bool isStandingOnBlock;
         private bool isFlying;
         private bool isMoving;
         private bool isFalling;
@@ -32,20 +29,12 @@ namespace Assets.Scripts
         public float timeToFloat;
         private float timeLeftFloating;
 
-        // the amount of time the robot will keep the hold animation before going back to normal
-        public float timeToHold;
-        // public static because PlayerDrop needs to know if the player is still in the hold animation
-        public static float timeLeftHolding;
-
         // the amount of time the robot will keep the move animation before going back to normal
         public float timeToMove;
         private float timeLeftMoving;
 
         private float defaultGravity;
-        private bool blockPlaceConfirmed;
-
         private bool touchedTheGround;
-        private bool hasToMoveToPlaceBlock;
 
         // Start is called before the first frame update
         public void Start()
@@ -54,7 +43,6 @@ namespace Assets.Scripts
             animator = GetComponent<Animator>();
             renderer = GetComponent<SpriteRenderer>();
             collider = GetComponent<BoxCollider2D>();
-            blockRangeCollider = GetComponent<CircleCollider2D>();
             isFlying = false;
             isMoving = false;
             isFalling = false;
@@ -92,48 +80,9 @@ namespace Assets.Scripts
         public void Update()
         {
             distanceToGoal = getDistance();
-
             checkIfFalling();
-
-            if (LevelController.touchedPlaceholder)
-            {
-                hasToMoveToPlaceBlock = true;
-                LevelController.touchedPlaceholder = false;
-                checkIfPlayerIsCloseToPlaceHolderBlock();
-                if (hasToMoveToPlaceBlock)
-                {
-                    onTouch(LevelController.moveToPosition);
-                    blockPlaceConfirmed = true;
-                }
-
-                LevelController.moveToPosition = Vector2.zero;
-            }
-            else if (LevelController.moveToPosition != Vector2.zero)
-            {
-                onTouch(LevelController.moveToPosition);
-                LevelController.moveToPosition = Vector2.zero;
-            }
-
-            Vector2 position = LevelController.getTouch();
-
-            if (LevelController.draggingBlock == null && position != Vector2.zero)
-            {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
-
-                foreach (RaycastHit2D hit in hits)
-                {
-                    if (hit.collider != blockRangeCollider && !hit.collider.gameObject.name.Contains("Falling") && hit.collider.gameObject != this &&
-                        !hit.collider.gameObject.name.Contains("Placeholder"))
-                    {
-                        onTouch(Vector2.zero);
-                    }
-                }
-
-                if (hits.Length == 0)
-                {
-                    onTouch(Vector2.zero);
-                }
-            }
+            onTouch();
+            checkTimers();
 
             if (!touchedTheGround && !isFlying)
             {
@@ -142,8 +91,6 @@ namespace Assets.Scripts
                     touchedTheGround = true;
                 }
             }
-
-            checkTimers();
 
             // If the player managed to reach the touch position and starts moving past the touch position
             // it will check if the player didnt move too far. If he did move too far then stop moving
@@ -171,12 +118,6 @@ namespace Assets.Scripts
                 }
             }
 
-            // If the player clicked on a placeholder then move towards that location, if the player is close enough it'll start placing that block
-            if (blockPlaceConfirmed)
-            {
-                checkIfPlayerIsCloseToPlaceHolderBlock();
-            }
-
             //Checks the distance again between the player and touch position
             previousDistanceToGoal = getDistance();
         }
@@ -202,17 +143,6 @@ namespace Assets.Scripts
                 {
                     animator.SetTrigger("transform_move");
                     timeLeftFloating = 0;
-                }
-            }
-
-            if (timeLeftHolding > 0)
-            {
-                timeLeftHolding -= Time.deltaTime;
-
-                if (timeLeftHolding < 0)
-                {
-                    animator.SetTrigger("transform_hold");
-                    timeLeftHolding = 0;
                 }
             }
         }
@@ -266,39 +196,6 @@ namespace Assets.Scripts
             return false;
         }
 
-
-        void checkIfPlayerIsCloseToPlaceHolderBlock()
-        {
-            RaycastHit2D[] hits = Physics2D.RaycastAll(LevelController.blockToPlacePosition, Vector2.zero);
-
-            foreach (RaycastHit2D hit in hits)
-            {
-                if (hit.collider == blockRangeCollider)
-                {
-                    hasToMoveToPlaceBlock = false;
-                    blockPlaceConfirmed = false;
-                    LevelController.readyToPlace = true;
-                    timeLeftHolding = timeToHold;
-
-                    distanceToGoal = 0;
-                    previousDistanceToGoal = 0;
-                    body.velocity = Vector2.zero;
-
-                    if (isMoving && timeLeftFloating <= 0)
-                    {
-                        animator.SetTrigger("transform_move");
-                    }
-                    else if (isFlying || timeLeftFloating > 0)
-                    {
-                        animator.SetTrigger("transform_flying");
-                        isFlying = false;
-                        timeLeftFloating = 0;
-                    }
-                    isMoving = false;
-                }
-            }
-        }
-
         /*
          * Checks the distance between the touch position and player, always a positive number
          */
@@ -319,26 +216,26 @@ namespace Assets.Scripts
         /*
          * Starts moving the player around when the user touches the screen
          */
-        private void onTouch(Vector2 position)
+        private void onTouch()
         {
-            getTouchPosition(position);
+            Vector2 position = LevelController.getTouch();
 
-            if (!isMoving && !isFlying && timeLeftMoving <= 0)
+            if (position != Vector2.zero)
             {
-                // so the player's move animation doesn't disappear when the robot is already moving
-                animator.SetTrigger("transform_move");
-            }
+                getTouchPosition();
 
-            // Have to determine if the touch position is left or right from the sprite position
-            if (!isFlying && !isFalling)
-            {
-                distanceToGoal = 0;
-                previousDistanceToGoal = 0;
-                startMoving();
-
-                if (blockPlaceConfirmed)
+                if (!isMoving && !isFlying && timeLeftMoving <= 0)
                 {
-                    blockPlaceConfirmed = false;
+                    // so the player's move animation doesn't disappear when the robot is already moving
+                    animator.SetTrigger("transform_move");
+                }
+
+                // Have to determine if the touch position is left or right from the sprite position
+                if (!isFlying && !isFalling)
+                {
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = 0;
+                    startMoving();
                 }
             }
         }
@@ -362,37 +259,41 @@ namespace Assets.Scripts
         /**
          * Gets the position of the touch and corrects the position in case its out of bounds
          */
-        private void getTouchPosition(Vector2 position)
+        private void getTouchPosition()
         {
-            if (position == Vector2.zero)
+            Vector2 position = LevelController.getTouch();
+            if (LevelController.draggingBlock == null && position != Vector2.zero)
             {
-                if (Application.isEditor)
-                {
-                    touchPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                }
-                else
-                {
-                    touchPosition = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-                }
-                touchPosition.z = 0f;
+                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
 
-                //Check if x is out of bounds
-                if (touchPosition.x > (Screen.width - renderer.bounds.size.x) / 2)
+                foreach (RaycastHit2D hit in hits)
                 {
-                    touchPosition.x = (Screen.width - renderer.bounds.size.x) / 2;
+                    // or osmething like that
+                    if (!hit.collider.gameObject.name.Contains("Menu") && hit.collider.gameObject != this)
+                    {
+                        touchPosition = position;
+                        touchPosition.z = 0;
+                    }
                 }
-                else if (touchPosition.x < (Screen.width - renderer.bounds.size.x) / -2)
+
+                if (hits.Length == 0)
                 {
-                    touchPosition.x = (Screen.width - renderer.bounds.size.x) / -2;
+                    touchPosition = position;
+                    touchPosition.z = 0;
                 }
-                //corrects the position, otherwise the player will move to the right of the touch position
-                touchPosition.x -= renderer.bounds.size.x / 2;
             }
-            else
+
+            //Check if x is out of bounds
+            if (touchPosition.x > (Screen.width - renderer.bounds.size.x) / 2)
             {
-                touchPosition = position;
-                touchPosition.x -= renderer.bounds.size.x / 2;
+                touchPosition.x = (Screen.width - renderer.bounds.size.x) / 2;
             }
+            else if (touchPosition.x < (Screen.width - renderer.bounds.size.x) / -2)
+            {
+                touchPosition.x = (Screen.width - renderer.bounds.size.x) / -2;
+            }
+            //corrects the position, otherwise the player will move to the right of the touch position
+            touchPosition.x -= renderer.bounds.size.x / 2;
         }
     }
 }

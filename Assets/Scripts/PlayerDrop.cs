@@ -75,15 +75,6 @@ namespace Assets.Scripts {
                             transform.position.y + renderer.bounds.size.y / 2), Quaternion.identity);
             LevelController.carryingBlock.tag = LevelController.draggingBlock.tag;
 
-            if (PlayerMovement.timeLeftHolding <= 0)
-            {
-                animator.SetTrigger("transform_hold");
-            }
-            else
-            {
-                PlayerMovement.timeLeftHolding = 0;
-            }
-
             Destroy(LevelController.draggingBlock);
             LevelController.draggingBlock = null;
         }

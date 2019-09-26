@@ -22,7 +22,7 @@ namespace Assets.Scripts
 
         void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.tag == "player" && collision.GetType() != typeof(CircleCollider2D))
+            if (collision.gameObject.tag == "player")
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
             }
