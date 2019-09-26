@@ -6,8 +6,6 @@ namespace Assets.Scripts
 {
     public class Tappable : MonoBehaviour
     {
-        private float currentShakeDuration;
-        private Vector3 initialPosition;
 
         // Start is called before the first frame update
         void Start()
@@ -18,35 +16,21 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            Vector2 position = LevelController.getTouch();
+            if (LevelController.getBlockAmount(tag) != "0") {
+                Vector2 position = LevelController.getTouch();
 
-            if (position != Vector2.zero)
-            {
-                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
-
-                foreach(RaycastHit2D hit in hits)
+                if (position != Vector2.zero)
                 {
-                    if (hit.collider.gameObject == gameObject)
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+
+                    foreach (RaycastHit2D hit in hits)
                     {
-                        if (LevelController.carryingBlock == null)
+                        if (hit.collider.gameObject == gameObject)
                         {
-                            LevelController.draggingBlock = gameObject;
-                        }
-                        else if (currentShakeDuration <= 0)
-                        {
-                            initialPosition = transform.position;
-                            currentShakeDuration = 0.3f;
+                            LevelController.currentBlock = gameObject;
                         }
                     }
                 }
-            }
-
-            if (currentShakeDuration > 0)
-            {
-                currentShakeDuration -= Time.deltaTime;
-                Vector3 newPosition = initialPosition + Random.insideUnitSphere * 10;
-                newPosition.z = initialPosition.z;
-                transform.position = newPosition;
             }
         }
         private void OnBecameInvisible()

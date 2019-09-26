@@ -116,7 +116,7 @@ namespace Assets.Scripts
 
             Vector2 position = LevelController.getTouch();
 
-            if (LevelController.draggingBlock == null && position != Vector2.zero)
+            if (LevelController.currentBlock == null && position != Vector2.zero)
             {
                 RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
 

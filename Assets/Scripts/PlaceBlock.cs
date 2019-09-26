@@ -74,15 +74,15 @@ namespace Assets.Scripts {
 
                 if (!blockHit && placeholderHit.collider != null)
                 {
-                    if (LevelController.carryingBlock == null)
+                    if (LevelController.currentBlock == null)
                     {
                         LevelController.moveToPosition = position;
                     }
-                    else if (LevelController.carryingBlock != null && !gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (LevelController.currentBlock != null && !gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         gameObject.GetComponent<SpriteRenderer>().enabled = true;
                     }
-                    else if (LevelController.carryingBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
+                    else if (LevelController.currentBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         LevelController.blockToPlacePosition = placeholderHit.collider.bounds.center;
                         LevelController.touchedPlaceholder = true;
@@ -98,25 +98,55 @@ namespace Assets.Scripts {
             {
                 TimerManager.CountDown();
 
-                switch (LevelController.carryingBlock.tag)
+                switch (LevelController.currentBlock.tag)
                 {
                     case "yellow_tag":
                         Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.yellowBlockAmount -= 1;
+                        if (LevelController.yellowBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "blue_tag":
                         Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.blueBlockAmount -= 1;
+                        if (LevelController.blueBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "red_tag":
                         Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.redBlockAmount -= 1;
+                        if (LevelController.redBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "slime_tag":
                         Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.slimeBlockAmount -= 1;
+                        if (LevelController.slimeBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "iron_tag":
                         Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.ironBlockAmount -= 1;
+                        if (LevelController.ironBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "glass_tag":
                         Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                        LevelController.glassBlockAmount -= 1;
+                        if (LevelController.glassBlockAmount == 0)
+                        {
+                            LevelController.currentBlock = null;
+                        }
                         break;
                     case "yellow_tag_timer":
                         Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -128,8 +158,6 @@ namespace Assets.Scripts {
                         Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                         break;
                 }
-                Destroy(LevelController.carryingBlock);
-                LevelController.carryingBlock = null;
 
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 ableToPlace = false;
