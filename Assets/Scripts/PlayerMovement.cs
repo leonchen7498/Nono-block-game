@@ -280,7 +280,6 @@ namespace Assets.Scripts
 
         void startMoving()
         {
-            Debug.Log("startmoving");
             moveDirection = (touchPosition - transform.position).normalized;
             if (moveDirection.x >= 0)
             {

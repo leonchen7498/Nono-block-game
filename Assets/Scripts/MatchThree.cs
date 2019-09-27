@@ -10,13 +10,16 @@ namespace Assets.Scripts
         public GameObject tempBlock;
         public List<GameObject> tempBlocks;
         public bool setStatic;
+        private bool isFalling;
+        private bool placeholderVisible;
+        new private BoxCollider2D collider;
+
         // Start is called before the first frame update
         void Start()
         {
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 10), Quaternion.identity));
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
             setStatic = false;
+            placeholderVisible = false;
+            collider = GetComponent<BoxCollider2D>();
         }
 
         // Update is called once per frame
@@ -30,13 +33,46 @@ namespace Assets.Scripts
                 }
             }
 
-            if (tempBlocks[0].transform.position.y > gameObject.transform.position.y)
+            /*if (tempBlocks[0].transform.position.y > gameObject.transform.position.y)
             {
                 tempBlocks[1].transform.position = new Vector3(tempBlocks[1].transform.position.x, gameObject.transform.position.y + 120, 10);
                 tempBlocks[0].transform.position = new Vector3(tempBlocks[0].transform.position.x, gameObject.transform.position.y, 10);
                 tempBlocks[2].transform.position = new Vector3(tempBlocks[2].transform.position.x, gameObject.transform.position.y, 10);
+            }*/
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(collider.bounds.center.x, collider.bounds.center.y - collider.bounds.size.y / 2 - 1f),
+                Vector2.zero);
+            bool somethingUnder = false;
+
+            foreach(RaycastHit2D hit in hits)
+            {
+                if (!hit.collider.gameObject.name.Contains("player") && hit.collider.gameObject != this.gameObject &&
+                    !hit.collider.gameObject.name.Contains("Placeholder") && hit.collider.GetType() == typeof(BoxCollider2D))
+                {
+                    somethingUnder = true;
+                }
             }
 
+            if (!somethingUnder)
+            {
+                isFalling = true;
+            }
+            else
+            {
+                isFalling = false;
+            }
+
+            if (isFalling && placeholderVisible)
+            {
+                placeholderVisible = false;
+                OnDestroy();
+            }
+
+            if (!isFalling && !placeholderVisible)
+            {
+                placeholderVisible = true;
+                addBlocks();
+            }
         }
 
         void OnTriggerEnter2D(Collider2D collider)
@@ -66,6 +102,13 @@ namespace Assets.Scripts
             {
                 Destroy(deletable);
             }
+        }
+
+        void addBlocks()
+        {
+            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
+            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 10), Quaternion.identity));
+            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
         }
 
         void toStatic()

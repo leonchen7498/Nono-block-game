@@ -7,20 +7,19 @@ namespace Assets.Scripts {
     {
         public GameObject player;
         new public ParticleSystem particleSystem;
+        new private SpriteRenderer renderer;
+        private bool collidesWithPlayer;
+        private Color defaultColor;
 
         public GameObject BlueObject;
         public GameObject RedObject;
         public GameObject YellowObject;
-        private bool collidesWithPlayer;
         public GameObject SlimeObject;
         public GameObject IronObject;
         public GameObject glassObject;
-        public bool visible;
         public GameObject BlueTimerObject;
         public GameObject RedTimerObject;
         public GameObject YellowTimerObject;
-
-        new private BoxCollider2D collider;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -41,13 +40,39 @@ namespace Assets.Scripts {
         // Start is called before the first frame update
         void Start()
         {
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            collider = GetComponent<BoxCollider2D>();
+            renderer = GetComponent<SpriteRenderer>();
+            this.defaultColor = renderer.color;
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (!LevelController.inBuildPhase)
+            {
+                if (renderer.enabled)
+                {
+                    renderer.enabled = false;
+                }
+                return;
+            }
+            if (LevelController.inBuildPhase)
+            {
+                if (!renderer.enabled)
+                {
+                    renderer.enabled = true;
+                }
+
+                if (renderer.enabled && collidesWithPlayer && renderer.color != new Color(255, 0, 0))
+                {
+                    renderer.color = new Color(255, 0, 0);
+                }
+
+                if (renderer.enabled && !collidesWithPlayer && renderer.color == new Color(255, 0, 0))
+                {
+                    renderer.color = defaultColor;
+                }
+            }
+
             Vector2 position = LevelController.getTouch();
 
             if (position != Vector2.zero && !collidesWithPlayer)
@@ -71,11 +96,7 @@ namespace Assets.Scripts {
 
                 if (!blockHit && placeholderHit.collider != null)
                 {
-                    if (LevelController.currentBlock != null && !gameObject.GetComponent<SpriteRenderer>().enabled)
-                    {
-                        gameObject.GetComponent<SpriteRenderer>().enabled = true;
-                    }
-                    else if (LevelController.currentBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
+                    if (LevelController.currentBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled)
                     {
                         TimerManager.CountDown();
 
@@ -147,10 +168,6 @@ namespace Assets.Scripts {
                         placeParticle.Play();
                     }
                 }
-                else
-                {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                } 
             }
         }
     }

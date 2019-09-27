@@ -40,7 +40,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7427167667086965307}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -71,8 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 8c0853b311197f240b0a10afa0d507bc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 1576c8ac2ff8cff4788afc9f9a5d4ddb, type: 3}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -120,14 +120,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b75e3b727d1b50488692c96ce32456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
+  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
+    type: 3}
   BlueObject: {fileID: 847850189460663501, guid: 5e04df3e9f926fd41a57df634c2d4fa9,
     type: 3}
   RedObject: {fileID: 4465930049756681697, guid: cdddcc721ee69cf47b38b335888bd8e6,
     type: 3}
   YellowObject: {fileID: 4061648876097152047, guid: 49290bc98f4ce2d4aa123d3dcb4d6010,
-    type: 3}
-  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
-  particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
     type: 3}
   SlimeObject: {fileID: 6878221409368765490, guid: 235f31c9cd207e9479bc4108eb0cd031,
     type: 3}
@@ -135,7 +135,6 @@ MonoBehaviour:
     type: 3}
   glassObject: {fileID: 7889100752248694362, guid: 1e66679cf258331469f971c08a7362b1,
     type: 3}
-  visible: 0
   BlueTimerObject: {fileID: 7028281758405168582, guid: 6d6e0c37edee3e84bb66c181c02c464b,
     type: 3}
   RedTimerObject: {fileID: 1863565550326372236, guid: 5f1557ca1bcb48845ad9d74db42302dc,

@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public static string currentLevel;
         public static string highestLevel;
         public static bool inBuildPhase;
+        public ParticleSystem mouseClickParticle;
 
         public GameObject menuButton;
         public GameObject buildButton;
@@ -65,6 +66,9 @@ namespace Assets.Scripts
                         inBuildPhase = !inBuildPhase;
                     }
                 }
+
+                ParticleSystem placeParticle = Instantiate(mouseClickParticle, position, Quaternion.identity);
+                placeParticle.Play();
             }
         }
 
