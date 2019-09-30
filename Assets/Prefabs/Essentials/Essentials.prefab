@@ -128,6 +128,8 @@ MonoBehaviour:
     type: 3}
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
     type: 3}
+  buildButton: {fileID: 2902107051743658447, guid: a1e5ceb971308344da08482479cddae5,
+    type: 3}
   yellowBlockCount: 2
   redBlockCount: 3
   blueBlockCount: 4
@@ -186,6 +188,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1517635473968718461}
     m_Modifications:
+    - target: {fileID: 3932110394574896619, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelController
+      objectReference: {fileID: 0}
     - target: {fileID: 3932110394574896613, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -240,11 +247,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3932110394574896619, guid: a77c3cf28022cab42a45994ec53ae166,
-        type: 3}
-      propertyPath: m_Name
-      value: LevelController
       objectReference: {fileID: 0}
     - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}

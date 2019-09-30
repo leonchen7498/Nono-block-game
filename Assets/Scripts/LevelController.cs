@@ -32,7 +32,7 @@ namespace Assets.Scripts
         void Start()
         {
             if (menuButton != null) {
-                Instantiate(menuButton, new Vector3(482, 1147, 0), Quaternion.identity);
+                Instantiate(menuButton, new Vector3(432.5f, 1058.6f, 0), Quaternion.identity);
             }
             Instantiate(selectionMenu, new Vector3(3, 200, -1), Quaternion.identity);
 
