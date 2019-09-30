@@ -27,6 +27,7 @@ namespace Assets.Scripts
         public static int ironBlockAmount;
         public int glassBlockCount;
         public static int glassBlockAmount;
+        public GameObject selectionMenu;
 
         // Start is called before the first frame update
         void Start()
@@ -34,6 +35,8 @@ namespace Assets.Scripts
             if (menuButton != null) {
                 Instantiate(menuButton, new Vector3(482, 1147, 0), Quaternion.identity);
             }
+            Instantiate(selectionMenu, new Vector3(-15, 1809, -10), Quaternion.identity);
+
             blockToPlacePosition = Vector3.zero;
             currentBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;

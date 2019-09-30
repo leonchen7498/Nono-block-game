@@ -287,16 +287,6 @@ PrefabInstance:
       propertyPath: m_Mass
       value: 0.0001
       objectReference: {fileID: 0}
-    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
-        type: 3}
-      propertyPath: timeToFloat
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 400
-      objectReference: {fileID: 0}
     - target: {fileID: 3090121711320583751, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
         type: 3}
       propertyPath: m_Offset.x
@@ -316,6 +306,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Size.y
       value: 0.48343325
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
+        type: 3}
+      propertyPath: timeToFloat
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 400
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
@@ -954,6 +954,54 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8175059122646923514, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: menuButton
+      value: 
+      objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
+        type: 3}
+    - target: {fileID: 2498869618314841339, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: placeholder
+      value: 
+      objectReference: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
+        type: 3}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: selectionMenu
+      value: 
+      objectReference: {fileID: 7330129746623039561, guid: 35d350697d59acc4f8c29a9a931cddbf,
+        type: 3}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: yellowBlockCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: redBlockCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: blueBlockCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: slimeBlockCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: ironBlockCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: glassBlockCount
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: glassBlock
@@ -984,18 +1032,6 @@ PrefabInstance:
       propertyPath: yellowTimerBlock
       value: 
       objectReference: {fileID: 0}
-    - target: {fileID: 8175059122646923514, guid: 5be1dfde8345632499601be418326e90,
-        type: 3}
-      propertyPath: menuButton
-      value: 
-      objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
-        type: 3}
-    - target: {fileID: 2498869618314841339, guid: 5be1dfde8345632499601be418326e90,
-        type: 3}
-      propertyPath: placeholder
-      value: 
-      objectReference: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be1dfde8345632499601be418326e90, type: 3}
 --- !u!1001 &1929506106
@@ -1117,7 +1153,7 @@ PrefabInstance:
     - target: {fileID: 6068686407488536536, guid: 10c688fc448d5d047b6b3a0ad4ddec11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6068686407488536536, guid: 10c688fc448d5d047b6b3a0ad4ddec11,
         type: 3}
