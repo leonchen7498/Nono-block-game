@@ -36,8 +36,6 @@ namespace Assets.Scripts
             }
             Instantiate(selectionMenu, new Vector3(3, 200, -1), Quaternion.identity);
 
-            blockToPlacePosition = Vector3.zero;
-
             if (buildButton != null)
             {
                 Instantiate(buildButton, new Vector3(-360, -960, -100), Quaternion.identity);
