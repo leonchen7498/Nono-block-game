@@ -30,11 +30,6 @@ namespace Assets.Scripts
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
             }
-            TMPro.TextMeshProUGUI text = GetComponentInChildren<TMPro.TextMeshProUGUI>();
-            if (text != null)
-            {
-                text.text = LevelController.getBlockAmount(tag);
-            }
         }
     }
 }

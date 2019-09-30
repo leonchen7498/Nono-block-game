@@ -126,8 +126,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
     type: 3}
-  Timer: {fileID: 6816641173913817218, guid: be8618635f8b4eb4ba879f14c2bba505, type: 3}
-  seconds: 300
+  yellowBlockCount: 2
+  redBlockCount: 3
+  blueBlockCount: 4
+  slimeBlockCount: 5
+  ironBlockCount: 6
+  glassBlockCount: 7
+  selectionMenu: {fileID: 7330129746623039561, guid: 35d350697d59acc4f8c29a9a931cddbf,
+    type: 3}
 --- !u!1 &6915573516918964671
 GameObject:
   m_ObjectHideFlags: 0
@@ -242,6 +248,36 @@ PrefabInstance:
         type: 3}
       propertyPath: seconds
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: yellowBlockCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: redBlockCount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: blueBlockCount
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: slimeBlockCount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: ironBlockCount
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
+        type: 3}
+      propertyPath: glassBlockCount
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a77c3cf28022cab42a45994ec53ae166, type: 3}
