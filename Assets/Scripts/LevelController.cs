@@ -7,14 +7,13 @@ namespace Assets.Scripts
     public class LevelController : MonoBehaviour
     {
         public static GameObject currentBlock;
-        public static Vector3 blockToPlacePosition;
-        public static bool readyToPlace;
-        public static bool justPlaced;
         public static string currentLevel;
         public static string highestLevel;
-        public static Vector2 moveToPosition;
-        public static bool touchedPlaceholder;
+        public static bool inBuildPhase;
+        public ParticleSystem mouseClickParticle;
+
         public GameObject menuButton;
+        public GameObject buildButton;
         public int yellowBlockCount;
         public static int yellowBlockAmount;
         public int redBlockCount;
@@ -38,6 +37,13 @@ namespace Assets.Scripts
             Instantiate(selectionMenu, new Vector3(3, 200, -1), Quaternion.identity);
 
             blockToPlacePosition = Vector3.zero;
+
+            if (buildButton != null)
+            {
+                Instantiate(buildButton, new Vector3(-360, -960, -100), Quaternion.identity);
+            }
+
+            inBuildPhase = true;
             currentBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             yellowBlockAmount = yellowBlockCount;
@@ -51,7 +57,23 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
+            Vector2 position = getTouch();
 
+            if (position != Vector2.zero)
+            {
+                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+
+                foreach(RaycastHit2D hit in hits)
+                {
+                    if (hit.collider.gameObject.name.Contains("build button"))
+                    {
+                        inBuildPhase = !inBuildPhase;
+                    }
+                }
+
+                ParticleSystem placeParticle = Instantiate(mouseClickParticle, position, Quaternion.identity);
+                placeParticle.Play();
+            }
         }
 
         public static Vector2 getTouch()

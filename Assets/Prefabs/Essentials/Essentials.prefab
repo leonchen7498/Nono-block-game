@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8175059122646923515}
   - component: {fileID: 6496091486658280726}
   m_Layer: 0
-  m_Name: DragController
+  m_Name: LevelController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -124,6 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 876b1f9527cae0c4981fb80b311f2d98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseClickParticle: {fileID: 6501669135053022139, guid: 4ffba9eb61ea7fd4f87d8c30f8a584f6,
+    type: 3}
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
     type: 3}
   yellowBlockCount: 2
@@ -242,7 +244,7 @@ PrefabInstance:
     - target: {fileID: 3932110394574896619, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}
       propertyPath: m_Name
-      value: DragController
+      value: LevelController
       objectReference: {fileID: 0}
     - target: {fileID: 3932110394574896612, guid: a77c3cf28022cab42a45994ec53ae166,
         type: 3}

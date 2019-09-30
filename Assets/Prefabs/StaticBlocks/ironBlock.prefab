@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 2111639572026618023}
   - component: {fileID: 2111639572026618022}
   - component: {fileID: 2111639572026618021}
-  - component: {fileID: 2111639572026618020}
   - component: {fileID: 2111639572026618019}
+  - component: {fileID: 2620090147055213912}
   m_Layer: 0
   m_Name: ironBlock
   m_TagString: Untagged
@@ -109,20 +109,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
---- !u!114 &2111639572026618020
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2111639572026618018}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c9c5cdbbaf56b46bfd27fed5a7b56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tempBlock: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
-    type: 3}
 --- !u!50 &2111639572026618019
 Rigidbody2D:
   serializedVersion: 4
@@ -144,3 +130,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2620090147055213912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2111639572026618018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7769fbc038325944f8dd06e00edf4cd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placeholder: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
+    type: 3}

@@ -89,9 +89,9 @@ GameObject:
   - component: {fileID: 6878221409368765495}
   - component: {fileID: 6878221409368765488}
   - component: {fileID: 6878221409368765489}
-  - component: {fileID: 6878221409368765493}
+  - component: {fileID: -3008204957815402083}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Slime_Block
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -208,7 +208,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &6878221409368765493
+--- !u!114 &-3008204957815402083
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6878221409368765490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09c9c5cdbbaf56b46bfd27fed5a7b56b, type: 3}
+  m_Script: {fileID: 11500000, guid: 7769fbc038325944f8dd06e00edf4cd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempBlock: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
+  placeholder: {fileID: 7427167667086965307, guid: d25393ff3e423ab4e90941fde93f798c,
     type: 3}
