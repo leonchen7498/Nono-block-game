@@ -12,6 +12,7 @@ namespace Assets.Scripts
         public bool setStatic;
         private bool isFalling;
         private bool placeholderVisible;
+        private bool isStatic;
         new private BoxCollider2D collider;
 
         // Start is called before the first frame update
@@ -53,25 +54,36 @@ namespace Assets.Scripts
                 }
             }
 
-            if (!somethingUnder)
+            if (isStatic)
             {
-                isFalling = true;
+                if (placeholderVisible == false)
+                {
+                    placeholderVisible = true;
+                    addBlocks();
+                }
             }
             else
             {
-                isFalling = false;
-            }
+                if (!somethingUnder)
+                {
+                    isFalling = true;
+                }
+                else
+                {
+                    isFalling = false;
+                }
 
-            if (isFalling && placeholderVisible)
-            {
-                placeholderVisible = false;
-                OnDestroy();
-            }
+                if (isFalling && placeholderVisible)
+                {
+                    placeholderVisible = false;
+                    OnDestroy();
+                }
 
-            if (!isFalling && !placeholderVisible)
-            {
-                placeholderVisible = true;
-                addBlocks();
+                if (!isFalling && !placeholderVisible)
+                {
+                    placeholderVisible = true;
+                    addBlocks();
+                }
             }
         }
 
@@ -106,14 +118,22 @@ namespace Assets.Scripts
 
         void addBlocks()
         {
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
+            if (transform.position.x - 120 > Screen.width / -2)
+            {
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
+            }
+                
+            if (transform.position.x + 120 < Screen.width / 2)
+            {
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
+            }
             tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 10), Quaternion.identity));
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
         }
 
         void toStatic()
         {
-                gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            gameObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+            isStatic = true;
         }
 
 
