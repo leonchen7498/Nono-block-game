@@ -502,15 +502,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6632502720665479122, guid: a09d7c1e972ea2c4f9b2684c08123bf5,
-        type: 3}
-      propertyPath: m_Name
-      value: foreground_lava_block (2)
-      objectReference: {fileID: 0}
     - target: {fileID: 3090121711320583751, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
         type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
+        type: 3}
+      propertyPath: timeToFloat
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
+        type: 3}
+      propertyPath: movementSpeed
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 6632502720665479122, guid: a09d7c1e972ea2c4f9b2684c08123bf5,
+        type: 3}
+      propertyPath: m_Name
+      value: foreground_lava_block (2)
       objectReference: {fileID: 0}
     - target: {fileID: 6229620251736948582, guid: a09d7c1e972ea2c4f9b2684c08123bf5,
         type: 3}
@@ -527,15 +537,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
+    - target: {fileID: 6229620251736948582, guid: a09d7c1e972ea2c4f9b2684c08123bf5,
         type: 3}
-      propertyPath: timeToFloat
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3090121711320583750, guid: 38fadf1bd9a22ca47a4966c45dd2b888,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 400
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a09d7c1e972ea2c4f9b2684c08123bf5, type: 3}
@@ -787,7 +792,7 @@ Transform:
   m_Children:
   - {fileID: 7665308510350136564}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1617162156
 PrefabInstance:
@@ -1075,6 +1080,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
         type: 3}
+    - target: {fileID: 8175059122646923514, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: menuButton
+      value: 
+      objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
+        type: 3}
     - target: {fileID: 2498869618314841339, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: placeholder
@@ -1117,17 +1128,17 @@ PrefabInstance:
       propertyPath: glassBlockCount
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: buildButton
+      value: 
+      objectReference: {fileID: 2902107051743658447, guid: a1e5ceb971308344da08482479cddae5,
+        type: 3}
     - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: seconds
       value: 180
       objectReference: {fileID: 0}
-    - target: {fileID: 8175059122646923514, guid: 5be1dfde8345632499601be418326e90,
-        type: 3}
-      propertyPath: menuButton
-      value: 
-      objectReference: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5be1dfde8345632499601be418326e90, type: 3}
 --- !u!1 &1840399092
@@ -1178,6 +1189,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 853766445}
+  - {fileID: 1931124795}
   - {fileID: 530131876}
   - {fileID: 565005631}
   - {fileID: 396465500}
@@ -1186,9 +1198,8 @@ Transform:
   - {fileID: 1617162157}
   - {fileID: 1206607069}
   - {fileID: 152042310}
-  - {fileID: 1931124795}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1931124794
 PrefabInstance:

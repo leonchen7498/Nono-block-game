@@ -27,7 +27,13 @@ namespace Assets.Scripts
                     {
                         if (hit.collider.gameObject == gameObject)
                         {
-                            LevelController.currentBlock = gameObject;
+                            if (LevelController.currentBlock == gameObject)
+                            {
+                                LevelController.currentBlock = null;
+                            } else
+                            {
+                                LevelController.currentBlock = gameObject;
+                            }
                         }
                     }
                 }
