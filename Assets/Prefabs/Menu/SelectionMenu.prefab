@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6766974705555924406}
   - component: {fileID: 894448229928948831}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 7330129744594086803}
   - component: {fileID: 7330129744594086806}
   - component: {fileID: 7330129744594086801}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectGlassBlock
   m_TagString: glass_tag
   m_Icon: {fileID: 0}
@@ -212,7 +212,7 @@ GameObject:
   - component: {fileID: 7330129744601448144}
   - component: {fileID: 7330129744601448150}
   - component: {fileID: 7330129744601448145}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: yellow_tag
   m_Icon: {fileID: 0}
@@ -279,7 +279,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129744601448145
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 7330129744601748875}
   - component: {fileID: 7330129744601748878}
   - component: {fileID: 7330129744601748873}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectSlimeBlock
   m_TagString: slime_tag
   m_Icon: {fileID: 0}
@@ -1115,7 +1115,7 @@ GameObject:
   - component: {fileID: 7330129745050188600}
   - component: {fileID: 7330129745050188606}
   - component: {fileID: 7330129745050188601}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: glass_tag
   m_Icon: {fileID: 0}
@@ -1182,7 +1182,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129745050188601
@@ -1209,7 +1209,7 @@ GameObject:
   - component: {fileID: 7330129745187017195}
   - component: {fileID: 7330129745187017198}
   - component: {fileID: 7330129745187017193}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectBlueBlock
   m_TagString: blue_tag
   m_Icon: {fileID: 0}
@@ -1485,7 +1485,7 @@ GameObject:
   - component: {fileID: 7330129745236544364}
   - component: {fileID: 7330129745236544147}
   - component: {fileID: 7330129745236544146}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectIronBlock
   m_TagString: iron_tag
   m_Icon: {fileID: 0}
@@ -1915,7 +1915,7 @@ GameObject:
   - component: {fileID: 7330129745852932024}
   - component: {fileID: 7330129745852932030}
   - component: {fileID: 7330129745852932025}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: red_tag
   m_Icon: {fileID: 0}
@@ -1982,7 +1982,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129745852932025
@@ -2009,7 +2009,7 @@ GameObject:
   - component: {fileID: 7330129745867393980}
   - component: {fileID: 7330129745867393955}
   - component: {fileID: 7330129745867393954}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectRedBlock
   m_TagString: red_tag
   m_Icon: {fileID: 0}
@@ -2241,7 +2241,7 @@ GameObject:
   - component: {fileID: 7330129746030261705}
   - component: {fileID: 7330129746030261711}
   - component: {fileID: 7330129746030261710}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: slime_tag
   m_Icon: {fileID: 0}
@@ -2308,7 +2308,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129746030261710
@@ -2334,7 +2334,7 @@ GameObject:
   - component: {fileID: 7330129746172481472}
   - component: {fileID: 7330129746172481478}
   - component: {fileID: 7330129746172481473}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: iron_tag
   m_Icon: {fileID: 0}
@@ -2401,7 +2401,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129746172481473
@@ -2427,7 +2427,7 @@ GameObject:
   - component: {fileID: 7330129746183517922}
   - component: {fileID: 7330129746183517920}
   - component: {fileID: 7330129746183517923}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Selected
   m_TagString: blue_tag
   m_Icon: {fileID: 0}
@@ -2494,7 +2494,7 @@ SpriteRenderer:
   m_Size: {x: 0.64, y: 0.64}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &7330129746183517923
@@ -2745,7 +2745,7 @@ GameObject:
   - component: {fileID: 7330129746525922798}
   - component: {fileID: 7330129746525922797}
   - component: {fileID: 7330129746525922796}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectYellowBlock
   m_TagString: yellow_tag
   m_Icon: {fileID: 0}
@@ -2976,7 +2976,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7330129746623039567}
   - component: {fileID: 7330129746623039566}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: SelectionMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}

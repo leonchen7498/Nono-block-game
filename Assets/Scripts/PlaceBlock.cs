@@ -8,7 +8,7 @@ namespace Assets.Scripts {
         public GameObject player;
         new public ParticleSystem particleSystem;
         new private SpriteRenderer renderer;
-        private bool collidesWithPlayer;
+        public bool collidesWithPlayer;
         private Color defaultColor;
 
         public GameObject BlueObject;

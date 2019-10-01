@@ -36,6 +36,7 @@ namespace Assets.Scripts
         private bool touchedTheGround;
 
         private bool buildPhase;
+        private PlaceBlock placeholderOnPlayer;
 
         // Start is called before the first frame update
         public void Start()
@@ -301,36 +302,146 @@ namespace Assets.Scripts
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
             bool hitUI = false;
+            Vector2 placeholderOnPlayerPosition = Vector2.zero;
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.layer == 5 || hit.collider.gameObject == this)
+                if (hit.collider.gameObject.layer == 5)
                 {
                     hitUI = true;
                 }
+
+                if (hit.collider.gameObject.name.Contains("Placeholder") &&
+                    hit.collider.gameObject.GetComponent<PlaceBlock>().collidesWithPlayer)
+                {
+                    placeholderOnPlayer = hit.collider.gameObject.GetComponent<PlaceBlock>();
+                    placeholderOnPlayerPosition = hit.collider.bounds.center;
+                }
             }
 
-            if (!hitUI)
+            if (hitUI)
             {
-                touchPosition = position;
-                touchPosition.z = 0;
+                touchPosition = Vector3.zero;
+                return;
+            }
 
-                //Check if x is out of bounds
-                if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+            if (placeholderOnPlayerPosition != Vector2.zero)
+            {
+                Vector2 RIGHT = new Vector2(Screen.width / 2, transform.position.y);
+                Vector2 LEFT = new Vector2(Screen.width / -2, transform.position.y);
+                Vector2 MIDDLE = new Vector2(0, transform.position.y);
+
+                bool hitLeft;
+                bool hitRight;
+                bool hitTopLeft;
+                bool hitTopRight;
+                bool hitTop;
+
+                hitLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y));
+                hitRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y));
+                hitTopLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y + 120));
+                hitTopRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y + 120));
+                hitTop = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x, placeholderOnPlayerPosition.y + 120));
+
+                if (hitLeft && hitRight)
                 {
-                    touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
-                }
-                else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
+                    if (hitTop)
+                    {
+                        //je hebt jezelf ingebouwd
+                    }
+                    else if (hitTopLeft && hitTopRight)
+                    {
+                        touchPosition = MIDDLE;
+                    }
+                    else if (hitTopLeft)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (hitTopRight)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = MIDDLE;
+                    }
+                    
+                } 
+                else if (hitLeft && !hitRight)
                 {
-                    touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+                    if (!hitTopLeft && !hitTop)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = RIGHT;
+                    }
+                } 
+                else if (!hitLeft && hitRight)
+                {
+                    if (!hitTopRight && !hitTop)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else
+                    {
+                        touchPosition = LEFT;
+                    }
                 }
-                //corrects the position, otherwise the player will move to the right of the touch position
-                touchPosition.x -= collider.bounds.size.x / 2;
+                else
+                {
+                    if (placeholderOnPlayerPosition.x + 60 < collider.bounds.center.x)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (placeholderOnPlayerPosition.x - 60 > collider.bounds.center.x)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = MIDDLE;
+                    }
+                }
             }
             else
             {
-                touchPosition = Vector3.zero;
+                touchPosition = position;
+                touchPosition.z = 0;
             }
+
+            //Check if x is out of bounds
+            if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+            {
+                touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
+            }
+            else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
+            {
+                touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+            }
+            //corrects the position, otherwise the player will move to the right of the touch position
+            touchPosition.x -= collider.bounds.size.x / 2;
+        }
+
+        bool checkIfIthitsABlock(Vector2 position)
+        {
+            if (position.x < Screen.width / -2 || position.x > Screen.width / 2)
+            {
+                return true;
+            }
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+
+            foreach(RaycastHit2D hit in hits)
+            {
+                if (hit.collider.gameObject.name.Contains("foreground") || hit.collider.gameObject.name.Contains("Block"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }
