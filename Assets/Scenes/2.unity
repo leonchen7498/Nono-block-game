@@ -1733,6 +1733,31 @@ PrefabInstance:
       propertyPath: seconds
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: glassBlockCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: ironBlockCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: slimeBlockCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: blueBlockCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
+        type: 3}
+      propertyPath: redBlockCount
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8342188974223869105, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: yellowTimerBlock

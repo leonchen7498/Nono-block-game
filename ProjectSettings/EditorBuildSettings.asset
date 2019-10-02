@@ -14,22 +14,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: 4cbfba532bf1acb49a70645b6ff21844
-  - enabled: 1
-    path: Assets/Scenes/NextLevel.unity
-    guid: 594f95cbba23f194690edd4294305d65
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/LevelSelect.unity
     guid: 04a6e085295614745a4d706d13547b6e
   - enabled: 1
-    path: Assets/Scenes/1.unity
-    guid: d61ef6269ad78d94ba21720171b9dbb1
+    path: Assets/Scenes/NextLevel.unity
+    guid: 594f95cbba23f194690edd4294305d65
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/2.unity
-    guid: 3bcd23b513bebd641ad6d9c4bda47730
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/3 tut.unity
-    guid: 053b9e6ea7e2b6a4491e88826873d5d5
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/4.unity
     guid: 89818074286cf0a4b9cecf36f87df916
+  - enabled: 1
+    path: Assets/Scenes/3.unity
+    guid: 053b9e6ea7e2b6a4491e88826873d5d5
   m_configObjects: {}
