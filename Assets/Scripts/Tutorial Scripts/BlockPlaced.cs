@@ -15,7 +15,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (LevelController.currentBlock != null)
+            if (LevelController.currentBlock != null && LevelController.getBlockAmount("yellow_tag") != "1")
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = true;
             } else

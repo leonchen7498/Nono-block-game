@@ -752,7 +752,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508574600}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -783,7 +783,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c962f7aad50acf4a961cbcc74bf5c3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8f52d3c81569dff418d7a6be7c58c7de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -802,8 +802,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1508574600}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 240, z: -101}
-  m_LocalScale: {x: 130.54607, y: 116.101135, z: 108.78838}
+  m_LocalPosition: {x: 0, y: -56, z: -101}
+  m_LocalScale: {x: 112, y: 117.1011, z: 108.78838}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
@@ -867,8 +867,6 @@ MonoBehaviour:
   mouseClickParticle: {fileID: 6501669135053022139, guid: 4ffba9eb61ea7fd4f87d8c30f8a584f6,
     type: 3}
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
-    type: 3}
-  buildButton: {fileID: 2902107051743658447, guid: a1e5ceb971308344da08482479cddae5,
     type: 3}
   yellowBlockCount: 0
   redBlockCount: 0
@@ -1170,7 +1168,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0c962f7aad50acf4a961cbcc74bf5c3e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 61e7c32fb59fbe648bf05dcd4b32ef9f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1189,8 +1187,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957397231}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 240, z: -101}
-  m_LocalScale: {x: 130.54607, y: 116.101135, z: 108.78838}
+  m_LocalPosition: {x: 0, y: -58, z: -101}
+  m_LocalScale: {x: 112, y: 117, z: 108.78838}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 7
@@ -1480,9 +1478,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b75e3b727d1b50488692c96ce32456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
     type: 3}
+  collidesWithPlayer: 0
+  readyToPlaceBlock: 0
   BlueObject: {fileID: 7733293518404703624, guid: a5e9ccd6a74775e4e8c2e7f86b6ec89e,
     type: 3}
   RedObject: {fileID: 4465930049756681697, guid: cdddcc721ee69cf47b38b335888bd8e6,
@@ -1513,9 +1512,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b75e3b727d1b50488692c96ce32456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
     type: 3}
+  collidesWithPlayer: 0
+  readyToPlaceBlock: 0
   BlueObject: {fileID: 7733293518404703624, guid: a5e9ccd6a74775e4e8c2e7f86b6ec89e,
     type: 3}
   RedObject: {fileID: 4465930049756681697, guid: cdddcc721ee69cf47b38b335888bd8e6,
