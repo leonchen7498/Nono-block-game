@@ -19,6 +19,14 @@ public class ToScene : MonoBehaviour
 
     private void OnMouseUp()
     {
+        if (scene == "LevelSelect" || scene == "MainMenu")
+        {
+            if (MainMenuMusic.instance != null && !MainMenuMusic.instance.GetComponent<AudioSource>().isPlaying)
+            {
+                MainMenuMusic.instance.GetComponent<AudioSource>().Play();
+            }
+        }
+
         UnityEngine.SceneManagement.SceneManager.LoadScene(scene);
     }
 }

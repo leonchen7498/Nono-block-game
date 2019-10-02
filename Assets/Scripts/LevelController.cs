@@ -31,6 +31,11 @@ namespace Assets.Scripts
         // Start is called before the first frame update
         void Start()
         {
+            if (MainMenuMusic.instance != null && MainMenuMusic.instance.GetComponent<AudioSource>().isPlaying)
+            {
+                MainMenuMusic.instance.GetComponent<AudioSource>().Stop();
+            }
+
             if (menuButton != null) {
                 Instantiate(menuButton, new Vector3(432.5f, 1058.6f, 0), Quaternion.identity);
             }

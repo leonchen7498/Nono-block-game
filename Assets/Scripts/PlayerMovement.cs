@@ -319,7 +319,7 @@ namespace Assets.Scripts
                         touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
                     }
                     //corrects the position, otherwise the player will move to the right of the touch position
-                    touchPosition.x -= collider.bounds.size.x / 2;
+                    touchPosition.x -= collider.bounds.size.x / 2 + 30;
 
                     if (!isMoving && !isFlying && timeLeftMoving <= 0)
                     {
