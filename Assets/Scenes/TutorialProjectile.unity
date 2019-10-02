@@ -344,9 +344,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b75e3b727d1b50488692c96ce32456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
     type: 3}
+  collidesWithPlayer: 0
+  readyToPlaceBlock: 0
   BlueObject: {fileID: 7733293518404703624, guid: a5e9ccd6a74775e4e8c2e7f86b6ec89e,
     type: 3}
   RedObject: {fileID: 4465930049756681697, guid: cdddcc721ee69cf47b38b335888bd8e6,
@@ -675,8 +676,6 @@ MonoBehaviour:
   mouseClickParticle: {fileID: 6501669135053022139, guid: 4ffba9eb61ea7fd4f87d8c30f8a584f6,
     type: 3}
   menuButton: {fileID: 3651365208760928618, guid: f029f7c5436ff7e41ae82c9e93656f18,
-    type: 3}
-  buildButton: {fileID: 2902107051743658447, guid: a1e5ceb971308344da08482479cddae5,
     type: 3}
   yellowBlockCount: 0
   redBlockCount: 0
@@ -1054,9 +1053,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b75e3b727d1b50488692c96ce32456d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3090121711372140168, guid: 38fadf1bd9a22ca47a4966c45dd2b888, type: 3}
   particleSystem: {fileID: 3152308053486608661, guid: 6930761302f8df841a2ceb01bdcc32ef,
     type: 3}
+  collidesWithPlayer: 0
+  readyToPlaceBlock: 0
   BlueObject: {fileID: 7733293518404703624, guid: a5e9ccd6a74775e4e8c2e7f86b6ec89e,
     type: 3}
   RedObject: {fileID: 4465930049756681697, guid: cdddcc721ee69cf47b38b335888bd8e6,
