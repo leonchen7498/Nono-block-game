@@ -36,6 +36,7 @@ namespace Assets.Scripts
         private bool touchedTheGround;
 
         private bool buildPhase;
+        private bool justFlied;
 
         // Start is called before the first frame update
         public void Start()
@@ -59,6 +60,7 @@ namespace Assets.Scripts
             {
                 if (timeLeftFloating <= 0)
                 {
+                    Debug.Log("misschine");
                     animator.SetTrigger("transform_flying");
                 }
 
@@ -80,7 +82,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         public void Update()
         {
-            if (LevelController.inBuildPhase)
+            if (LevelController.currentBlock != null)
             {
                 if (!buildPhase)
                 {
@@ -95,17 +97,17 @@ namespace Assets.Scripts
 
                     isMoving = false;
                     isFlying = false;
-                    isFalling = false;
                     timeLeftFloating = 0;
                     timeLeftMoving = 0;
                     distanceToGoal = 0;
                     previousDistanceToGoal = 0;
-                    touchPosition = Vector2.zero;
-                    body.velocity = new Vector2(0f, 0f);
-                    body.gravityScale = 0;
+                    touchPosition = Vector3.zero;
+                    if (!isFalling)
+                    {
+                        body.velocity = new Vector2(0f, 0f);
+                    }
                     buildPhase = true;
                 }
-                return;
             } else
             {
                 if (buildPhase)
@@ -116,7 +118,11 @@ namespace Assets.Scripts
 
             distanceToGoal = getDistance();
             checkIfFalling();
-            onTouch();
+
+            if (!buildPhase || (buildPhase && touchPosition == Vector3.zero))
+            {
+                onTouch();
+            }
             checkTimers();
 
             if (!touchedTheGround && !isFlying)
@@ -149,12 +155,43 @@ namespace Assets.Scripts
                 {
                     isFlying = false;
                     startMoving();
-                    timeLeftFloating = timeToFloat;
+                    if (buildPhase)
+                    {
+                        timeLeftFloating = 0.2f;
+                    }
+                    else
+                    {
+                        timeLeftFloating = timeToFloat;
+                    }
                 }
             }
 
             //Checks the distance again between the player and touch position
             previousDistanceToGoal = getDistance();
+
+            if (LevelController.stopMoving && timeLeftFloating <= 0)
+            {
+                LevelController.stopMoving = false;
+                touchPosition = Vector3.zero;
+                body.velocity = new Vector2(0f, 0f);
+
+                if (isFlying || justFlied)
+                {
+                    animator.SetTrigger("transform_flying");
+                    justFlied = false;
+                }
+                else if (isMoving || timeLeftMoving > 0)
+                {
+                    animator.SetTrigger("transform_move");
+                }
+
+                isMoving = false;
+                isFlying = false;
+                timeLeftFloating = 0;
+                timeLeftMoving = 0;
+                distanceToGoal = 0;
+                previousDistanceToGoal = 0;
+            }
         }
 
         void checkTimers()
@@ -176,7 +213,14 @@ namespace Assets.Scripts
 
                 if (timeLeftFloating < 0)
                 {
-                    animator.SetTrigger("transform_move");
+                    if (buildPhase)
+                    {
+                        justFlied = true;
+                    }
+                    else
+                    {
+                        animator.SetTrigger("transform_move");
+                    }
                     timeLeftFloating = 0;
                 }
             }
@@ -206,9 +250,13 @@ namespace Assets.Scripts
                 {
                     body.gravityScale = defaultGravity;
                     isFalling = false;
-                    if (isMoving)
+                    if (isMoving && touchPosition != Vector3.zero)
                     {
                         startMoving();
+                    }
+                    else if (!isMoving && touchPosition != Vector3.zero)
+                    {
+                        animator.SetTrigger("transform_move");
                     }
                 }
             }
@@ -261,6 +309,18 @@ namespace Assets.Scripts
 
                 if (touchPosition != Vector3.zero)
                 {
+                    //Check if x is out of bounds
+                    if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+                    {
+                        touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
+                    }
+                    else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
+                    {
+                        touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+                    }
+                    //corrects the position, otherwise the player will move to the right of the touch position
+                    touchPosition.x -= collider.bounds.size.x / 2;
+
                     if (!isMoving && !isFlying && timeLeftMoving <= 0)
                     {
                         // so the player's move animation doesn't disappear when the robot is already moving
@@ -301,36 +361,147 @@ namespace Assets.Scripts
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
             bool hitUI = false;
+            Vector2 placeholderOnPlayerPosition = Vector2.zero;
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.layer == 5 || hit.collider.gameObject == this)
+                if (hit.collider.gameObject.layer == 5)
                 {
                     hitUI = true;
                 }
+
+                if (buildPhase &&
+                    hit.collider.gameObject.name.Contains("Placeholder") &&
+                    hit.collider.gameObject.GetComponent<PlaceBlock>().collidesWithPlayer)
+                {
+                    placeholderOnPlayerPosition = hit.collider.bounds.center;
+                }
             }
 
-            if (!hitUI)
+            if (hitUI)
+            {
+                touchPosition = Vector3.zero;
+                return;
+            }
+
+            if (placeholderOnPlayerPosition != Vector2.zero)
+            {
+                Vector3 RIGHT = new Vector3(Screen.width / 2, transform.position.y);
+                Vector3 LEFT = new Vector3(Screen.width / -2, transform.position.y);
+
+                bool hitLeft;
+                bool hitRight;
+                bool hitTopLeft;
+                bool hitTopRight;
+                bool hitTop;
+                bool hitBottomLeft;
+                bool hitBottomRight;
+
+                hitLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y));
+                hitRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y));
+                hitTopLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y + 120));
+                hitTopRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y + 120));
+                hitTop = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x, placeholderOnPlayerPosition.y + 120));
+                hitBottomLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 120));
+                hitBottomRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 120));
+
+                if (hitLeft && hitRight)
+                {
+                    if (hitTop)
+                    {
+                        //je hebt jezelf ingebouwd
+                    }
+                    else if (hitTopLeft && hitTopRight)
+                    {
+                        touchPosition = position.x < 0 ? RIGHT : LEFT;
+                    }
+                    else if (hitTopLeft)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (hitTopRight)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = position.x < 0 ? RIGHT : LEFT;
+                    }
+                    
+                } 
+                else if (hitLeft && !hitRight)
+                {
+                    if (!hitTopLeft && !hitTop)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = RIGHT;
+                    }
+                } 
+                else if (!hitLeft && hitRight)
+                {
+                    if (!hitTopRight && !hitTop)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else
+                    {
+                        touchPosition = LEFT;
+                    }
+                }
+                else
+                {
+                    if (hitBottomLeft && !hitBottomRight)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else if (hitBottomRight && !hitBottomLeft)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (placeholderOnPlayerPosition.x + 60 < collider.bounds.center.x + collider.bounds.size.x / 2 &&
+                        placeholderOnPlayerPosition.x + 60 > collider.bounds.center.x - collider.bounds.size.x / 2)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (placeholderOnPlayerPosition.x - 60 < collider.bounds.center.x + collider.bounds.size.x / 2 &&
+                        placeholderOnPlayerPosition.x - 60 > collider.bounds.center.x - collider.bounds.size.x / 2)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else
+                    {
+                        touchPosition = position.x < 0 ? RIGHT : LEFT;
+                    }
+                }
+            }
+            else if (!buildPhase)
             {
                 touchPosition = position;
                 touchPosition.z = 0;
+            }
+        }
 
-                //Check if x is out of bounds
-                if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
-                {
-                    touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
-                }
-                else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
-                {
-                    touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
-                }
-                //corrects the position, otherwise the player will move to the right of the touch position
-                touchPosition.x -= collider.bounds.size.x / 2;
-            }
-            else
+        bool checkIfIthitsABlock(Vector2 position)
+        {
+            if (position.x < Screen.width / -2 || position.x > Screen.width / 2)
             {
-                touchPosition = Vector3.zero;
+                return true;
             }
+
+            RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+
+            foreach(RaycastHit2D hit in hits)
+            {
+                if (hit.collider.gameObject.name.Contains("foreground") || hit.collider.gameObject.name.Contains("Block"))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

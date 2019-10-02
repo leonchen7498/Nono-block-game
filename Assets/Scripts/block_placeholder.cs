@@ -9,9 +9,9 @@ public class block_placeholder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+        BoxCollider2D collider = GetComponent<BoxCollider2D>();
 
-        Vector3 placeholderPosition = renderer.bounds.center;
+        Vector3 placeholderPosition = collider.bounds.center;
         placeholderPosition.y += 120f;
 
         setPlaceholderAtPosition(placeholderPosition);
@@ -21,7 +21,7 @@ public class block_placeholder : MonoBehaviour
 
         setPlaceholderAtPosition(placeholderPosition);*/
 
-        placeholderPosition = renderer.bounds.center;
+        placeholderPosition = collider.bounds.center;
         placeholderPosition.x -= 120f;
 
         if (placeholderPosition.x > Screen.width / -2)
@@ -29,7 +29,7 @@ public class block_placeholder : MonoBehaviour
             setPlaceholderAtPosition(placeholderPosition);
         }
 
-        placeholderPosition = renderer.bounds.center;
+        placeholderPosition = collider.bounds.center;
         placeholderPosition.x += 120f;
 
         if (placeholderPosition.x < Screen.width / 2)

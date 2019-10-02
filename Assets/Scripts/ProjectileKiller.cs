@@ -19,7 +19,6 @@ public class ProjectileKiller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("what the frick");
         if (collision.gameObject.tag == "projectile")
         {
             Destroy(collision.gameObject);

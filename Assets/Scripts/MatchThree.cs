@@ -28,9 +28,12 @@ namespace Assets.Scripts
         {
             foreach (GameObject block in adjacentMatchingBlocks)
             {
-                if (block.transform.position.y <= gameObject.transform.position.y)
+                if (block != null)
                 {
-                    block.GetComponent<MatchThree>().toStatic();
+                    if (block.transform.position.y <= gameObject.transform.position.y)
+                    {
+                        block.GetComponent<MatchThree>().toStatic();
+                    }
                 }
             }
 

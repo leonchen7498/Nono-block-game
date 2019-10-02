@@ -15,18 +15,6 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (!LevelController.inBuildPhase)
-            {
-                if (LevelController.currentBlock != null)
-                {
-                    if (LevelController.currentBlock.tag == tag)
-                    {
-                        gameObject.GetComponent<SpriteRenderer>().enabled = false;
-                    }
-                }
-                return;
-            }
-
             if (LevelController.currentBlock != null)
             {
                 if (LevelController.currentBlock.tag == tag)

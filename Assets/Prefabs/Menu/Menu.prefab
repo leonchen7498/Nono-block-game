@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5724259483942858047}
   - component: {fileID: 5724259483942858040}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Menu overlay
   m_TagString: menu
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 5724259484489572438}
   - component: {fileID: 5724259484489572437}
   - component: {fileID: 5724259484489572436}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Level select
   m_TagString: menu
   m_Icon: {fileID: 0}
@@ -210,7 +210,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5724259485011254655}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 5724259485211553197}
   - component: {fileID: 5724259485211553199}
   - component: {fileID: 5724259485211553192}
-  m_Layer: 9
+  m_Layer: 5
   m_Name: Close button
   m_TagString: menu
   m_Icon: {fileID: 0}
@@ -358,7 +358,7 @@ GameObject:
   - component: {fileID: 5724259485347711247}
   - component: {fileID: 5724259485347711246}
   - component: {fileID: 5724259485347711245}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Menu
   m_TagString: menu
   m_Icon: {fileID: 0}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 5724259485496160177}
   - component: {fileID: 5724259485496160176}
   - component: {fileID: 5724259485496160183}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: retry
   m_TagString: menu
   m_Icon: {fileID: 0}
