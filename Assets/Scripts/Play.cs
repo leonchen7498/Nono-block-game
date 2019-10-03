@@ -15,16 +15,20 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-
-        }
-
-        void OnMouseUp()
-        {
-            foreach (GameObject item in Pause.menu)
+            Vector2 position = LevelController.getTouch();
+            if (position != Vector2.zero)
             {
-                item.SetActive(false);
+                RaycastHit2D hit = Physics2D.Raycast(position, Vector2.zero);
+
+                if (hit.collider.gameObject == this.gameObject)
+                {
+                    foreach (GameObject item in Pause.menu)
+                    {
+                        item.SetActive(false);
+                    }
+                    Time.timeScale = 1;
+                }
             }
-            Time.timeScale = 1;
         }
     }
 }
