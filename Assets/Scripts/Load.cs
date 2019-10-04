@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -17,6 +18,10 @@ namespace Assets.Scripts
                 FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat", FileMode.Open);
                 LevelController.highestLevel = (string)bf.Deserialize(file);
                 file.Close();
+                if (Convert.ToInt32(LevelController.highestLevel) < 1)
+                {
+                    LevelController.highestLevel = "1";
+                }
             }
         }
 

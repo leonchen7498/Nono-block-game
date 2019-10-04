@@ -9,6 +9,7 @@ namespace Assets.Scripts
         public static GameObject currentBlock;
         public static string currentLevel;
         public static string highestLevel;
+        public static bool allowedToChangeModes;
         public ParticleSystem mouseClickParticle;
 
         public GameObject menuButton;
@@ -41,6 +42,7 @@ namespace Assets.Scripts
             }
             Instantiate(selectionMenu, new Vector3(3, 200, -1), Quaternion.identity);
 
+            allowedToChangeModes = true;
             currentBlock = null;
             currentLevel = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
             yellowBlockAmount = yellowBlockCount;

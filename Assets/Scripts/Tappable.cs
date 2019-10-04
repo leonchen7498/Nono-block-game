@@ -16,7 +16,7 @@ namespace Assets.Scripts
         // Update is called once per frame
         void Update()
         {
-            if (LevelController.getBlockAmount(tag) != "0") {
+            if (LevelController.allowedToChangeModes && LevelController.getBlockAmount(tag) != "0") {
                 Vector2 position = LevelController.getTouch();
 
                 if (position != Vector2.zero)

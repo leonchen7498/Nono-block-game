@@ -89,6 +89,7 @@ namespace Assets.Scripts {
                         if (collidesWithPlayer)
                         {
                             readyToPlaceBlock = true;
+                            LevelController.allowedToChangeModes = false;
                         }
                         else
                         {
@@ -118,6 +119,7 @@ namespace Assets.Scripts {
                 {
                     LevelController.stopMoving = true;
                     placeBlock();
+                    LevelController.allowedToChangeModes = true;
                 }
             }
         }

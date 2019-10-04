@@ -12,7 +12,7 @@ namespace Assets.Scripts
         void Start()
         {
             Time.timeScale = 1;
-            Instantiate(menuPrefab, new Vector3(210f, 288f, -90), Quaternion.identity);
+            Instantiate(menuPrefab, new Vector3(210f, 288f, -110), Quaternion.identity);
             menu = GameObject.FindGameObjectsWithTag("menu");
             foreach (GameObject item in menu)
             {

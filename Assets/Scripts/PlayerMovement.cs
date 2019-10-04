@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -37,6 +38,7 @@ namespace Assets.Scripts
 
         private bool buildPhase;
         private bool justFlied;
+        private Vector3 touchPositionAfterFlying;
 
         // Start is called before the first frame update
         public void Start()
@@ -60,7 +62,6 @@ namespace Assets.Scripts
             {
                 if (timeLeftFloating <= 0)
                 {
-                    Debug.Log("misschine");
                     animator.SetTrigger("transform_flying");
                 }
 
@@ -153,16 +154,25 @@ namespace Assets.Scripts
                 }
                 if (isFlying)
                 {
-                    isFlying = false;
-                    startMoving();
-                    if (buildPhase)
+                    if (buildPhase && touchPositionAfterFlying == Vector3.zero)
                     {
                         timeLeftFloating = 0.2f;
+                    }
+                    else if (buildPhase && touchPositionAfterFlying != Vector3.zero)
+                    {
+                        timeLeftFloating = 0.08f;
+                        touchPosition = touchPositionAfterFlying;
+                        touchPositionAfterFlying = Vector3.zero;
                     }
                     else
                     {
                         timeLeftFloating = timeToFloat;
                     }
+
+                    startMoving();
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = 0;
+                    isFlying = false;
                 }
             }
 
@@ -341,6 +351,7 @@ namespace Assets.Scripts
         void startMoving()
         {
             moveDirection = (touchPosition - transform.position).normalized;
+
             if (moveDirection.x >= 0)
             {
                 body.velocity = new Vector2(movementSpeed, 0f);
@@ -389,62 +400,92 @@ namespace Assets.Scripts
                 Vector3 RIGHT = new Vector3(Screen.width / 2, transform.position.y);
                 Vector3 LEFT = new Vector3(Screen.width / -2, transform.position.y);
 
-                bool hitLeft;
-                bool hitRight;
-                bool hitTopLeft;
-                bool hitTopRight;
-                bool hitTop;
-                bool hitBottomLeft;
-                bool hitBottomRight;
+                bool dangerLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y), new string[] {"No-NoNo"}); 
+                bool dangerRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y), new string[] {"No-NoNo"});
+                bool dangerBottomLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 120), new string[] {"No-NoNo"});
+                bool dangerBottomRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 120), new string[] {"No-NoNo"});
 
-                hitLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y));
-                hitRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y));
-                hitTopLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y + 120));
-                hitTopRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y + 120));
-                hitTop = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x, placeholderOnPlayerPosition.y + 120));
-                hitBottomLeft = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 120));
-                hitBottomRight = checkIfIthitsABlock(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 120));
+                bool sawBottomLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 120), new string[] { "Saw" });
+                bool sawBottomRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 120), new string[] { "Saw" });
+                bool sawBottomBottomLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 240), new string[] { "Saw" });
+                bool sawBottomBottomRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 240), new string[] { "Saw" });
 
-                if (hitLeft && hitRight)
+                if (sawBottomLeft)
+                {
+                    dangerLeft = true;
+                }
+                if (sawBottomRight)
+                {
+                    dangerRight = true;
+                }
+                if (sawBottomBottomLeft)
+                {
+                    dangerBottomLeft = true;
+                }
+                if (sawBottomBottomRight)
+                {
+                    dangerBottomRight = true;
+                }
+
+                bool hitLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y), new string[] {"foreground","Block","Saw"});
+                bool hitRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y), new string[] { "foreground", "Block","Saw"});
+                bool hitTop = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x, placeholderOnPlayerPosition.y + 120), new string[] { "foreground", "Block","Saw"});
+                bool hitBottomLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y - 120), new string[] { "foreground", "Block","Saw"});
+                bool hitBottomRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y - 120), new string[] { "foreground", "Block","Saw"});
+
+                if ((dangerLeft && dangerRight) || (dangerBottomLeft && dangerBottomRight))
+                {
+                    //je hebt jezelf ingebouwd
+                }
+                else if (hitLeft && hitRight)
                 {
                     if (hitTop)
                     {
-                        //je hebt jezelf ingebouwd
+                        //je hebt jezelf hier ook ingebouwd
                     }
-                    else if (hitTopLeft && hitTopRight)
-                    {
-                        touchPosition = position.x < 0 ? RIGHT : LEFT;
-                    }
-                    else if (hitTopLeft)
+                    else if (dangerLeft)
                     {
                         touchPosition = RIGHT;
+                        touchPositionAfterFlying = LEFT;
                     }
-                    else if (hitTopRight)
+                    else if (dangerRight)
                     {
                         touchPosition = LEFT;
+                        touchPositionAfterFlying = RIGHT;
                     }
                     else
                     {
                         touchPosition = position.x < 0 ? RIGHT : LEFT;
+                        touchPositionAfterFlying = position.x > 0 ? RIGHT : LEFT;
                     }
-                    
                 } 
-                else if (hitLeft && !hitRight)
+                else if (hitLeft)
                 {
-                    if (!hitTopLeft && !hitTop)
+                    if (dangerLeft)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (!hitTop)
                     {
                         touchPosition = LEFT;
+                        touchPositionAfterFlying = RIGHT;
                     }
                     else
                     {
                         touchPosition = RIGHT;
+                        touchPositionAfterFlying = LEFT;
                     }
                 } 
-                else if (!hitLeft && hitRight)
+                else if (hitRight)
                 {
-                    if (!hitTopRight && !hitTop)
+                    if (dangerRight)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    if (!hitTop)
                     {
                         touchPosition = RIGHT;
+                        touchPositionAfterFlying = LEFT;
                     }
                     else
                     {
@@ -453,7 +494,15 @@ namespace Assets.Scripts
                 }
                 else
                 {
-                    if (hitBottomLeft && !hitBottomRight)
+                    if (dangerBottomLeft || dangerLeft)
+                    {
+                        touchPosition = RIGHT;
+                    }
+                    else if (dangerBottomRight || dangerRight)
+                    {
+                        touchPosition = LEFT;
+                    }
+                    else if (hitBottomLeft && !hitBottomRight)
                     {
                         touchPosition = LEFT;
                     }
@@ -484,7 +533,7 @@ namespace Assets.Scripts
             }
         }
 
-        bool checkIfIthitsABlock(Vector2 position)
+        bool checkIfItHitsObject(Vector2 position, string[] objectsToCheck)
         {
             if (position.x < Screen.width / -2 || position.x > Screen.width / 2)
             {
@@ -492,12 +541,17 @@ namespace Assets.Scripts
             }
 
             RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+            ArrayList objectList = new ArrayList();
+            objectList.AddRange(objectsToCheck);
 
             foreach(RaycastHit2D hit in hits)
             {
-                if (hit.collider.gameObject.name.Contains("foreground") || hit.collider.gameObject.name.Contains("Block"))
+                foreach(string objectToCheck in objectList)
                 {
-                    return true;
+                    if (hit.collider.gameObject.name.Contains(objectToCheck))
+                    {
+                        return true;
+                    }
                 }
             }
 
