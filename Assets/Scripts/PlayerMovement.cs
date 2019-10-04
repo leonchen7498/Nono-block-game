@@ -60,23 +60,44 @@ namespace Assets.Scripts
             if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
                 !isFlying && touchedTheGround)
             {
-                if (timeLeftFloating <= 0)
+                bool blockAboveOther = false;
+
+                if (!buildPhase)
                 {
-                    animator.SetTrigger("transform_flying");
+                    Vector2 colliderPosition = collision.collider.bounds.center;
+                    colliderPosition.y += 120;
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(colliderPosition, Vector2.zero);
+                    
+
+                    foreach (RaycastHit2D hit in hits)
+                    {
+                        if (hit.collider.name.Contains("Block") || hit.collider.name.Contains("foreground"))
+                        {
+                            blockAboveOther = true;
+                        }
+                    }
                 }
 
-                buildPhase = true;
-                touchedTheGround = false;
-                timeLeftFloating = 0;
-                body.velocity = new Vector2(0f, 140f);
-                flyingGoal = transform.position;
-                flyingGoal.y = flyingGoal.y + 120f;
+                if (!blockAboveOther)
+                {
+                    if (timeLeftFloating <= 0)
+                    {
+                        animator.SetTrigger("transform_flying");
+                    }
 
-                distanceToGoal = 0;
-                previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
+                    buildPhase = true;
+                    touchedTheGround = false;
+                    timeLeftFloating = 0;
+                    body.velocity = new Vector2(0f, 140f);
+                    flyingGoal = transform.position;
+                    flyingGoal.y = flyingGoal.y + 120f;
 
-                isFlying = true;
-                isMoving = false;
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
+
+                    isFlying = true;
+                    isMoving = false;
+                }
             }
         }
 
