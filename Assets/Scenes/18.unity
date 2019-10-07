@@ -4263,12 +4263,12 @@ PrefabInstance:
     - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: redBlockCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: blueBlockCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8175059122646923514, guid: 5be1dfde8345632499601be418326e90,
         type: 3}

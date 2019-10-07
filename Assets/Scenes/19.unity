@@ -3837,7 +3837,7 @@ PrefabInstance:
     - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
         type: 3}
       propertyPath: blueBlockCount
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6496091486658280726, guid: 5be1dfde8345632499601be418326e90,
         type: 3}

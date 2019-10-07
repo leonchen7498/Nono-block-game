@@ -30,14 +30,16 @@ namespace Assets.Scripts
             {
                 if (block != null)
                 {
-                    if (Mathf.Abs(block.transform.position.y - gameObject.transform.position.y) <= 60)
+                    if (block.transform.position.x == gameObject.transform.position.x &&
+                        Mathf.Abs(block.transform.position.y - gameObject.transform.position.y) <= 120)
                     {
-                        if (block.transform.position.x != gameObject.transform.position.x)
-                        {
-                            float yPosition = Mathf.Round(gameObject.transform.position.y / 120.0f) * 120;
-                            block.transform.position = new Vector2(block.transform.position.x, yPosition);
-                            gameObject.transform.position = new Vector2(gameObject.transform.position.x, yPosition);
-                        }
+                        block.GetComponent<MatchThree>().toStatic();
+                    }
+                    else if (Mathf.Abs(block.transform.position.y - gameObject.transform.position.y) <= 60)
+                    {
+                        float yPosition = Mathf.Round(gameObject.transform.position.y / 120.0f) * 120;
+                        block.transform.position = new Vector2(block.transform.position.x, yPosition);
+                        gameObject.transform.position = new Vector2(gameObject.transform.position.x, yPosition);
                         block.GetComponent<MatchThree>().toStatic();
                     }
                 }
