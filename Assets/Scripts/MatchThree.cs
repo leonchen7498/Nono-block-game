@@ -30,19 +30,18 @@ namespace Assets.Scripts
             {
                 if (block != null)
                 {
-                    if (block.transform.position.y <= gameObject.transform.position.y)
+                    if (Mathf.Abs(block.transform.position.y - gameObject.transform.position.y) <= 60)
                     {
+                        if (block.transform.position.x != gameObject.transform.position.x)
+                        {
+                            float yPosition = Mathf.Round(gameObject.transform.position.y / 120.0f) * 120;
+                            block.transform.position = new Vector2(block.transform.position.x, yPosition);
+                            gameObject.transform.position = new Vector2(gameObject.transform.position.x, yPosition);
+                        }
                         block.GetComponent<MatchThree>().toStatic();
                     }
                 }
             }
-
-            /*if (tempBlocks[0].transform.position.y > gameObject.transform.position.y)
-            {
-                tempBlocks[1].transform.position = new Vector3(tempBlocks[1].transform.position.x, gameObject.transform.position.y + 120, 10);
-                tempBlocks[0].transform.position = new Vector3(tempBlocks[0].transform.position.x, gameObject.transform.position.y, 10);
-                tempBlocks[2].transform.position = new Vector3(tempBlocks[2].transform.position.x, gameObject.transform.position.y, 10);
-            }*/
 
             RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(collider.bounds.center.x, collider.bounds.center.y - collider.bounds.size.y / 2 - 1f),
                 Vector2.zero);
@@ -121,16 +120,20 @@ namespace Assets.Scripts
 
         void addBlocks()
         {
-            if (transform.position.x - 120 > Screen.width / -2)
+            if (transform.position.x - 120 > -500)
             {
-                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 0), Quaternion.identity));
             }
                 
-            if (transform.position.x + 120 < Screen.width / 2)
+            if (transform.position.x + 120 < 500)
             {
-                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 0), Quaternion.identity));
             }
-            tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 10), Quaternion.identity));
+
+            if (transform.position.y + 120 < 1000)
+            {
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 0), Quaternion.identity));
+            }
         }
 
         void toStatic()

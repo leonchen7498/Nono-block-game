@@ -10,7 +10,21 @@ public class makePlaceholders : MonoBehaviour
     {
         for (float x = 0; x < 9; x++)
         {
-            Instantiate(placeholder, new Vector3(-480f + 120f * x, -840, 0), Quaternion.identity);
+            RaycastHit2D[] hits = Physics2D.RaycastAll(new Vector2(-480f + 120f * x, -840), Vector2.zero);
+            bool hitSomething = false;
+
+            foreach (RaycastHit2D hit in hits)
+            {
+                if (hit.collider.name.Contains("foreground") || hit.collider.name.Contains("Block") || hit.collider.name.Contains("Saw"))
+                {
+                    hitSomething = true;
+                }
+            }
+
+            if (!hitSomething)
+            {
+                Instantiate(placeholder, new Vector2(-480f + 120f * x, -840), Quaternion.identity);
+            }
         }
     }
 

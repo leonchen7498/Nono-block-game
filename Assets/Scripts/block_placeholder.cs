@@ -14,7 +14,10 @@ public class block_placeholder : MonoBehaviour
         Vector3 placeholderPosition = collider.bounds.center;
         placeholderPosition.y += 120f;
 
-        setPlaceholderAtPosition(placeholderPosition);
+        if (placeholderPosition.y < 1000)
+        {
+            setPlaceholderAtPosition(placeholderPosition);
+        }
 
         /*placeholderPosition = renderer.bounds.center;
         placeholderPosition.y -= 120f;
@@ -24,7 +27,7 @@ public class block_placeholder : MonoBehaviour
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x -= 120f;
 
-        if (placeholderPosition.x > Screen.width / -2)
+        if (placeholderPosition.x > -500)
         {
             setPlaceholderAtPosition(placeholderPosition);
         }
@@ -32,7 +35,7 @@ public class block_placeholder : MonoBehaviour
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x += 120f;
 
-        if (placeholderPosition.x < Screen.width / 2)
+        if (placeholderPosition.x < 500)
         {
             setPlaceholderAtPosition(placeholderPosition);
         }

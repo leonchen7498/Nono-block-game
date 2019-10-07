@@ -39,6 +39,7 @@ namespace Assets.Scripts
         private bool buildPhase;
         private bool justFlied;
         private Vector3 touchPositionAfterFlying;
+        private float moveTimeBeforeBuildPhase;
 
         // Start is called before the first frame update
         public void Start()
@@ -108,27 +109,41 @@ namespace Assets.Scripts
             {
                 if (!buildPhase)
                 {
-                    if (isFlying || timeLeftFloating > 0)
+                    if (isFlying || moveTimeBeforeBuildPhase > 0)
                     {
-                        animator.SetTrigger("transform_flying");
-                    }
-                    else if (isMoving || timeLeftMoving > 0)
-                    {
-                        animator.SetTrigger("transform_move");
+                        if (moveTimeBeforeBuildPhase == 0)
+                        {
+                            moveTimeBeforeBuildPhase = 0.5f;
+                        }
+
+                        moveTimeBeforeBuildPhase -= Time.deltaTime;
                     }
 
-                    isMoving = false;
-                    isFlying = false;
-                    timeLeftFloating = 0;
-                    timeLeftMoving = 0;
-                    distanceToGoal = 0;
-                    previousDistanceToGoal = 0;
-                    touchPosition = Vector3.zero;
-                    if (!isFalling)
+                    if (moveTimeBeforeBuildPhase <= 0)
                     {
-                        body.velocity = new Vector2(0f, 0f);
+                        moveTimeBeforeBuildPhase = 0;
+                        if (isFlying || timeLeftFloating > 0)
+                        {
+                            animator.SetTrigger("transform_flying");
+                        }
+                        else if (isMoving || timeLeftMoving > 0)
+                        {
+                            animator.SetTrigger("transform_move");
+                        }
+
+                        isMoving = false;
+                        isFlying = false;
+                        timeLeftFloating = 0;
+                        timeLeftMoving = 0;
+                        distanceToGoal = 0;
+                        previousDistanceToGoal = 0;
+                        touchPosition = Vector3.zero;
+                        if (!isFalling)
+                        {
+                            body.velocity = new Vector2(0f, 0f);
+                        }
+                        buildPhase = true;
                     }
-                    buildPhase = true;
                 }
             } else
             {
@@ -336,18 +351,19 @@ namespace Assets.Scripts
 
             if (position != Vector2.zero)
             {
+                Vector3 oldTouchPosition = touchPosition;
                 getTouchPosition(position);
 
-                if (touchPosition != Vector3.zero)
+                if (touchPosition != oldTouchPosition)
                 {
                     //Check if x is out of bounds
-                    if (touchPosition.x > (Screen.width - collider.bounds.size.x) / 2)
+                    if (touchPosition.x > 500)
                     {
-                        touchPosition.x = (Screen.width - collider.bounds.size.x) / 2;
+                        touchPosition.x = 500;
                     }
-                    else if (touchPosition.x < (Screen.width - collider.bounds.size.x) / -2)
-                    {
-                        touchPosition.x = (Screen.width - collider.bounds.size.x) / -2;
+                    else if (touchPosition.x < -500)
+                    { 
+                        touchPosition.x = -500;
                     }
                     //corrects the position, otherwise the player will move to the right of the touch position
                     touchPosition.x -= collider.bounds.size.x / 2 + 30;
@@ -392,14 +408,13 @@ namespace Assets.Scripts
         private void getTouchPosition(Vector2 position)
         {
             RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
-            bool hitUI = false;
             Vector2 placeholderOnPlayerPosition = Vector2.zero;
 
             foreach (RaycastHit2D hit in hits)
             {
                 if (hit.collider.gameObject.layer == 5)
                 {
-                    hitUI = true;
+                    return;
                 }
 
                 if (buildPhase &&
@@ -410,12 +425,7 @@ namespace Assets.Scripts
                 }
             }
 
-            if (hitUI)
-            {
-                touchPosition = Vector3.zero;
-                return;
-            }
-
+            //This decides which direction the robot decides to go when the player wants to place a block on the robot.
             if (placeholderOnPlayerPosition != Vector2.zero)
             {
                 Vector3 RIGHT = new Vector3(Screen.width / 2, transform.position.y);
