@@ -13,6 +13,7 @@ public class block_placeholder : MonoBehaviour
 
         Vector3 placeholderPosition = collider.bounds.center;
         placeholderPosition.y += 120f;
+        placeholderPosition.z = 10;
 
         if (placeholderPosition.y < 1000)
         {
@@ -26,6 +27,7 @@ public class block_placeholder : MonoBehaviour
 
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x -= 120f;
+        placeholderPosition.z = 10;
 
         if (placeholderPosition.x > -500)
         {
@@ -34,6 +36,7 @@ public class block_placeholder : MonoBehaviour
 
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x += 120f;
+        placeholderPosition.z = 10;
 
         if (placeholderPosition.x < 500)
         {
@@ -61,7 +64,7 @@ public class block_placeholder : MonoBehaviour
 
             foreach(RaycastHit2D hit in hits)
             {
-                if (!hit.collider.tag.Contains("player"))
+                if (hit.collider.name.Contains("foreground"))
                 {
                     hitSomething = true;
                 }

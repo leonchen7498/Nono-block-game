@@ -15,7 +15,7 @@ public class makePlaceholders : MonoBehaviour
 
             foreach (RaycastHit2D hit in hits)
             {
-                if (hit.collider.name.Contains("foreground") || hit.collider.name.Contains("Block") || hit.collider.name.Contains("Saw"))
+                if (hit.collider.name.Contains("foreground") || hit.collider.name.Contains("Saw"))
                 {
                     hitSomething = true;
                 }

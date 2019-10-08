@@ -39,13 +39,14 @@ namespace Assets.Scripts
                             }
                         }
 
-                        if (!hit.collider.name.Contains("foreground"))
+                        if (hit.collider.name.Contains("foreground") || 
+                            (hit.collider.name.Contains("Block") && hit.collider.gameObject.layer != 5 && hit.collider.gameObject != LevelController.lastPlacedBlock))
                         {
                             hitSomething = true;
                         }
                     }
 
-                    if (!hitSomething)
+                    if (hitSomething || hits.Length == 0)
                     {
                         LevelController.currentBlock = null;
                     }

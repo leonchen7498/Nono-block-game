@@ -7,7 +7,6 @@ namespace Assets.Scripts {
     {
         new public ParticleSystem particleSystem;
         new private SpriteRenderer renderer;
-        public bool collidesWithPlayer;
         public bool readyToPlaceBlock;
 
         public GameObject BlueObject;
@@ -19,12 +18,13 @@ namespace Assets.Scripts {
         public GameObject BlueTimerObject;
         public GameObject RedTimerObject;
         public GameObject YellowTimerObject;
+        public GameObject player;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.name.Contains("player"))
             {
-                collidesWithPlayer = true;
+                 player = collision.gameObject;
             }
         }
 
@@ -32,7 +32,7 @@ namespace Assets.Scripts {
         {
             if (collision.gameObject.name.Contains("player"))
             {
-                collidesWithPlayer = false;
+                player = null;
             }
         }
 
@@ -76,17 +76,18 @@ namespace Assets.Scripts {
                         placeholderHit = raycastHit;
                     }
 
-                    if (raycastHit.collider.name.Contains("Block"))
+                    if (raycastHit.collider.name.Contains("Block") || raycastHit.collider.name.Contains("foreground"))
                     {
                         blockHit = raycastHit;
                     }
                 }
 
-                if (!blockHit && placeholderHit.collider != null)
+                if (blockHit.collider == null && placeholderHit.collider != null)
                 {
                     if (LevelController.currentBlock != null && gameObject.GetComponent<SpriteRenderer>().enabled && !readyToPlaceBlock)
                     {
-                        if (collidesWithPlayer)
+                        if (player != null && 
+                            player.GetComponent<BoxCollider2D>().bounds.center.y - 30 <= this.GetComponent<BoxCollider2D>().bounds.center.y + 60)
                         {
                             readyToPlaceBlock = true;
                             LevelController.allowedToChangeModes = false;
@@ -99,7 +100,7 @@ namespace Assets.Scripts {
                 }
             }
 
-            if (readyToPlaceBlock && !collidesWithPlayer)
+            if (readyToPlaceBlock && player == null)
             {
                 readyToPlaceBlock = false;
 
@@ -109,14 +110,14 @@ namespace Assets.Scripts {
 
                 foreach(RaycastHit2D hit in hits)
                 {
-                    if (hit.collider.name.Contains("Block"))
+                    if (hit.collider.name.Contains("Block") || hit.collider.name.Contains("foreground"))
                     {
                         blockHit = true;
                     }
                 }
 
                 if (!blockHit)
-                {
+                { 
                     LevelController.stopMoving = true;
                     placeBlock();
                     LevelController.allowedToChangeModes = true;
@@ -131,7 +132,7 @@ namespace Assets.Scripts {
             switch (LevelController.currentBlock.tag)
             {
                 case "yellow_tag":
-                    Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(YellowObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.yellowBlockAmount -= 1;
                     if (LevelController.yellowBlockAmount == 0)
                     {
@@ -139,7 +140,7 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "blue_tag":
-                    Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.blueBlockAmount -= 1;
                     if (LevelController.blueBlockAmount == 0)
                     {
@@ -147,7 +148,7 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "red_tag":
-                    Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.redBlockAmount -= 1;
                     if (LevelController.redBlockAmount == 0)
                     {
@@ -155,7 +156,7 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "slime_tag":
-                    Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.slimeBlockAmount -= 1;
                     if (LevelController.slimeBlockAmount == 0)
                     {
@@ -163,7 +164,7 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "iron_tag":
-                    Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.ironBlockAmount -= 1;
                     if (LevelController.ironBlockAmount == 0)
                     {
@@ -171,7 +172,7 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "glass_tag":
-                    Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     LevelController.glassBlockAmount -= 1;
                     if (LevelController.glassBlockAmount == 0)
                     {
@@ -179,13 +180,13 @@ namespace Assets.Scripts {
                     }
                     break;
                 case "yellow_tag_timer":
-                    Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
                 case "blue_tag_timer":
-                    Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
                 case "red_tag_timer":
-                    Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    LevelController.lastPlacedBlock = Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
                     break;
             }
 

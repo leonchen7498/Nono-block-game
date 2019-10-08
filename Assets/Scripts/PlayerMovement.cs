@@ -23,7 +23,7 @@ namespace Assets.Scripts
 
         private bool isFlying;
         private bool isMoving;
-        private bool isFalling;
+        public bool isFalling;
 
         // the amount of time the robot will show it's flying animation before going back to normal
         public float timeToFloat;
@@ -37,9 +37,7 @@ namespace Assets.Scripts
         private bool touchedTheGround;
 
         private bool buildPhase;
-        private bool justFlied;
         private Vector3 touchPositionAfterFlying;
-        private float moveTimeBeforeBuildPhase;
 
         // Start is called before the first frame update
         public void Start()
@@ -52,6 +50,7 @@ namespace Assets.Scripts
             isFalling = false;
             touchedTheGround = true;
 
+            touchPositionAfterFlying = Vector3.zero;
             defaultGravity = body.gravityScale;
         }
 
@@ -63,13 +62,12 @@ namespace Assets.Scripts
             {
                 bool blockAboveOther = false;
 
-                if (!buildPhase)
+                if (touchPositionAfterFlying == Vector3.zero)
                 {
                     Vector2 colliderPosition = collision.collider.bounds.center;
                     colliderPosition.y += 120;
                     RaycastHit2D[] hits = Physics2D.RaycastAll(colliderPosition, Vector2.zero);
                     
-
                     foreach (RaycastHit2D hit in hits)
                     {
                         if (hit.collider.name.Contains("Block") || hit.collider.name.Contains("foreground"))
@@ -91,13 +89,31 @@ namespace Assets.Scripts
                     timeLeftFloating = 0;
                     body.velocity = new Vector2(0f, 140f);
                     flyingGoal = transform.position;
-                    flyingGoal.y = flyingGoal.y + 120f;
+                    flyingGoal.y += 125f;
 
                     distanceToGoal = 0;
                     previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
 
                     isFlying = true;
                     isMoving = false;
+                }
+                else
+                {
+                    Vector3 position = transform.position;
+
+                    if (transform.position.x > collider.bounds.center.x)
+                    {
+                        position.x += 5f;
+                    }
+                    else
+                    {
+                        position.x -= 5f;
+                    }
+
+                    touchPosition = position;
+                    distanceToGoal = 0;
+                    previousDistanceToGoal = (touchPosition - transform.position).magnitude;
+                    startMoving();
                 }
             }
         }
@@ -109,41 +125,7 @@ namespace Assets.Scripts
             {
                 if (!buildPhase)
                 {
-                    if (isFlying || moveTimeBeforeBuildPhase > 0)
-                    {
-                        if (moveTimeBeforeBuildPhase == 0)
-                        {
-                            moveTimeBeforeBuildPhase = 0.5f;
-                        }
-
-                        moveTimeBeforeBuildPhase -= Time.deltaTime;
-                    }
-
-                    if (moveTimeBeforeBuildPhase <= 0)
-                    {
-                        moveTimeBeforeBuildPhase = 0;
-                        if (isFlying || timeLeftFloating > 0)
-                        {
-                            animator.SetTrigger("transform_flying");
-                        }
-                        else if (isMoving || timeLeftMoving > 0)
-                        {
-                            animator.SetTrigger("transform_move");
-                        }
-
-                        isMoving = false;
-                        isFlying = false;
-                        timeLeftFloating = 0;
-                        timeLeftMoving = 0;
-                        distanceToGoal = 0;
-                        previousDistanceToGoal = 0;
-                        touchPosition = Vector3.zero;
-                        if (!isFalling)
-                        {
-                            body.velocity = new Vector2(0f, 0f);
-                        }
-                        buildPhase = true;
-                    }
+                    buildPhase = true;
                 }
             } else
             {
@@ -187,16 +169,17 @@ namespace Assets.Scripts
                     }
                     isMoving = false;
                     body.velocity = new Vector2(0f, 0f);
+                    touchPosition = Vector3.zero;
                 }
                 if (isFlying)
                 {
                     if (buildPhase && touchPositionAfterFlying == Vector3.zero)
                     {
-                        timeLeftFloating = 0.2f;
+                        timeLeftFloating = timeToFloat;
                     }
                     else if (buildPhase && touchPositionAfterFlying != Vector3.zero)
                     {
-                        timeLeftFloating = 0.08f;
+                        timeLeftFloating = 0.1f;
                         touchPosition = touchPositionAfterFlying;
                         touchPositionAfterFlying = Vector3.zero;
                     }
@@ -205,26 +188,25 @@ namespace Assets.Scripts
                         timeLeftFloating = timeToFloat;
                     }
 
-                    startMoving();
                     distanceToGoal = 0;
-                    previousDistanceToGoal = 0;
+                    previousDistanceToGoal = (touchPosition - transform.position).magnitude;
                     isFlying = false;
+                    startMoving();
                 }
             }
 
             //Checks the distance again between the player and touch position
             previousDistanceToGoal = getDistance();
 
-            if (LevelController.stopMoving && timeLeftFloating <= 0)
+            if (LevelController.stopMoving && touchPositionAfterFlying == Vector3.zero && timeLeftFloating <= 0)
             {
                 LevelController.stopMoving = false;
                 touchPosition = Vector3.zero;
                 body.velocity = new Vector2(0f, 0f);
 
-                if (isFlying || justFlied)
+                if (isFlying)
                 {
                     animator.SetTrigger("transform_flying");
-                    justFlied = false;
                 }
                 else if (isMoving || timeLeftMoving > 0)
                 {
@@ -259,13 +241,13 @@ namespace Assets.Scripts
 
                 if (timeLeftFloating < 0)
                 {
-                    if (buildPhase)
+                    if (!LevelController.stopMoving)
                     {
-                        justFlied = true;
+                        animator.SetTrigger("transform_move");
                     }
                     else
                     {
-                        animator.SetTrigger("transform_move");
+                        touchPosition = Vector3.zero;
                     }
                     timeLeftFloating = 0;
                 }
@@ -419,7 +401,8 @@ namespace Assets.Scripts
 
                 if (buildPhase &&
                     hit.collider.gameObject.name.Contains("Placeholder") &&
-                    hit.collider.gameObject.GetComponent<PlaceBlock>().collidesWithPlayer)
+                    hit.collider.gameObject.GetComponent<PlaceBlock>().player != null &&
+                    collider.bounds.center.y - 30 <= hit.collider.gameObject.GetComponent<BoxCollider2D>().bounds.center.y + 60)
                 {
                     placeholderOnPlayerPosition = hit.collider.bounds.center;
                 }
@@ -428,8 +411,8 @@ namespace Assets.Scripts
             //This decides which direction the robot decides to go when the player wants to place a block on the robot.
             if (placeholderOnPlayerPosition != Vector2.zero)
             {
-                Vector3 RIGHT = new Vector3(Screen.width / 2, transform.position.y);
-                Vector3 LEFT = new Vector3(Screen.width / -2, transform.position.y);
+                Vector3 RIGHT = new Vector3(540, transform.position.y);
+                Vector3 LEFT = new Vector3(-540, transform.position.y);
 
                 bool dangerLeft = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x - 120, placeholderOnPlayerPosition.y), new string[] {"No-NoNo"}); 
                 bool dangerRight = checkIfItHitsObject(new Vector2(placeholderOnPlayerPosition.x + 120, placeholderOnPlayerPosition.y), new string[] {"No-NoNo"});
@@ -513,7 +496,7 @@ namespace Assets.Scripts
                     {
                         touchPosition = LEFT;
                     }
-                    if (!hitTop)
+                    else if (!hitTop)
                     {
                         touchPosition = RIGHT;
                         touchPositionAfterFlying = LEFT;
@@ -566,7 +549,7 @@ namespace Assets.Scripts
 
         bool checkIfItHitsObject(Vector2 position, string[] objectsToCheck)
         {
-            if (position.x < Screen.width / -2 || position.x > Screen.width / 2)
+            if (position.x < -540 || position.x > 540)
             {
                 return true;
             }
