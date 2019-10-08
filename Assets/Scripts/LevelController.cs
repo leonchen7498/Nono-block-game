@@ -25,6 +25,7 @@ namespace Assets.Scripts
         public static int ironBlockAmount;
         public int glassBlockCount;
         public static int glassBlockAmount;
+        public static GameObject lastPlacedBlock;
         public GameObject selectionMenu;
 
         public static bool stopMoving;

@@ -124,17 +124,17 @@ namespace Assets.Scripts
         {
             if (transform.position.x - 120 > -500)
             {
-                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 0), Quaternion.identity));
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x - 120, transform.position.y, 10), Quaternion.identity));
             }
                 
             if (transform.position.x + 120 < 500)
             {
-                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 0), Quaternion.identity));
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x + 120, transform.position.y, 10), Quaternion.identity));
             }
 
             if (transform.position.y + 120 < 1000)
             {
-                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 0), Quaternion.identity));
+                tempBlocks.Add(Instantiate(tempBlock, new Vector3(transform.position.x, transform.position.y + 120, 10), Quaternion.identity));
             }
         }
 
