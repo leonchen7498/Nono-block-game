@@ -27,10 +27,10 @@ EditorBuildSettings:
     path: Assets/Scenes/2.unity
     guid: 489e4e6256a7ee94e9710a38fc975dc5
   - enabled: 1
-    path: Assets/Scenes/3.unity
+    path: Assets/Scenes/2.unity
     guid: 3bcd23b513bebd641ad6d9c4bda47730
   - enabled: 1
-    path: Assets/Scenes/4.unity
+    path: Assets/Scenes/3.unity
     guid: 89818074286cf0a4b9cecf36f87df916
   - enabled: 1
     path: Assets/Scenes/5.unity
@@ -39,72 +39,72 @@ EditorBuildSettings:
     path: Assets/Scenes/6.unity
     guid: 9f2f07ee3a396a143a9deb97fa1651df
   - enabled: 1
-    path: Assets/Scenes/7.unity
+    path: Assets/Scenes/110 Boring.unity
     guid: 918141aa95e998348a0b0e53eed78227
   - enabled: 1
-    path: Assets/Scenes/8.unity
+    path: Assets/Scenes/110  Boring.unity
     guid: 4a916c8338472f649971eb971c9bd119
   - enabled: 1
-    path: Assets/Scenes/9.unity
+    path: Assets/Scenes/5.unity
     guid: d433dfb5c05af3b43959f52b76eb99f3
   - enabled: 1
-    path: Assets/Scenes/10.unity
+    path: Assets/Scenes/101 Boring.unity
     guid: 355ed5739511cd942913671279efd089
   - enabled: 1
-    path: Assets/Scenes/11.unity
+    path: Assets/Scenes/9.unity
     guid: 96764974f6816f44f97af407b7e2bab4
   - enabled: 1
-    path: Assets/Scenes/12.unity
+    path: Assets/Scenes/120 Boring.unity
     guid: ee545c0125543b0468619c500a043837
   - enabled: 1
-    path: Assets/Scenes/13.unity
+    path: Assets/Scenes/130 Boring.unity
     guid: 831295b8251e1c2439f3688a12e0a4db
   - enabled: 1
-    path: Assets/Scenes/14.unity
+    path: Assets/Scenes/17bullshit.unity
     guid: 97478019c3ae8a74da851eab1261ac0c
   - enabled: 1
-    path: Assets/Scenes/15.unity
+    path: Assets/Scenes/10.unity
     guid: 1193f18d9c20ad448b1ff8aa0f856890
   - enabled: 1
-    path: Assets/Scenes/16.unity
+    path: Assets/Scenes/15.unity
     guid: b5f82684c410b564fb1c4c5432bf2f34
   - enabled: 1
-    path: Assets/Scenes/17.unity
+    path: Assets/Scenes/170 Boring.unity
     guid: 1ca9c6a6a5e39b540b9866350080b7b4
   - enabled: 1
-    path: Assets/Scenes/18.unity
+    path: Assets/Scenes/180 Boring.unity
     guid: 504c14239a34a2e489af578435190426
   - enabled: 1
-    path: Assets/Scenes/19.unity
+    path: Assets/Scenes/13.unity
     guid: a60895477f987af4a9155c601187ed31
   - enabled: 1
-    path: Assets/Scenes/20.unity
+    path: Assets/Scenes/20 Boring.unity
     guid: c7ccbf17820a3ee47a9732f0c177bfee
   - enabled: 1
-    path: Assets/Scenes/21.unity
+    path: Assets/Scenes/21 meh.unity
     guid: ebfde876a53ec0d46bc58e2cfeb236a2
   - enabled: 1
     path: Assets/Scenes/22.unity
     guid: ff545bf8e89723942920b1046f3857e4
   - enabled: 1
-    path: Assets/Scenes/23.unity
+    path: Assets/Scenes/23 meh.unity
     guid: f4b01e02cc7c29646af8e1d9df84184b
   - enabled: 1
     path: Assets/Scenes/24.unity
     guid: 2af6b4ad6bbc8a44dbaf232dc995d284
   - enabled: 1
-    path: Assets/Scenes/25.unity
+    path: Assets/Scenes/25 meh.unity
     guid: ac351340ba8021e4e80934fea8c8ddca
   - enabled: 1
-    path: Assets/Scenes/26.unity
+    path: Assets/Scenes/11.unity
     guid: b10c94ad9bfa2cc4ea8292fda528f4b8
   - enabled: 1
-    path: Assets/Scenes/27.unity
+    path: Assets/Scenes/8.unity
     guid: 90698d4233cb1de4588e38aaf64d4445
   - enabled: 1
-    path: Assets/Scenes/28.unity
+    path: Assets/Scenes/12.unity
     guid: 1ece5ee65e95d494aa0c5c98df905e55
   - enabled: 1
-    path: Assets/Scenes/29.unity
+    path: Assets/Scenes/17.unity
     guid: 308ae858781bd9643b0fbbe87719a479
   m_configObjects: {}
