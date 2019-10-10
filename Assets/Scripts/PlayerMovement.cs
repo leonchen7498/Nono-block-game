@@ -57,7 +57,7 @@ namespace Assets.Scripts
         public void OnCollisionEnter2D(Collision2D collision)
         {
             // Check if collision isnt because the player is on top of the block
-            if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y &&
+            if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y + 40 &&
                 !isFlying && touchedTheGround)
             {
                 bool blockAboveOther = false;
@@ -87,9 +87,9 @@ namespace Assets.Scripts
                     buildPhase = true;
                     touchedTheGround = false;
                     timeLeftFloating = 0;
-                    body.velocity = new Vector2(0f, 140f);
+                    body.velocity = new Vector2(0f, 240f);
                     flyingGoal = transform.position;
-                    flyingGoal.y += 125f;
+                    flyingGoal.y += 121f;
 
                     distanceToGoal = 0;
                     previousDistanceToGoal = (flyingGoal - transform.position).magnitude;
@@ -188,6 +188,10 @@ namespace Assets.Scripts
                         timeLeftFloating = timeToFloat;
                     }
 
+                    Vector2 fixPosition = transform.position;
+                    fixPosition.y = flyingGoal.y;
+                    transform.position = fixPosition;
+
                     distanceToGoal = 0;
                     previousDistanceToGoal = (touchPosition - transform.position).magnitude;
                     isFlying = false;
@@ -265,7 +269,7 @@ namespace Assets.Scripts
                 {
                     isFalling = true;
                     body.velocity = Vector2.zero;
-                    body.gravityScale = 50f;
+                    body.gravityScale = 30f;
                 }
             }
 

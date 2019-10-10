@@ -40,6 +40,7 @@ namespace Assets.Scripts {
         void Start()
         {
             renderer = GetComponent<SpriteRenderer>();
+            player = null;
         }
 
         // Update is called once per frame
@@ -138,6 +139,7 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.blockPlaced = true;
                     break;
                 case "blue_tag":
                     LevelController.lastPlacedBlock = Instantiate(BlueObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -146,6 +148,7 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.blockPlaced = true;
                     break;
                 case "red_tag":
                     LevelController.lastPlacedBlock = Instantiate(RedObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -154,6 +157,7 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.blockPlaced = true;
                     break;
                 case "slime_tag":
                     LevelController.lastPlacedBlock = Instantiate(SlimeObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -162,6 +166,7 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.slimePlaced = true;
                     break;
                 case "iron_tag":
                     LevelController.lastPlacedBlock = Instantiate(IronObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -170,6 +175,7 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.metalPlaced = true;
                     break;
                 case "glass_tag":
                     LevelController.lastPlacedBlock = Instantiate(glassObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
@@ -178,15 +184,19 @@ namespace Assets.Scripts {
                     {
                         LevelController.currentBlock = null;
                     }
+                    SoundController.glassPlaced = true;
                     break;
                 case "yellow_tag_timer":
                     LevelController.lastPlacedBlock = Instantiate(YellowTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    SoundController.blockPlaced = true;
                     break;
                 case "blue_tag_timer":
                     LevelController.lastPlacedBlock = Instantiate(BlueTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    SoundController.blockPlaced = true;
                     break;
                 case "red_tag_timer":
                     LevelController.lastPlacedBlock = Instantiate(RedTimerObject, new Vector3(transform.position.x, transform.position.y, 0), Quaternion.identity);
+                    SoundController.blockPlaced = true;
                     break;
             }
 

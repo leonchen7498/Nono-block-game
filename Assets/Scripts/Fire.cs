@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fire : MonoBehaviour
 {
 
-    public enum direction {Up, Left, Down, Right }
+    public enum direction {Up, Left, Down, Right}
     public direction facing;
     public float waitTime;
     public GameObject projectile;
@@ -41,5 +41,6 @@ public class Fire : MonoBehaviour
         }
         
         newProjectile.transform.Rotate(0, 0, 90 * (int) facing);
+        newProjectile.GetComponent<Projectile>().facing = (Projectile.direction)(int)facing;
     }
 }

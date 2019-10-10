@@ -3,23 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Restart : MonoBehaviour
+namespace Assets.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Restart : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void OnMouseDown()
-    {
+        }
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        // Update is called once per frame
+        void Update()
+        {
+            Vector2 position = LevelController.getTouch();
 
+            if (position != Vector2.zero)
+            {
+                RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+
+                foreach(RaycastHit2D hit in hits)
+                {
+                    if (hit.collider.gameObject == gameObject)
+                    {
+                        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                    }
+                }
+            }
+        }
     }
 }

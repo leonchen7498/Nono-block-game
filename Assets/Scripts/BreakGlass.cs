@@ -1,26 +1,29 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-public class BreakGlass : MonoBehaviour
+namespace Assets.Scripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class BreakGlass : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "actual_glass")
+        // Start is called before the first frame update
+        void Start()
         {
-            Destroy(collision.gameObject.transform.parent.gameObject);
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.gameObject.tag == "actual_glass")
+            {
+                Destroy(collision.gameObject.transform.parent.gameObject);
+                SoundController.glassBroken = true;
+            }
         }
     }
 }
