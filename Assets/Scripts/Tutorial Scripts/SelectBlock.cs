@@ -8,7 +8,7 @@ namespace Assets.Scripts {
         // Start is called before the first frame update
         void Start()
         {
-
+            GameObject.FindGameObjectWithTag("player").GetComponent<PlayerMovement>().movementSpeed = 0;
         }
 
         // Update is called once per frame
@@ -17,6 +17,7 @@ namespace Assets.Scripts {
             if (LevelController.currentBlock != null)
             {
                 gameObject.SetActive(false);
+                GameObject.FindGameObjectWithTag("player").GetComponent<PlayerMovement>().movementSpeed = 400;
             }
         }
     }
