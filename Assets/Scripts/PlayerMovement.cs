@@ -11,8 +11,8 @@ namespace Assets.Scripts
         [Range(100, 1000)]
         public float movementSpeed;
 
-        Animator animator;
-        Rigidbody2D body;
+        public Animator animator;
+        public Rigidbody2D body;
         new BoxCollider2D collider;
 
         private Vector3 touchPosition;
@@ -60,24 +60,37 @@ namespace Assets.Scripts
             if ((collider.bounds.center.y - collider.bounds.size.y / 2) < collision.collider.bounds.center.y + 40 &&
                 !isFlying && touchedTheGround)
             {
-                bool blockAboveOther = false;
+                bool unreachable = false;
 
+                //Check if the player is able to fly over the wall and stand on top of the block. 
+                //This isn't neccessary when the player builds on himself, because in that case nono will fly on top of the block he just built
                 if (touchPositionAfterFlying == Vector3.zero)
                 {
-                    Vector2 colliderPosition = collision.collider.bounds.center;
-                    colliderPosition.y += 120;
-                    RaycastHit2D[] hits = Physics2D.RaycastAll(colliderPosition, Vector2.zero);
+                    RaycastHit2D[] hits = Physics2D.RaycastAll(
+                        new Vector2(collision.collider.bounds.center.x, collision.collider.bounds.center.y + 120), Vector2.zero);
                     
                     foreach (RaycastHit2D hit in hits)
                     {
                         if (hit.collider.name.Contains("Block") || hit.collider.name.Contains("foreground"))
                         {
-                            blockAboveOther = true;
+                            unreachable = true;
+                        }
+                    }
+
+                    
+                    hits = Physics2D.RaycastAll(
+                        new Vector2(collider.bounds.center.x, collider.bounds.center.y + 120), Vector2.zero);
+
+                    foreach (RaycastHit2D hit in hits)
+                    {
+                        if (hit.collider.name.Contains("Block") || hit.collider.name.Contains("foreground"))
+                        {
+                            unreachable = true;
                         }
                     }
                 }
 
-                if (!blockAboveOther)
+                if (!unreachable)
                 {
                     if (timeLeftFloating <= 0)
                     {
@@ -99,9 +112,10 @@ namespace Assets.Scripts
                 }
                 else
                 {
+                    // move nono away from the wall if he can't climb the wall
                     Vector3 position = transform.position;
 
-                    if (transform.position.x > collider.bounds.center.x)
+                    if (transform.position.x > collision.collider.bounds.center.x)
                     {
                         position.x += 5f;
                     }
