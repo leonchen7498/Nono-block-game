@@ -1762,6 +1762,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 400
+  animator: {fileID: 0}
+  body: {fileID: 0}
   isFalling: 0
   timeToFloat: 0.5
   timeToMove: 1
@@ -2475,7 +2477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1793418576}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.618, y: 5.47, z: 0}
+  m_LocalPosition: {x: -1.24, y: 3.28, z: 0}
   m_LocalScale: {x: 0.5978732, y: 0.65416604, z: 0}
   m_Children: []
   m_Father: {fileID: 2054707885}
@@ -3145,7 +3147,6 @@ MonoBehaviour:
   tempBlock: {fileID: 758917769184597157, guid: 490ccd1b33389504496f3047c57c6891,
     type: 3}
   tempBlocks: []
-  setStatic: 0
 --- !u!114 &1501793751147609556
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3162,7 +3163,6 @@ MonoBehaviour:
   tempBlock: {fileID: 758917769184597157, guid: 490ccd1b33389504496f3047c57c6891,
     type: 3}
   tempBlocks: []
-  setStatic: 0
 --- !u!114 &1716733067636579570
 MonoBehaviour:
   m_ObjectHideFlags: 0
