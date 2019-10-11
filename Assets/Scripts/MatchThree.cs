@@ -103,7 +103,7 @@ namespace Assets.Scripts
                 }
 
                 if (collider.gameObject != null &&
-                    collider.gameObject.transform.position.x == gameObject.transform.position.x)
+                    Mathf.Abs(collider.gameObject.transform.position.x - gameObject.transform.position.x) <= 3)
                 {
                     adjacentMatchingBlocks.Add(collider.gameObject);
                     if (collider.gameObject.name.Contains("Glass") && adjacentMatchingBlocks.Count == 1)

@@ -35,5 +35,13 @@ namespace Assets.Scripts
             yield return new WaitForSeconds(1);
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
+
+        private void OnDestroy()
+        {
+            if (dead)
+            {
+                UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+            }
+        }
     }
 }
