@@ -101,9 +101,18 @@ namespace Assets.Scripts
                     {
                         if (block.transform.position.x == gameObject.transform.position.x)
                         {
-                            float blockPositionY = Mathf.Round(block.transform.position.y / 120.0f) * 120;
-                            block.transform.position = new Vector2(block.transform.position.x, blockPositionY);
-                            block.GetComponent<MatchThree>().toStatic();
+                            if (block.name.Contains("Glass") && adjacentMatchingBlocks.Count == 1)
+                            {
+                                adjacentMatchingBlocks.ForEach(deleteBlock => Destroy(deleteBlock));
+                                Debug.Log("he");
+                                return;
+                            }
+                            else
+                            {
+                                float blockPositionY = Mathf.Round(block.transform.position.y / 120.0f) * 120;
+                                block.transform.position = new Vector2(block.transform.position.x, blockPositionY);
+                                block.GetComponent<MatchThree>().toStatic();
+                            }
                         }
                         else if (Mathf.Abs(block.transform.position.y - gameObject.transform.position.y) <= 60)
                         {
