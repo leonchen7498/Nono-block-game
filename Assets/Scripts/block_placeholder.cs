@@ -13,21 +13,19 @@ public class block_placeholder : MonoBehaviour
 
         Vector3 placeholderPosition = collider.bounds.center;
         placeholderPosition.y += 120f;
-        placeholderPosition.z = 10;
 
         if (placeholderPosition.y < 1000)
         {
             setPlaceholderAtPosition(placeholderPosition);
         }
 
-        /*placeholderPosition = renderer.bounds.center;
+        placeholderPosition = collider.bounds.center;
         placeholderPosition.y -= 120f;
 
-        setPlaceholderAtPosition(placeholderPosition);*/
+        setPlaceholderAtPosition(placeholderPosition);
 
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x -= 120f;
-        placeholderPosition.z = 10;
 
         if (placeholderPosition.x > -500)
         {
@@ -36,7 +34,6 @@ public class block_placeholder : MonoBehaviour
 
         placeholderPosition = collider.bounds.center;
         placeholderPosition.x += 120f;
-        placeholderPosition.z = 10;
 
         if (placeholderPosition.x < 500)
         {
@@ -53,10 +50,11 @@ public class block_placeholder : MonoBehaviour
     void setPlaceholderAtPosition(Vector3 position)
     {
         RaycastHit2D[] hits = Physics2D.RaycastAll(position, Vector2.zero);
+        Vector3 placeholderPosition = new Vector3(position.x, position.y, 10f);
 
         if (hits.Length == 0)
         {
-            Instantiate(placeholder, position, Quaternion.identity);
+            Instantiate(placeholder, placeholderPosition, Quaternion.identity);
         }
         else
         {
@@ -72,7 +70,7 @@ public class block_placeholder : MonoBehaviour
 
             if (!hitSomething)
             {
-                Instantiate(placeholder, position, Quaternion.identity);
+                Instantiate(placeholder, placeholderPosition, Quaternion.identity);
             }
         }
     }
