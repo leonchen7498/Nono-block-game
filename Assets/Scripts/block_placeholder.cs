@@ -62,7 +62,7 @@ public class block_placeholder : MonoBehaviour
 
             foreach(RaycastHit2D hit in hits)
             {
-                if (hit.collider.name.Contains("foreground"))
+                if (hit.collider.name.Contains("foreground") || hit.collider.name.Contains("Flag"))
                 {
                     hitSomething = true;
                 }

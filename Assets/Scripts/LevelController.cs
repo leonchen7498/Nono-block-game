@@ -27,6 +27,7 @@ namespace Assets.Scripts
         public static int glassBlockAmount;
         public static GameObject lastPlacedBlock;
         public GameObject selectionMenu;
+        public GameObject buildModeOverlay;
 
         public static bool stopMoving;
 
@@ -42,6 +43,7 @@ namespace Assets.Scripts
                 Instantiate(menuButton, new Vector3(432.5f, 1058.6f, 0), Quaternion.identity);
             }
             Instantiate(selectionMenu, new Vector3(3, 200, -1), Quaternion.identity);
+            buildModeOverlay = Instantiate(buildModeOverlay);
 
             allowedToChangeModes = true;
             currentBlock = null;
@@ -63,6 +65,15 @@ namespace Assets.Scripts
             {
                 ParticleSystem placeParticle = Instantiate(mouseClickParticle, position, Quaternion.identity);
                 placeParticle.Play();
+            }
+
+            if (currentBlock == null && buildModeOverlay.activeSelf == true)
+            {
+                buildModeOverlay.SetActive(false);
+            }
+            else if (currentBlock != null && buildModeOverlay.activeSelf == false)
+            {
+                buildModeOverlay.SetActive(true);
             }
         }
 

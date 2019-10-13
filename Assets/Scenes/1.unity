@@ -427,6 +427,11 @@ PrefabInstance:
       propertyPath: m_Size.x
       value: 0.38012642
       objectReference: {fileID: 0}
+    - target: {fileID: 8175800535376499046, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8175800535376499041, guid: 3c1c2a61e623b85428de0c49c05f1ed9,
         type: 3}
       propertyPath: scene
@@ -1676,6 +1681,8 @@ MonoBehaviour:
   ironBlockCount: 0
   glassBlockCount: 0
   selectionMenu: {fileID: 7330129746623039561, guid: 35d350697d59acc4f8c29a9a931cddbf,
+    type: 3}
+  buildModeOverlay: {fileID: 8916489048073359370, guid: 147630e44dd814444b6ee58e0a47359d,
     type: 3}
 --- !u!114 &6915573516443543836
 MonoBehaviour:

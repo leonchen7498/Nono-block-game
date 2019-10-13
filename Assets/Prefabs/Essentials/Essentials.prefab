@@ -137,6 +137,8 @@ MonoBehaviour:
   glassBlockCount: 7
   selectionMenu: {fileID: 7330129746623039561, guid: 35d350697d59acc4f8c29a9a931cddbf,
     type: 3}
+  buildModeOverlay: {fileID: 8916489048073359370, guid: 147630e44dd814444b6ee58e0a47359d,
+    type: 3}
 --- !u!1 &6915573516918964671
 GameObject:
   m_ObjectHideFlags: 0
